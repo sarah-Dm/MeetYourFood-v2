@@ -8,7 +8,7 @@ const User = require('../models/User.model.js');
 const Host = require('../models/Host.model.js');
 const Comment = require('../models/Comment.model.js');
 
-const DB_NAME = 'meetyourfood';
+const DB_NAME = 'MeetYourFood_React';
 
 //mongodb+srv://meetyourfood:JXTKTjXQAvia05Tv@cluster0.hhlqe.mongodb.net/test
 //mongodb://localhost/${DB_NAME}
@@ -36,7 +36,7 @@ const data = [
     city: 'compiegne',
     address: '8, Chemin  des Vignes',
     zipCode: 32189,
-    certifications: ['AOP', 'HVE'],
+    certifications: ['AOP', 'IGP'],
     description:
       'Les enfants adorent venir à la ferme car tous leurs sens sont en éveil. Pour la plupart d’entre eux, c’est la première fois qu’ils peuvent voir des animaux si près et les toucher. C’est aussi une manière de découvrir quel est le véritable trésor de la vie, ce que nous donne chaque jour la terre : la nourriture.',
     openingDays: ['monday', 'thursday', 'sunday'],
@@ -120,7 +120,7 @@ const data = [
     city: 'clermont-ferrand',
     address: '8, Chemin  des Vignes',
     zipCode: 32189,
-    certifications: ['RSE', 'biodynamic'],
+    certifications: ['STG', 'biodynamic'],
     description:
       'Une ferme pédagogique accueille les enfants en plein Paris. Située dans le 13e arrondissement, elle est au sein du Parc Kellermann et propose aux familles des visites au plus près des animaux.',
     openingDays: ['thursday', 'friday', 'saturday', 'sunday'],
@@ -147,7 +147,7 @@ const data = [
     city: 'bergerac',
     address: '8, Chemin  des Vignes',
     zipCode: 32189,
-    certifications: ['RSE', 'biodynamic', 'AOP', 'AOC'],
+    certifications: ['STG', 'biodynamic', 'AOP', 'AOC'],
     description:
       "Les Cueillettes de Compans sont situées vers Roissy près de Paris. D'avril à novembre, elles proposent des produits frais variés à venir récolter en famille. L'occasion d'une sortie nature avec les enfants.",
     openingDays: ['monday', 'thursday', 'friday', 'saturday', 'sunday'],
@@ -173,7 +173,7 @@ const data = [
     city: 'bergerac',
     address: '8, Chemin  des Vignes',
     zipCode: 32189,
-    certifications: ['RSE', 'biodynamic', 'AOP', 'AOC'],
+    certifications: ['STG', 'biodynamic', 'AOP', 'AOC'],
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi tristique ipsum non neque condimentum tristique. Pellentesque mollis consequat blandit. Nam leo libero, tempor eu finibus efficitur, aliquam eget lacus. Duis a dolor nec justo vehicula varius feugiat sed nulla. Nulla tempor a mi quis imperdiet. Nulla massa augue, sodales non mauris a, laoreet accumsan nisi. Proin sodales sit amet ipsum eget dictum. Pellentesque ac rhoncus nibh, ut pretium risus. ',
     openingDays: ['monday', 'thursday', 'saturday'],
@@ -227,7 +227,7 @@ const data = [
     city: 'compiegne',
     address: '8, Chemin  des Vignes',
     zipCode: 32189,
-    certifications: ['biodynamic', 'AOP', 'AOC', 'RSE'],
+    certifications: ['biodynamic', 'AOP', 'AOC', 'STG'],
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi tristique ipsum non neque condimentum tristique. Pellentesque mollis consequat blandit. Nam leo libero, tempor eu finibus efficitur, aliquam eget lacus. Duis a dolor nec justo vehicula varius feugiat sed nulla. Nulla tempor a mi quis imperdiet. Nulla massa augue, sodales non mauris a, laoreet accumsan nisi. Proin sodales sit amet ipsum eget dictum. Pellentesque ac rhoncus nibh, ut pretium risus. ',
     openingDays: ['monday', 'tuesday', 'saturday', 'wednesday'],
@@ -254,7 +254,7 @@ const data = [
     city: 'compiegne',
     address: '8, Chemin  des Vignes',
     zipCode: 32189,
-    certifications: ['biodynamic', 'AOP', 'AOC', 'RSE'],
+    certifications: ['biodynamic', 'AOP', 'AOC', 'STG'],
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi tristique ipsum non neque condimentum tristique. Pellentesque mollis consequat blandit. Nam leo libero, tempor eu finibus efficitur, aliquam eget lacus. Duis a dolor nec justo vehicula varius feugiat sed nulla. Nulla tempor a mi quis imperdiet. Nulla massa augue, sodales non mauris a, laoreet accumsan nisi. Proin sodales sit amet ipsum eget dictum. Pellentesque ac rhoncus nibh, ut pretium risus. ',
     openingDays: ['monday', 'tuesday', 'saturday', 'wednesday'],
@@ -281,7 +281,7 @@ const data = [
     city: 'compiegne',
     address: '8, Chemin  des Vignes',
     zipCode: 32189,
-    certifications: ['biodynamic', 'AOP', 'AOC', 'RSE'],
+    certifications: ['biodynamic', 'AOP', 'AOC', 'STG'],
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi tristique ipsum non neque condimentum tristique. Pellentesque mollis consequat blandit. Nam leo libero, tempor eu finibus efficitur, aliquam eget lacus. Duis a dolor nec justo vehicula varius feugiat sed nulla. Nulla tempor a mi quis imperdiet. Nulla massa augue, sodales non mauris a, laoreet accumsan nisi. Proin sodales sit amet ipsum eget dictum. Pellentesque ac rhoncus nibh, ut pretium risus. ',
     openingDays: ['monday', 'tuesday', 'saturday', 'wednesday'],
@@ -308,7 +308,7 @@ const data = [
     city: 'compiegne',
     address: '8, Chemin  des Vignes',
     zipCode: 32189,
-    certifications: ['biodynamic', 'AOP', 'AOC', 'RSE'],
+    certifications: ['biodynamic', 'AOP', 'AOC', 'STG'],
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi tristique ipsum non neque condimentum tristique. Pellentesque mollis consequat blandit. Nam leo libero, tempor eu finibus efficitur, aliquam eget lacus. Duis a dolor nec justo vehicula varius feugiat sed nulla. Nulla tempor a mi quis imperdiet. Nulla massa augue, sodales non mauris a, laoreet accumsan nisi. Proin sodales sit amet ipsum eget dictum. Pellentesque ac rhoncus nibh, ut pretium risus. ',
     openingDays: ['monday', 'tuesday', 'saturday', 'wednesday'],

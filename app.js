@@ -8,6 +8,7 @@ const hbs = require('hbs');
 const mongoose = require('mongoose');
 const logger = require('morgan');
 const path = require('path');
+const cors = require('cors');
 
 //user est accessible parout
 module.exports = (req, res, next) => {
@@ -40,6 +41,15 @@ const debug = require('debug')(
 
 const app = express();
 require('./configs/session.config')(app);
+
+// allow access to the API from different domains/origins
+app.use(
+  cors({
+    // this could be multiple domains/origins, but we will allow just our React app
+    credentials: true,
+    origin: ['http://localhost:3000'],
+  })
+);
 
 // Middleware Setup
 app.use(logger('dev'));

@@ -1,6 +1,6 @@
 <main class="content">
         <div class="form edit-host">
-                <h1>EDIT YOUR ACCOUNT</h1>
+                <h1>MODIFIER VOTRE COMPTE</h1>
                 {{#if validationMessage}}
                 <p class="validation-message">{{validationMessage}}</p>
                 {{/if}}
@@ -9,32 +9,32 @@
                 {{/if}}
                 <form action="/edit/{{user.id}}" method="POST">
                         <div id="user-form">
-                                <label class="field">Firstname *<input type='text' name="firstName"
+                                <label class="field">Prénom *<input type='text' name="firstName"
                                                 value="{{user.firstName}}" required></label>
-                                <label class="field">Lastname *<input type='text' name="lastName"
+                                <label class="field">Nom *<input type='text' name="lastName"
                                                 value="{{user.lastName}}" required></label>
-                                <label class="field">Username *<input type='text' name="userName"
+                                <label class="field">Nom d'utilisateur *<input type='text' name="userName"
                                                 value="{{user.userName}}" required></label>
                                 <label class="field">Email *<input type='email' name="email" value="{{user.email}}"
                                                 required></label>
-                                <label class="field">Password *<input type='password' name="password"
+                                <label class="field">Mot de passe *<input type='password' name="password"
                                                 placeholder="**********" value="{{user.password}}" required></label>
-                                <label class="field">Profile picture<input type="file" name="profilePic" class="upload"
+                                <label class="field">Photo de profil<input type="file" name="profilePic" class="upload"
                                                 required /></label>
                         </div>
                         <div id='host-form'>
-                                <label class="field">Farm name *<input type='text' name="farmName"
+                                <label class="field">Nom de l'exploitation*<input type='text' name="farmName"
                                                 value="{{host.farmName}}" required></label>
                                 <label class="field">Description *<textarea name="description"
                                                 value="{{host.description}}" required></textarea></label>
-                                <label class="field">Website<input type='text' name="website" value="{{host.website}}"
+                                <label class="field">Nom de sir-te<input type='text' name="website" value="{{host.website}}"
                                                 required></label>
-                                <label class="field">Address *<textarea name="address" value="{{host.website}}"
+                                <label class="field">Addresse *<textarea name="address" value="{{host.website}}"
                                                 required></textarea></label>
-                                <label class="field">Zipcode *<input type='text' name="zipCode" value="{{host.zipCode}}"
+                                <label class="field">Code postal *<input type='text' name="zipCode" value="{{host.zipCode}}"
                                                 required></label>
                                 <fieldset>
-                                        <legend>City * </legend>
+                                        <legend>Ville * </legend>
                                         {{#each allCities}}
                                         <div class="checkbox"><input type="checkbox" name="city" value="{{this}}"
                                                         id="{{this}}"
@@ -43,7 +43,7 @@
                                         {{/each}}
                                 </fieldset>
                                 <fieldset>
-                                        <legend>Farm type *</legend>
+                                        <legend>Nature de l'exploitation *</legend>
                                         {{#each allFarms}}
                                         <div class="checkbox"><input type="checkbox" name="farmType" value="{{this}}"
                                                         id="{{this}}"
@@ -52,7 +52,7 @@
                                         {{/each}}
                                 </fieldset>
                                 <fieldset>
-                                        <legend>Activities available on the farm * </legend>
+                                        <legend>Activités disponible sur l'exploitation * </legend>
                                         {{#each allActivities}}
                                         <div class="checkbox"><input type="checkbox" name="activitiesType"
                                                         value="{{this}}" id="{{this}}"
@@ -61,7 +61,7 @@
                                         {{/each}}
                                 </fieldset>
                                 <fieldset>
-                                        <legend>Certifications </legend>
+                                        <legend>Certifications et labels</legend>
                                         {{#each allCertifications}}
                                         <div class="checkbox"><input type="checkbox" name="certifications"
                                                         value="{{this}}" id="{{this}}"
@@ -70,7 +70,7 @@
                                         {{/each}}
                                 </fieldset>
                                 <fieldset>
-                                        <legend>Public</legend>
+                                        <legend>Adapté à un public</legend>
                                         {{#each allPublics}}
                                         <div class="checkbox"><input type="checkbox" name="public" value="{{this}}"
                                                         id="{{this}}"
@@ -79,7 +79,7 @@
                                         {{/each}}
                                 </fieldset>
                                 <fieldset>
-                                        <legend>Opening days *</legend>
+                                        <legend>Jours d'ouverture *</legend>
                                         {{#each allDays}}
                                         <div class="checkbox"><input type="checkbox" name="openingDays" value="{{this}}"
                                                         id="{{this}}"
@@ -87,14 +87,14 @@
                                                         for="{{this}}">{{this}}</label></div>
                                         {{/each}}
                                 </fieldset>
-                                <label class="field">Opening Hours *
+                                <label class="field">Horaires d'ouverture *
                                         <div id="opening-hours"><input type='time' name="openingHoursStart"
                                                         value="{{host.openingHoursStart}}">
                                                 <input type='time' name="openingHoursEnd"
                                                         value="{{host.openingHoursEnd}}">
                                         </div></label>
                                 <fieldset>
-                                        <legend>Spoken Languages *</legend>
+                                        <legend>Langues parlées *</legend>
                                         {{#each allLanguages}}
                                         <div class="checkbox"><input type="checkbox" name="spokenLanguages"
                                                         value="{{this}}" id="{{this}}"
@@ -113,12 +113,12 @@
       <input type="file" name="photo-2" />
       <input type="file" name="photo-3" /> --}}
                                 </label>
-                                <label class="field">Maximum visitors *<input type='text' name="maximumVisitors"
+                                <label class="field">Nombre de visiteurs maximum *<input type='text' name="maximumVisitors"
                                                 value="{{host.maximumVisitors}}" required></label>
 
                         </div>
-                        <button class="btn primary">Save changes</button>
-                        <p class="mandatory">* ALL FIELDS ARE MANDATORY</p>
+                        <button class="btn primary">Mettre à jour</button>
+                        <p class="mandatory">* CHAMPS REQUIS</p>
                 </form>
         </div>
 </main>

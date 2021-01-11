@@ -10,6 +10,7 @@ const hostSchema = new Schema(
     farmName: {
       type: String,
       required: true,
+      default: 'exemple',
     },
     farmType: {
       type: [String],
@@ -25,30 +26,35 @@ const hostSchema = new Schema(
         'dairy-maker',
       ],
       required: true,
+      default: 'market-gardener',
     },
     city: {
       type: String,
       enum: ['bergerac', 'compiegne', 'clermont-ferrand'],
       required: true,
+      default: 'bergerac',
     }, //prendre une base de données avec toutes les villes de France (API Insee)
     address: {
       type: String,
       required: true,
+      default: 'exemple',
     },
     zipCode: {
       type: Number,
       required: true,
+      default: '0000',
     },
     country: {
       type: String,
       default: 'france',
       required: true,
+      default: 'exemple',
     },
     latitude: String,
     longitude: String,
     certifications: {
       type: [String],
-      enum: ['bio', 'AOC', 'AOP', 'HVE', 'RSE', 'biodynamic'],
+      enum: ['bio', 'AOC', 'AOP', 'IGP', 'STG', 'biodynamic', 'label_rouge'],
     },
     public: {
       type: [String],
@@ -57,6 +63,7 @@ const hostSchema = new Schema(
     description: {
       type: String,
       required: true,
+      default: 'exemple',
     },
     website: String,
     openingDays: {
@@ -71,19 +78,23 @@ const hostSchema = new Schema(
         'sunday',
       ],
       required: true,
+      default: 'monday',
     },
     openingHoursStart: {
       type: String,
       required: true,
+      default: 'exemple',
     },
     openingHoursEnd: {
       type: String,
       required: true,
+      default: 'exemple',
     },
     spokenLanguages: {
       type: [String],
       enum: ['french', 'english', 'spanish', 'german'],
       required: true,
+      default: 'french',
     },
     activitiesType: {
       type: [String],
@@ -95,15 +106,17 @@ const hostSchema = new Schema(
         'workshops',
       ],
       required: true,
+      default: 'tasting',
     },
     photos: {
       type: [String],
-      required: true,
+      // required: true,
     },
     maximumVisitors: {
       type: Number,
       min: 1,
       required: true,
+      default: 10,
     },
   },
   {

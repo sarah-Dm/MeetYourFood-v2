@@ -1,17 +1,17 @@
 <div>
   <div class="recherche-image" style='background-image: url({{this.photos}})'>
-    <p>Average Cart : {{this.averageCart}}</p>
+    <p>Panier moyen : {{this.averageCart}}</p>
     {{!-- à traiter --}}
     <div class="rating">
-      <p>Rate: <b>{{this.rate}} </b></p>
-      <p>Number of reviews <b>{{this.numberOfReviews}}</b></p>
+      <p>Note: <b>{{this.rate}} </b></p>
+      <p>Nombre de commentaires <b>{{this.numberOfReviews}}</b></p>
     </div>
   </div>
   {{!-- à traiter --}}
 
 
-  <h3>CITY : {{this.city}} - FRANCE</h3>
-  <h3><b>{{this.farmName}}</b> - HOST: {{this.userId.userName}} </h3>
+  <h3>VILLE : {{this.city}} - FRANCE</h3>
+  <h3><b>{{this.farmName}}</b> - PRODUCT'HOTE: {{this.userId.userName}} </h3>
   {{!-- comment les séparer les farmType par un espace ? --}}
   <h3>{{this.farmType}}</h3>
 </div>
