@@ -132,12 +132,119 @@ router.post('/create-account', (req, res, next) => {
     })
     .catch((err) => {
       console.log('err', err);
-      res.status(400).json({ message: 'error in main create-account route' });
+      res.status(500).json({ message: 'error in main create-account route' });
     });
 });
 
-//Route de modification de son profil ---TODO---
-router.put('/profiles/:userId', (req, res, next) => {});
+// Route de modification de son profil
+router.put('/profiles/:userId', (req, res, next) => {
+  User.findById(req.params.userId)
+    .then((user) => {
+      if (!user.host) {
+        const { firstName, lastName, userName, email, password } = req.body;
+        const hashedPassword = bcryptjs.hashSync(password, salt);
+        User.findByIdAndUpdate(
+          req.params.userId,
+          {
+            firstName,
+            lastName,
+            userName,
+            email,
+            hashedPassword,
+          },
+          { new: true }
+        )
+          .then((user) => {
+            res.status(200).json({ message: 'User has been updated' });
+          })
+          .catch((err) => {
+            if (err instanceof mongoose.Error.ValidationError) {
+              res.status(400).json({ message: 'Visitor not edited !' });
+            }
+          });
+      } else {
+        const {
+          firstName,
+          lastName,
+          userName,
+          email,
+          password,
+          farmName,
+          description,
+          address,
+          zipCode,
+          city,
+          farmType,
+          activitiesType,
+          certifications,
+          public,
+          openingDays,
+          openingHoursStart,
+          openingHoursEnd,
+          spokenLanguages,
+          maximumVisitors,
+        } = req.body;
+        const hashedPassword = bcryptjs.hashSync(password, salt);
+        User.findByIdAndUpdate(
+          req.params.userId,
+          {
+            firstName,
+            lastName,
+            userName,
+            email,
+            hashedPassword,
+          },
+          { new: true }
+        ).then((user) => {
+          Host.findOneAndUpdate(
+            {
+              userId: user.id,
+            },
+            {
+              farmName,
+              description,
+              address,
+              zipCode,
+              city,
+              farmType,
+              activitiesType,
+              certifications,
+              public,
+              openingDays,
+              openingHoursStart,
+              openingHoursEnd,
+              spokenLanguages,
+              maximumVisitors,
+            },
+            { new: true }
+          )
+            .then((host) => {
+              res.status(200).json({
+                message: 'host has been updated',
+              });
+            })
+            .catch((err) => {
+              console.log('in catch');
+              if (err instanceof mongoose.Error.ValidationError) {
+                res.status(400).json({
+                  message: 'Host not updated, Mongosse error',
+                });
+              } else if (err.code === 11000) {
+                res.status(400).json({
+                  message:
+                    'Username and email need to be unique. Either username or email is already used.',
+                });
+              } else {
+                res.status(400).json({
+                  message: 'err in host update',
+                });
+              }
+            });
+        });
+      }
+    })
+    .catch((err) => res.status(500).json({ message: 'Error in put route' }));
+});
 
 // Route de suppression du compte utilisateur
 router.delete('profiles/:userId', (req, res, next) => {
@@ -146,9 +253,10 @@ router.delete('profiles/:userId', (req, res, next) => {
       req.session.destroy();
       res.status(200).json({ message: 'Votre profil a bien été supprimé' });
     })
-    .catch((err) => res.statut(400).json({ message: err }));
+    .catch((err) => res.statut(500).json({ message: err }));
 });
 
+// Connexion
 router.post('/login', (req, res, next) => {
   const { email, password } = req.body;
   if (email === '' || password === '') {
@@ -175,18 +283,19 @@ router.post('/login', (req, res, next) => {
         });
       }
     })
-    .catch((err) => res.status(400).json({ message: err }));
+    .catch((err) => res.status(500).json({ message: err }));
 });
 
+// vérification que user est loggedin
 router.post('/loggedin', (req, res, next) => {
   if (req.session.currentUser) {
     res.status(200).json({ message: 'user logged' });
   } else {
-    res.status(400).json({ message: 'no user logged' });
+    res.status(500).json({ message: 'no user logged' });
   }
 });
 
-//logout
+// déconnexion
 router.get('/logout', (req, res, next) => {
   req.session.destroy();
   res.status(200).json({ message: 'disconnected' });

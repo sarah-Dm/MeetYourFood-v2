@@ -87,26 +87,19 @@ app.locals.title = 'Express - Generated with IronGenerator';
 
 app.use((req, res, next) => {
   if (req.session.currentUser) res.locals.currentUser = req.session.currentUser;
-
   next();
 });
 
-const index = require('./routes/index');
-app.use('/', index);
-
 const auth = require('./routes/auth.route');
-app.use('/', auth);
+app.use('/api', auth);
 
-const login = require('./routes/login.route');
-app.use('/', login);
+const profile = require('./routes/profile.route');
+app.use('/api', profile);
 
-const host = require('./routes/host.route');
-app.use('/hosts', host);
+const comment = require('./routes/comment.route');
+app.use('/api', comment);
 
-const hosts = require('./routes/recherche.route');
-app.use('/hosts', hosts);
-
-const edit = require('./routes/edit.route');
-app.use('/edit', edit);
+const search = require('./routes/recherche.route');
+app.use('/api', search);
 
 module.exports = app;
