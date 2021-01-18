@@ -102,4 +102,7 @@ app.use('/api', comment);
 const search = require('./routes/recherche.route');
 app.use('/api', search);
 
+const upload = require('./routes/file-upload.route');
+app.use('/api', upload);
+
 module.exports = app;

@@ -10,11 +10,9 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_SECRET,
 });
 const storage = new CloudinaryStorage({
-  // cloudinary: cloudinary,
   cloudinary,
   params: {
-    // see: https://cloudinary.com/documentation/image_upload_api_reference#optional_parameters
-    folder: 'meet-your-food', // The name of the folder in cloudinary
+    folder: 'meet-your-food-React-v2', // The name of the folder in cloudinary
     allowedFormats: ['jpg', 'png'],
     // resource_type: 'raw', // this is in case you want to upload other type of files, not just images
     public_id: (req, file) => file.originalname, // The file on cloudinary would have the same name as the original file name
