@@ -603,7 +603,7 @@ input.upload {
 
 .field {
   display: flex;
-  flex-direction: column-reverse;
+  flex-direction: column;
   margin-bottom: 30px;
 }
 

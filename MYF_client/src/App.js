@@ -1,6 +1,8 @@
 import React from 'react';
+import { Switch, Route } from 'react-router-dom';
 import './App.css';
 import Navbar from './components/Navbar';
+import CreateAccount from './components/CreateAccount/CreateAccount';
 
 class App extends React.Component {
   state = { userLogged: null };
@@ -17,6 +19,13 @@ class App extends React.Component {
           userLogged={this.state.userLoggged}
           updateUser={this.handleUpdateUser}
         />
+        <Switch>
+          <Route
+            exact={true}
+            path="/create-account"
+            component={CreateAccount}
+          ></Route>
+        </Switch>
       </div>
     );
   }

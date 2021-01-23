@@ -3,7 +3,6 @@ const Schema = mongoose.Schema;
 
 const userSchema = new Schema(
   {
-    //profileType: String, //ajouté
     firstName: {
       type: String,
       required: true,
@@ -36,7 +35,7 @@ const userSchema = new Schema(
       default:
         'https://res.cloudinary.com/nina3am/image/upload/v1601573838/meet-your-food/PngItem_307416%20%281%29.png.png',
     },
-    host: {
+    productHost: {
       type: Boolean,
       required: true,
       default: false,

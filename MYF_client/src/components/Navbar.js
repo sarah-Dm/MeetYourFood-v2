@@ -13,18 +13,13 @@ class Navbar extends React.Component {
         <nav>
           <ul id="links">
             <li>
-              <Link
-                className="boutons_hover"
-                to={
-                  '/hosts'
-                }
-              >
-                Meet our hosts
+              <Link className="boutons_hover" to={'/hosts'}>
+                Les Product’hôtes
               </Link>
             </li>
             <li>
               <Link className="boutons_hover" to={'/create-account?host=1'}>
-                Become a host
+                Devenir Product’hôte
               </Link>
             </li>
           </ul>
@@ -42,15 +37,15 @@ class Navbar extends React.Component {
               <div id="account-links">
                 {this.props.userLogged ? (
                   <li id="login-btn">
-                    <Link to={'/logout'}> Logout</Link>
+                    <Link to={'/logout'}> Se déconnecter</Link>
                   </li>
                 ) : (
                   <li id="login-btn">
-                    <Link to={'/login'}>Login</Link>
+                    <Link to={'/login'}>Mon compte</Link>
                   </li>
                 )}
                 <li id="create-account">
-                  <Link to={'/create-account'}>Create an account</Link>
+                  <Link to={'/create-account'}>S’inscrire</Link>
                 </li>
               </div>
             </ul>
