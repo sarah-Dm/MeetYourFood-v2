@@ -18,16 +18,6 @@ body {
   font-family: 'Barlow', sans-serif;
 }
 
-.homepage {
-  background: url('https://res.cloudinary.com/nina3am/image/upload/v1601452001/meet-your-food/466658-PFX5MG-6_m3ynfh.jpg')
-    no-repeat center center fixed;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-  height: 80vh;
-}
-
 input:focus,
 select:focus,
 textarea:focus,
@@ -53,6 +43,7 @@ button:focus {
 .primary:hover {
   transition-duration: 0.1s;
   background-color: var(--grey);
+  cursor: pointer;
 }
 
 .secondary {
@@ -93,6 +84,16 @@ button:focus {
   text-transform: capitalize;
 }
 
+/*
+                                           
+ #    # ######   ##   #####  ###### #####  
+ #    # #       #  #  #    # #      #    # 
+ ###### #####  #    # #    # #####  #    # 
+ #    # #      ###### #    # #      #####  
+ #    # #      #    # #    # #      #   #  
+ #    # ###### #    # #####  ###### #    # 
+                                           
+*/
 .header-layout a,
 .header-home a {
   text-decoration: none;
@@ -194,6 +195,26 @@ button:focus {
   }
 }
 
+/*
+ #     #                      
+ #     #  ####  #    # ###### 
+ #     # #    # ##  ## #      
+ ####### #    # # ## # #####  
+ #     # #    # #    # #      
+ #     # #    # #    # #      
+ #     #  ####  #    # ###### 
+                              
+*/
+.homepage {
+  background: url('https://res.cloudinary.com/nina3am/image/upload/v1601452001/meet-your-food/466658-PFX5MG-6_m3ynfh.jpg')
+    no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  height: 80vh;
+}
+
 #page_accueil {
   padding-top: 15%;
 }
@@ -215,9 +236,15 @@ button:focus {
   font-weight: 200;
 }
 
-.create-account form:not(.host) #host-form {
-  display: none;
-}
+/*                                    
+ #####  #####   ####  ###### # #      ###### 
+ #    # #    # #    # #      # #      #      
+ #    # #    # #    # #####  # #      #####  
+ #####  #####  #    # #      # #      #      
+ #      #   #  #    # #      # #      #      
+ #      #    #  ####  #      # ###### ###### 
+                                             
+*/
 
 #user-profile {
   display: flex;
@@ -256,10 +283,20 @@ button:focus {
   margin: auto;
 }
 
-.form.visitor-profile h1 {
+.form .visitor-profile h1 {
   margin-bottom: 5%;
 }
 
+/*
+                                                                           
+ #####  #####   ####  ###### # #      ######    #    #  ####   ####  ##### 
+ #    # #    # #    # #      # #      #         #    # #    # #        #   
+ #    # #    # #    # #####  # #      #####     ###### #    #  ####    #   
+ #####  #####  #    # #      # #      #         #    # #    #      #   #   
+ #      #   #  #    # #      # #      #         #    # #    # #    #   #   
+ #      #    #  ####  #      # ###### ######    #    #  ####   ####    #   
+                                                                           
+*/
 #host-detail-container {
   padding-top: 10%;
   margin-right: auto;
@@ -384,6 +421,16 @@ button:focus {
   width: 20%;
 }
 
+/*
+                                      
+ #####  ###### #    # # ###### #    # 
+ #    # #      #    # # #      #    # 
+ #    # #####  #    # # #####  #    # 
+ #####  #      #    # # #      # ## # 
+ #   #  #       #  #  # #      ##  ## 
+ #    # ######   ##   # ###### #    # 
+                                      
+*/
 #review-creation {
   margin-left: 0px;
   width: 100%;
@@ -450,6 +497,14 @@ button:focus {
   height: 0px;
 }
 
+/*
+  ####  ######   ##   #####   ####  #    # 
+ #      #       #  #  #    # #    # #    # 
+  ####  #####  #    # #    # #      ###### 
+      # #      ###### #####  #      #    # 
+ #    # #      #    # #   #  #    # #    # 
+  ####  ###### #    # #    #  ####  #    # 
+*/
 .formulaire-recherche {
   background: var(--grey);
   align-content: center;
@@ -541,8 +596,12 @@ select {
   padding-bottom: 5%;
 }
 
-.create-account form:not(.host) #host-form {
+.create-account form:not(.host) #stepThree {
   display: none;
+}
+
+.create-account .description input {
+  height: 100px;
 }
 
 .form h1 {
@@ -652,7 +711,15 @@ input.upload {
   margin-top: 10px;
 }
 
-/* footer sommaire */
+/*
+ ######  ####   ####  ##### ###### #####  
+ #      #    # #    #   #   #      #    # 
+ #####  #    # #    #   #   #####  #    # 
+ #      #    # #    #   #   #      #####  
+ #      #    # #    #   #   #      #   #  
+ #       ####   ####    #   ###### #    # 
+*/
+/* top footer */
 #footer-layout ul {
   padding-left: 0px;
   justify-content: space-between;

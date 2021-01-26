@@ -1,0 +1,109 @@
+import React from 'react';
+
+class StepFinal extends React.Component {
+  render() {
+    return (
+      <div>
+        <h3>Vérification de vos informations</h3>
+        <ul></ul>
+        <li>
+          <p>Type de profil</p>
+          <p>{this.props.userProfile}</p>
+        </li>
+        <li>
+          <p>Email</p>
+          <p>{this.props.email}</p>
+        </li>
+        <li>
+          <p>Mot de passe</p>
+          <p>********</p>
+        </li>
+        <li>
+          <p>Prénom</p>
+          <p>{this.props.firstname}</p>
+        </li>
+        <li>
+          <p>Nom</p>
+          <p>{this.props.name}</p>
+        </li>
+        <li>
+          <p>Nom d'utilisateur</p>
+          <p>{this.props.username}</p>
+        </li>
+        <li>
+          <p>Photo de profil</p>
+          <p>{this.props.profilePic}</p>
+        </li>
+        <li>
+          <p>Nom de l'exploitation</p>
+          <p>{this.props.farmName}</p>
+        </li>
+        <li>
+          <p>description</p>
+          <p>{this.props.description}</p>
+        </li>
+        <li>
+          <p>Site internnet</p>
+          <p>{this.props.website}</p>
+        </li>
+        <li>
+          <p>Adresse</p>
+          <p>{this.props.address}</p>
+        </li>
+        <li>
+          <p>Code postal</p>
+          <p>{this.props.zipCode}</p>
+        </li>
+        <li>
+          <p>Ville</p>
+          <p>{this.props.city}</p>
+        </li>
+        <li>
+          <p>Type d'exploitation</p>
+          <p>{this.props.farmType}</p>
+        </li>
+        <li>
+          <p>Activités disponibles</p>
+          <p>{this.props.activitiesType}</p>
+        </li>
+        <li>
+          <p>Certifications</p>
+          <p>{this.props.certifications}</p>
+        </li>
+        <li>
+          <p>Public</p>
+          <p>{this.props.public}</p>
+        </li>
+        <li>
+          <p>Jours d'ouverture</p>
+          <p>{this.props.openingDays}</p>
+        </li>
+        <li>
+          <p>Heures d'ouverture</p>
+          <p>{this.props.openingHoursStart}</p>
+        </li>
+        <li>
+          <p>Heures de fermeture</p>
+          <p>{this.props.openingHoursEnd}</p>
+        </li>
+        <li>
+          <p>Langues parlées</p>
+          <p>{this.props.spokenLanguages}</p>
+        </li>
+        {/* <li>
+        <p>Photos</p>
+        <p>{this.props.photos}</p>
+      </li> */}
+        <li>
+          <p>Nombre maximum de visiteurs</p>
+          <p>{this.props.maximumVisitors}</p>
+        </li>
+        <button className="btn primary" onClick={this.props.submitForm}>
+          Créer mon espace
+        </button>
+      </div>
+    );
+  }
+}
+
+export default StepFinal;

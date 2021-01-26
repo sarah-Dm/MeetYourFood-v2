@@ -17,9 +17,6 @@ module.exports = (req, res, next) => {
 };
 
 mongoose
-  //'mongodb://localhost/meetyourfood'
-  //process.env.MONGODB_URI
-
   .connect(process.env.MONGODB_URI, {
     useCreateIndex: true,
     useNewUrlParser: true,
@@ -41,15 +38,6 @@ const debug = require('debug')(
 
 const app = express();
 require('./configs/session.config')(app);
-
-// allow access to the API from different domains/origins
-app.use(
-  cors({
-    // this could be multiple domains/origins, but we will allow just our React app
-    credentials: true,
-    origin: ['http://localhost:3000'],
-  })
-);
 
 // Middleware Setup
 app.use(logger('dev'));
@@ -75,12 +63,21 @@ app.set('view engine', 'hbs');
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
-// Helpers HBS
-require('handlebars-helpers')({
-  handlebars: hbs,
-});
+// allow access to the API from different domains/origins
+app.use(
+  cors({
+    // this could be multiple domains/origins, but we will allow just our React app
+    credentials: true,
+    origin: ['http://localhost:3000'],
+  })
+);
 
-hbs.registerPartials(__dirname + '/views/partials');
+// Helpers HBS
+// require('handlebars-helpers')({
+//   handlebars: hbs,
+// });
+
+// hbs.registerPartials(__dirname + '/views/partials');
 
 // default value for title local
 app.locals.title = 'Express - Generated with IronGenerator';
@@ -104,5 +101,15 @@ app.use('/api', search);
 
 const upload = require('./routes/file-upload.route');
 app.use('/api', upload);
+
+// ou 2) Serve static files from client/build folder
+app.use(express.static(path.join(__dirname, 'MYF_client/build')));
+
+// ou 3) For any other routes: serve client/build/index.html SPA
+app.use((req, res, next) => {
+  res.sendFile(`${__dirname}/MYF_client/build/index.html`, (err) => {
+    if (err) next(err);
+  });
+});
 
 module.exports = app;

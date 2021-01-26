@@ -136,6 +136,21 @@ router.post('/create-account', (req, res, next) => {
     });
 });
 
+//Route de vérification de l'email: existe déjà en base ?
+router.get('/checkEmailAvailable/:email', (req, res, next) => {
+  User.find({ email: req.params.email })
+    .then((user) => {
+      console.log('user.length < 0', user);
+      if (user.length <= 0) {
+        //car user est un array
+        res.status(200).json({ message: 'email available' });
+      } else res.status(403).json({ message: 'email already exists' });
+    })
+    .catch((err) => {
+      res.status(403).json({ message: 'error in /checkEmailAvailable route' });
+    });
+});
+
 // Route de modification de son profil
 router.put('/profiles/:userId', (req, res, next) => {
   User.findById(req.params.userId)
