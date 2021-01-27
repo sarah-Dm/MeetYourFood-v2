@@ -30,6 +30,7 @@ class CreateAccount extends React.Component {
     spokenLanguages: '',
     // photos: [], //["url", "url"]
     maximumVisitors: 0,
+    errorMessage: '',
   };
 
   sendToDb = (stateName, value) => {

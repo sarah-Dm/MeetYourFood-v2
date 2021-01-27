@@ -9,13 +9,15 @@ class StepOne extends React.Component {
     password: '',
     passwordMatch: '',
     emailIsAvailable: true,
-    errorMessage: 'Cet email est déjà utilisé',
+    errorMessage: '',
   };
 
   //récupérer les inputs et les mettre dans les states
   handleChange = (event) => {
     const stateName = event.target.name;
     const stateValue = event.target.value;
+    this.setState({ errorMessage: '' });
+
     //si les mots de passe ne sont pas identiques, alors indiquer une erreur
     if (stateName === 'passwordCheck') {
       if (this.state.password !== stateValue) {
@@ -28,102 +30,121 @@ class StepOne extends React.Component {
     }
   };
 
-  //vérifier que l'email n'existe pas déjà
-  emailIsAvailable = () => {
+  //envoyer les states de ce step dans le component signup principal
+  liftToMainForm = () => {
+    this.props.liftStates('userProfile', this.state.userProfile);
+    this.props.liftStates('email', this.state.email);
+    this.props.liftStates('password', this.state.password);
+    this.props.liftStates('step', this.state.step + 1);
+  };
+
+  //vérifier que l'email n'existe pas déjà, si oui envoyer les state dans le signup principal
+  emailIsAvailable = (event) => {
+    event.preventDefault();
     const email = this.state.email;
     const url = `/api/checkEmailAvailable/${email}`;
     service
       .get(url)
       .then((res) => {
-        console.log('email is available');
         this.setState({ emailIsAvailable: true });
+        this.liftToMainForm();
       })
-      .catch((err) => console.log('err', err));
-  };
-
-  //envoyer les states de ce step dans le component signup principal
-  liftToMainForm = () => {
-    // this.emailIsAvailable();
-    //si l'email est disponible (emailIsAvailable())
-    // if (this.state.emailIsAvailable) {
-    this.props.liftStates('userProfile', this.state.userProfile);
-    this.props.liftStates('email', this.state.email);
-    this.props.liftStates('password', this.state.password);
-    this.props.liftStates('step', this.state.step + 1);
-    // } else {
-    //   console.log('email indisponible');
-    // }
+      .catch((err) => {
+        console.log('err', err);
+        this.setState({ emailIsAvailable: false });
+        this.setState({ errorMessage: '❌ This email is already used' });
+      });
   };
 
   render() {
+    let errorColor;
+    if (this.state.errorMessage) {
+      errorColor = 'red';
+    }
+
     return (
       <div>
         <h1>CREER UN COMPTE</h1>
         {/* error message */}
-        <form id="createAccountForm">
-          <label className="field">
-            Quel type d'utilisateur êtes-vous ?
-            <select
-              name="userProfile"
-              id="profileSelection"
-              onChange={this.handleChange}
-            >
-              <option value="none" id="host-option" className="profileOptions">
-                Séléctionner votre profil utilisateur
-              </option>
-              <option
-                value="product'host"
-                id="host-option"
-                className="profileOptions"
-              >
-                Product'Hôte
-              </option>
-              <option
-                value="visitor"
-                id="visitor-option"
-                className="profileOptions"
-              >
-                Visiteur
-              </option>
-            </select>
-          </label>
-          <div id="user-form">
+        <div>
+          <form id="createAccountForm">
+            <label className="field">
+              Quel type d'utilisateur êtes-vous ?
+              <div>
+                <select
+                  name="userProfile"
+                  id="profileSelection"
+                  onChange={this.handleChange}
+                >
+                  <option
+                    value="none"
+                    id="host-option"
+                    className="profileOptions"
+                  >
+                    Séléctionner votre profil utilisateur
+                  </option>
+                  <option
+                    value="product'host"
+                    id="host-option"
+                    className="profileOptions"
+                  >
+                    Product'Hôte
+                  </option>
+                  <option
+                    value="visitor"
+                    id="visitor-option"
+                    className="profileOptions"
+                  >
+                    Visiteur
+                  </option>
+                </select>
+              </div>
+            </label>
             <label className="field">
               Email *
-              <input
-                type="email"
-                name="email"
-                required
-                onChange={this.handleChange}
-              />
+              <div>
+                <input
+                  style={{ color: errorColor }}
+                  type="email"
+                  name="email"
+                  required
+                  onChange={this.handleChange}
+                />
+                <em> {this.state.errorMessage && this.state.errorMessage}</em>
+              </div>
             </label>
             <label className="field">
               Mot de passe *
-              <input
-                type="password"
-                name="password"
-                placeholder="**********"
-                required
-                onChange={this.handleChange}
-              />
+              <div>
+                <input
+                  type="password"
+                  name="password"
+                  placeholder="**********"
+                  required
+                  onChange={this.handleChange}
+                />
+              </div>
             </label>
             <label className="field">
               Confirmation du mot de passe *
-              <input
-                type="password"
-                name="passwordCheck"
-                placeholder="**********"
-                required
-                onChange={this.handleChange}
-              />
-              {this.state.passwordMatch ? '✅' : '❌'}
+              <div>
+                <input
+                  type="password"
+                  name="passwordCheck"
+                  placeholder="**********"
+                  required
+                  onChange={this.handleChange}
+                />
+
+                <em> {this.state.passwordMatch ? '✅' : '❌'}</em>
+              </div>
             </label>
-          </div>
-          <button className="btn primary" onClick={this.liftToMainForm}>
-            Suivant
-          </button>
-          <p className="mandatory">* CHAMPS REQUIS</p>
-        </form>
+            <button className="btn primary" onClick={this.emailIsAvailable}>
+              Suivant
+            </button>
+            <p className="mandatory">* CHAMPS REQUIS</p>
+          </form>
+        </div>
       </div>
     );
   }
