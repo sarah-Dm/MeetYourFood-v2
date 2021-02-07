@@ -384,12 +384,14 @@ class StepThree extends React.Component {
           Nombre maximum de visiteurs *
           <input type="text" name="maximumVisitors" />
         </label>
-        <button className="btn primary" onClick={this.goBack}>
-          Précédent
-        </button>
-        <button className="btn primary" onClick={this.endForm}>
-          Suivant
-        </button>
+        <div class="signup_buttons">
+          <button className="btn primary" onClick={this.goBack}>
+            Précédent
+          </button>
+          <button className="btn primary" onClick={this.endForm}>
+            Suivant
+          </button>
+        </div>
       </div>
     );
   }

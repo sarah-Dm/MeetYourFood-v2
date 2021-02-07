@@ -47,7 +47,11 @@ class StepOne extends React.Component {
       .get(url)
       .then((res) => {
         this.setState({ emailIsAvailable: true });
-        this.liftToMainForm();
+        if (this.state.passwordMatch) {
+          this.liftToMainForm();
+        } else {
+          this.setState({ errorMessage: '❌ Passwords do not match' });
+        }
       })
       .catch((err) => {
         console.log('err', err);
@@ -110,7 +114,6 @@ class StepOne extends React.Component {
                   required
                   onChange={this.handleChange}
                 />
-                <em> {this.state.errorMessage && this.state.errorMessage}</em>
               </div>
             </label>
             <label className="field">
@@ -139,10 +142,13 @@ class StepOne extends React.Component {
                 <em> {this.state.passwordMatch ? '✅' : '❌'}</em>
               </div>
             </label>
-            <button className="btn primary" onClick={this.emailIsAvailable}>
-              Suivant
-            </button>
-            <p className="mandatory">* CHAMPS REQUIS</p>
+            <em> {this.state.errorMessage && this.state.errorMessage}</em>
+            <div class="signup_buttons">
+              <button className="btn primary" onClick={this.emailIsAvailable}>
+                Suivant
+              </button>
+              <p className="mandatory">* CHAMPS REQUIS</p>
+            </div>
           </form>
         </div>
       </div>

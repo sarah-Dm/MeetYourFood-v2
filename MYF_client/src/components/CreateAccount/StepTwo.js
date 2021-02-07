@@ -119,7 +119,7 @@ class StepTwo extends React.Component {
           )}
           {/* Si userProfile est un product'host, passer au step suivant */}
           {this.props.userProfile === "product'host" && (
-            <div>
+            <div class="signup_buttons">
               <button className="btn primary" onClick={this.goBack}>
                 Précédent
               </button>
