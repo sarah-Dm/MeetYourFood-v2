@@ -5,8 +5,9 @@ const service = axios.create({
   withCredentials: true,
 });
 
-// const errorHandler = (err) => {
-//   throw err;
-// };
+const errorHandler = (err) => {
+  throw err;
+};
 
 export default service;
+

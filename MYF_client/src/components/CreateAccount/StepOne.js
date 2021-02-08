@@ -4,9 +4,9 @@ import service from '../route-service';
 class StepOne extends React.Component {
   state = {
     step: 1,
-    userProfile: '',
-    email: '',
-    password: '',
+    userProfile: this.props.userProfile,
+    email: this.props.email,
+    password: this.props.password,
     passwordMatch: '',
     emailIsAvailable: true,
     errorMessage: '',
@@ -65,7 +65,6 @@ class StepOne extends React.Component {
     if (this.state.errorMessage) {
       errorColor = 'red';
     }
-
     return (
       <div>
         <h1>CREER UN COMPTE</h1>
@@ -77,6 +76,7 @@ class StepOne extends React.Component {
                 <select
                   name="userProfile"
                   id="profileSelection"
+                  value={this.state.userProfile}
                   onChange={this.handleChange}
                 >
                   <option
@@ -111,6 +111,7 @@ class StepOne extends React.Component {
                   type="email"
                   name="email"
                   required
+                  value={this.state.email}
                   onChange={this.handleChange}
                 />
               </div>
@@ -123,6 +124,7 @@ class StepOne extends React.Component {
                   name="password"
                   placeholder="**********"
                   required
+                  value={this.state.password}
                   onChange={this.handleChange}
                 />
               </div>

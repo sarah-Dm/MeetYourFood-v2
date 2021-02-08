@@ -1,4 +1,5 @@
 import React from 'react';
+import service from '../route-service';
 
 class StepThree extends React.Component {
   state = {
@@ -17,7 +18,7 @@ class StepThree extends React.Component {
     openingHoursStart: '',
     openingHoursEnd: '',
     spokenLanguages: [],
-    // photos: [], //["url", "url"]
+    photos: [], //["url", "url"]
     maximumVisitors: 0,
   };
 
@@ -49,7 +50,38 @@ class StepThree extends React.Component {
     }
   };
 
-  handleSelect = () => {};
+  //récupérer l'image
+  handleFileUpload = (e) => {
+    const uploadData = new FormData();
+    console.log('e.target.files', e.target.files);
+    uploadData.append('farmPic1', e.target.files[0]);
+    uploadData.append('farmPic2', e.target.files[1]);
+    uploadData.append('farmPic3', e.target.files[2]);
+    uploadData.append('farmPic4', e.target.files[3]);
+    uploadData.append('farmPic5', e.target.files[4]);
+    uploadData.append('farmPic6', e.target.files[5]);
+    uploadData.append('farmPic7', e.target.files[6]);
+    uploadData.append('farmPic8', e.target.files[7]);
+    service
+      .post('/api/multipleUpload', uploadData)
+      .then((res) => {
+        //créer un array avec les photos ajoutées par le user si elles existent (il peut y en avoir moins de 8)
+        let newPhotos = [];
+        for (let i = 0; i < 8; i++) {
+          if (res.data[i]) {
+            newPhotos.push(res.data[i]);
+          }
+        }
+        console.log('newPhotos', newPhotos);
+        this.setState({
+          photos: newPhotos,
+        });
+        console.log('this.state.photos', this.state.photos);
+      })
+      .catch((err) => {
+        console.log('Error while uploading the file: ', err);
+      });
+  };
 
   //revenir au step précédent
   goBack = () => {
@@ -485,7 +517,13 @@ class StepThree extends React.Component {
         </fieldset>
         <label className="field">
           Photos de l'exploitation *
-          <input type="file" name="photos" multiple className="upload" />
+          <input
+            type="file"
+            name="photos"
+            multiple
+            onChange={this.handleFileUpload}
+            className="upload"
+          />
         </label>
         <label className="field">
           Nombre maximum de visiteurs *

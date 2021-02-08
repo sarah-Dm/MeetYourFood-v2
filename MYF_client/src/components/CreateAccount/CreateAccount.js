@@ -47,7 +47,14 @@ class CreateAccount extends React.Component {
       <div className="mainSignup">
         <main className="content">
           <div className="form create-account">
-            {this.state.step === 1 && <StepOne liftStates={this.sendToDb} />}
+            {this.state.step === 1 && (
+              <StepOne
+                liftStates={this.sendToDb}
+                userProfile={this.state.userProfile}
+                email={this.state.email}
+                password={this.state.password}
+              />
+            )}
             {/* différent selon profil ProductHost ou visitor */}
             {this.state.step === 2 && (
               <StepTwo
@@ -84,7 +91,7 @@ class CreateAccount extends React.Component {
                 openingHoursStart={this.state.openingHoursStart}
                 openingHoursEnd={this.state.openingHoursEnd}
                 spokenLanguages={this.state.spokenLanguages}
-                // photos={this.state.photos}
+                photos={this.state.photos}
                 maximumVisitors={this.state.maximumVisitors}
               />
             )}

@@ -5,15 +5,18 @@ const router = express.Router();
 const uploader = require('../configs/cloudinary.config');
 
 //charger la profile pic depuis le front et l'envoyer dans cloudinary
-router.post('/singleUpload', uploader.single('imageUrl'), (req, res, next) => {
-  console.log('req.file', req.file);
-  if (!req.file) {
-    next(new Error('No file uploaded!'));
-    return;
+router.post(
+  '/singleUpload',
+  uploader.single('profilePic'),
+  (req, res, next) => {
+    if (!req.file) {
+      next(new Error('No file uploaded!'));
+      return;
+    }
+    // get secure_url (variable name to be used in front) from the file object and save it in the
+    res.json({ secure_url: req.file.path });
   }
-  // get secure_url (variable name to be used in front) from the file object and save it in the
-  res.json({ secure_url: req.file.path });
-});
+);
 
 //charger les photos depuis le front et les envoyer dans cloudinary
 router.post(

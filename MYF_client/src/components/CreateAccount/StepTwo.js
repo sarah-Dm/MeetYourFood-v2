@@ -1,4 +1,5 @@
 import React from 'react';
+import service from '../route-service';
 
 class StepTwo extends React.Component {
   state = {
@@ -20,15 +21,16 @@ class StepTwo extends React.Component {
   //récupérer l'image
   handleFileUpload = (e) => {
     const uploadData = new FormData();
-    uploadData.append('imageUrl', e.target.files[0]);
-    // handleUpload(uploadData)
-    //   .then((response) => {
-    //     // after the console.log we can see that response carries 'secure_url' which we can use to update the state
-    //     this.setState({ profilePic: response.secure_url });
-    //   })
-    //   .catch((err) => {
-    //     console.log('Error while uploading the file: ', err);
-    //   });
+    uploadData.append('profilePic', e.target.files[0]);
+    service
+      .post('/api/singleUpload', uploadData)
+      .then((res) =>
+        // after the console.log we can see that response carries 'secure_url' which we can use to update the state
+        this.setState({ profilePic: res.data.secure_url })
+      )
+      .catch((err) => {
+        console.log('Error while uploading the file: ', err);
+      });
   };
 
   //revenir au step précédent
