@@ -708,6 +708,19 @@ input.upload {
   margin: 5% 5%;
 }
 
+/*sign up : final step*/
+#final_signup li h3 {
+  margin-top: 10px;
+}
+
+#final_signup li {
+  display: flex;
+}
+
+#final_signup li p:nth-child(1) {
+  width: 50%;
+}
+
 .login {
   padding-top: 15%;
 }

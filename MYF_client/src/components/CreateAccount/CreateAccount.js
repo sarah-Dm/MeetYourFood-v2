@@ -61,6 +61,7 @@ class CreateAccount extends React.Component {
             {/* pour les 2 profils */}
             {this.state.step === 'last' && (
               <StepFinal
+                liftStates={this.sendToDb}
                 submitForm={this.handleSubmit}
                 userProfile={this.state.userProfile}
                 email={this.state.email}

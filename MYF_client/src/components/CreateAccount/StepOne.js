@@ -69,7 +69,6 @@ class StepOne extends React.Component {
     return (
       <div>
         <h1>CREER UN COMPTE</h1>
-        {/* error message */}
         <div>
           <form id="createAccountForm">
             <label className="field">
@@ -143,7 +142,7 @@ class StepOne extends React.Component {
               </div>
             </label>
             <em> {this.state.errorMessage && this.state.errorMessage}</em>
-            <div class="signup_buttons">
+            <div className="signup_buttons">
               <button className="btn primary" onClick={this.emailIsAvailable}>
                 Suivant
               </button>

@@ -1,9 +1,18 @@
 import React from 'react';
 
 class StepFinal extends React.Component {
+  //revenir au step précédent
+  goBack = () => {
+    if (this.props.userProfile === "product'host") {
+      this.props.liftStates('step', 3);
+    } else {
+      this.props.liftStates('step', 2);
+    }
+  };
+
   render() {
     return (
-      <div>
+      <div id="final_signup">
         <h3>Vérification de vos informations</h3>
         <ul>
           <li>
@@ -99,7 +108,10 @@ class StepFinal extends React.Component {
             <p>{this.props.maximumVisitors}</p>
           </li>
         </ul>
-        <div class="signup_buttons">
+        <div className="signup_buttons">
+          <button className="btn primary" onClick={this.goBack}>
+            Précédent
+          </button>
           <button className="btn primary" onClick={this.props.submitForm}>
             Créer mon espace
           </button>

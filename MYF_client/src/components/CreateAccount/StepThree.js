@@ -9,17 +9,48 @@ class StepThree extends React.Component {
     address: '',
     zipCode: '',
     city: '',
-    farmType: '',
-    activitiesType: '',
-    certifications: '',
-    public: '',
-    openingDays: '',
+    farmType: [],
+    activitiesType: [],
+    certifications: [],
+    public: [],
+    openingDays: [],
     openingHoursStart: '',
     openingHoursEnd: '',
-    spokenLanguages: '',
+    spokenLanguages: [],
     // photos: [], //["url", "url"]
     maximumVisitors: 0,
   };
+
+  //récupérer les inputs et les mettre dans les states
+  handleChange = (event) => {
+    const stateName = event.target.name;
+    const stateValue = event.target.value;
+    console.log(
+      'event.target.type',
+      event.target.type,
+      'event.target.checked',
+      event.target.checked
+    );
+    if (event.target.type === 'checkbox') {
+      let stateArr = this.state[stateName];
+      console.log('stateArr', stateArr);
+      if (event.target.checked) {
+        stateArr.push(stateValue);
+        console.log('stateArr', stateArr);
+        this.setState({ [stateName]: stateArr });
+      } else {
+        let indexToRemove = stateArr.indexOf(stateValue);
+        stateArr.splice(indexToRemove, 1);
+        console.log('stateArr', stateArr);
+        this.setState({ [stateName]: stateArr });
+      }
+    } else {
+      this.setState({ [stateName]: stateValue });
+    }
+  };
+
+  handleSelect = () => {};
+
   //revenir au step précédent
   goBack = () => {
     this.props.liftStates('step', this.state.step - 1);
@@ -50,25 +81,29 @@ class StepThree extends React.Component {
     return (
       <div id="stepThree">
         <label className="field">
-          Nom de la ferme *<input type="text" name="farmName" />
+          Nom de la ferme *
+          <input type="text" name="farmName" onChange={this.handleChange} />
         </label>
         <label className="field">
-          Description *<textarea name="description"></textarea>
+          Description *
+          <textarea name="description" onChange={this.handleChange}></textarea>
         </label>
         <label className="field">
           Site internet
-          <input type="url" name="website" />
+          <input type="url" name="website" onChange={this.handleChange} />
         </label>
         <label className="field">
-          Addresse *<textarea name="address"></textarea>
+          Addresse *
+          <textarea name="address" onChange={this.handleChange}></textarea>
         </label>
         <label className="field">
-          Code postal *<input type="text" name="zipCode" />
+          Code postal *
+          <input type="text" name="zipCode" onChange={this.handleChange} />
         </label>
         {/* TODO- faire une search avec recherche automatique de ville (GoogleMap) */}
         <label className="field">
           Ville *
-          <select name="city">
+          <select name="city" onChange={this.handleChange}>
             <option value="none">Séléctionner votre ville</option>
             <option value="bergerac">Bergerac</option>
             <option value="compiegne">Compiègne</option>
@@ -83,6 +118,7 @@ class StepThree extends React.Component {
               name="farmType"
               value="poultry-farming"
               id="poultry"
+              onChange={this.handleChange}
             />
             <label htmlFor="poultry">Elevage de volailles</label>
           </div>
@@ -92,6 +128,7 @@ class StepThree extends React.Component {
               name="farmType"
               value="pig-farming"
               id="pig"
+              onChange={this.handleChange}
             />
             <label htmlFor="pig">Elevage porcin</label>
           </div>
@@ -101,6 +138,7 @@ class StepThree extends React.Component {
               name="farmType"
               value="cow-farming"
               id="cow"
+              onChange={this.handleChange}
             />
             <label htmlFor="cow">Elevage bovin</label>
           </div>
@@ -110,6 +148,7 @@ class StepThree extends React.Component {
               name="farmType"
               value="sheep-farming"
               id="sheep"
+              onChange={this.handleChange}
             />
             <label htmlFor="sheep">Elevage de moutons</label>
           </div>
@@ -119,6 +158,7 @@ class StepThree extends React.Component {
               name="farmType"
               value="market-gardener"
               id="market"
+              onChange={this.handleChange}
             />
             <label htmlFor="market">Maraichage</label>
           </div>
@@ -128,6 +168,7 @@ class StepThree extends React.Component {
               name="farmType"
               value="viticulture"
               id="viticulture"
+              onChange={this.handleChange}
             />
             <label htmlFor="viticulture">viticulture</label>
           </div>
@@ -137,6 +178,7 @@ class StepThree extends React.Component {
               name="farmType"
               value="beekeeping"
               id="beekeeping"
+              onChange={this.handleChange}
             />
             <label htmlFor="beekeeping">Apiculture</label>
           </div>
@@ -146,6 +188,7 @@ class StepThree extends React.Component {
               name="farmType"
               value="cheese-maker"
               id="cheese"
+              onChange={this.handleChange}
             />
             <label htmlFor="cheese">Production de fromage</label>
           </div>
@@ -155,6 +198,7 @@ class StepThree extends React.Component {
               name="farmType"
               value="dairy-maker"
               id="dairy"
+              onChange={this.handleChange}
             />
             <label htmlFor="dairy">Production de lait</label>
           </div>
@@ -167,6 +211,7 @@ class StepThree extends React.Component {
               name="activitiesType"
               value="tasting"
               id="tasting"
+              onChange={this.handleChange}
             />
             <label htmlFor="tasting">Dégustation</label>
           </div>
@@ -176,6 +221,7 @@ class StepThree extends React.Component {
               name="activitiesType"
               value="direct-selling"
               id="direct-selling"
+              onChange={this.handleChange}
             />
             <label htmlFor="direct-selling">Vente directe</label>
           </div>
@@ -185,6 +231,7 @@ class StepThree extends React.Component {
               name="activitiesType"
               value="workshops"
               id="workshops"
+              onChange={this.handleChange}
             />
             <label htmlFor="workshops">Ateliers</label>
           </div>
@@ -194,6 +241,7 @@ class StepThree extends React.Component {
               name="activitiesType"
               value="self-tour"
               id="self-tour"
+              onChange={this.handleChange}
             />
             <label htmlFor="self-tour">Visite autonome</label>
           </div>
@@ -203,6 +251,7 @@ class StepThree extends React.Component {
               name="activitiesType"
               value="guided-tour"
               id="guided-tour"
+              onChange={this.handleChange}
             />
             <label htmlFor="guided-tour">Visite guidée</label>
           </div>
@@ -210,23 +259,53 @@ class StepThree extends React.Component {
         <fieldset>
           <legend>Certifications</legend>
           <div className="checkbox">
-            <input type="checkbox" name="certifications" value="bio" id="bio" />
+            <input
+              type="checkbox"
+              name="certifications"
+              value="bio"
+              id="bio"
+              onChange={this.handleChange}
+            />
             <label htmlFor="bio">Bio</label>
           </div>
           <div className="checkbox">
-            <input type="checkbox" name="certifications" value="AOP" id="aop" />
+            <input
+              type="checkbox"
+              name="certifications"
+              value="AOP"
+              id="aop"
+              onChange={this.handleChange}
+            />
             <label htmlFor="aop">AOP</label>
           </div>
           <div className="checkbox">
-            <input type="checkbox" name="certifications" value="AOC" id="aoc" />
+            <input
+              type="checkbox"
+              name="certifications"
+              value="AOC"
+              id="aoc"
+              onChange={this.handleChange}
+            />
             <label htmlFor="aoc">AOC</label>
           </div>
           <div className="checkbox">
-            <input type="checkbox" name="certifications" value="HVE" id="hve" />
+            <input
+              type="checkbox"
+              name="certifications"
+              value="HVE"
+              id="hve"
+              onChange={this.handleChange}
+            />
             <label htmlFor="hve">HVE</label>
           </div>
           <div className="checkbox">
-            <input type="checkbox" name="certifications" value="RSE" id="rse" />
+            <input
+              type="checkbox"
+              name="certifications"
+              value="RSE"
+              id="rse"
+              onChange={this.handleChange}
+            />
             <label htmlFor="rse">RSE Agro</label>
           </div>
           <div className="checkbox">
@@ -235,6 +314,7 @@ class StepThree extends React.Component {
               name="certifications"
               value="biodynamic"
               id="biodynamic"
+              onChange={this.handleChange}
             />
             <label htmlFor="biodynamic">Biodynamique</label>
           </div>
@@ -247,11 +327,18 @@ class StepThree extends React.Component {
               name="public"
               value="children"
               id="children"
+              onChange={this.handleChange}
             />
             <label htmlFor="children">Enfants</label>
           </div>
           <div className="checkbox">
-            <input type="checkbox" name="public" value="seniors" id="seniors" />
+            <input
+              type="checkbox"
+              name="public"
+              value="seniors"
+              id="seniors"
+              onChange={this.handleChange}
+            />
             <label htmlFor="seniors">Seniors</label>
           </div>
           <div className="checkbox">
@@ -260,6 +347,7 @@ class StepThree extends React.Component {
               name="public"
               value="disabled"
               id="disabled"
+              onChange={this.handleChange}
             />
             <label htmlFor="disabled">Accès handicapés</label>
           </div>
@@ -272,6 +360,7 @@ class StepThree extends React.Component {
               name="openingDays"
               value="monday"
               id="monday"
+              onChange={this.handleChange}
             />
             <label htmlFor="monday">Lundi</label>
           </div>
@@ -281,6 +370,7 @@ class StepThree extends React.Component {
               name="openingDays"
               value="tuesday"
               id="tuesday"
+              onChange={this.handleChange}
             />
             <label htmlFor="tuesday">Mardi</label>
           </div>
@@ -290,6 +380,7 @@ class StepThree extends React.Component {
               name="openingDays"
               value="wednesday"
               id="wednesday"
+              onChange={this.handleChange}
             />
             <label htmlFor="wednesday">Mercredi</label>
           </div>
@@ -299,6 +390,7 @@ class StepThree extends React.Component {
               name="openingDays"
               value="thursday"
               id="thursday"
+              onChange={this.handleChange}
             />
             <label htmlFor="thursday">Jeudi</label>
           </div>
@@ -308,6 +400,7 @@ class StepThree extends React.Component {
               name="openingDays"
               value="friday"
               id="friday"
+              onChange={this.handleChange}
             />
             <label htmlFor="friday">Vendredi</label>
           </div>
@@ -317,6 +410,7 @@ class StepThree extends React.Component {
               name="openingDays"
               value="saturday"
               id="saturday"
+              onChange={this.handleChange}
             />
             <label htmlFor="saturday">Samedi</label>
           </div>
@@ -326,6 +420,7 @@ class StepThree extends React.Component {
               name="openingDays"
               value="sunday"
               id="sunday"
+              onChange={this.handleChange}
             />
             <label htmlFor="sunday">Dimanche</label>
           </div>
@@ -333,8 +428,16 @@ class StepThree extends React.Component {
         <label className="field">
           Heures d'ouverture *
           <div id="opening-hours">
-            <input type="time" name="openingHoursStart" />
-            <input type="time" name="openingHoursEnd" />
+            <input
+              type="time"
+              name="openingHoursStart"
+              onChange={this.handleChange}
+            />
+            <input
+              type="time"
+              name="openingHoursEnd"
+              onChange={this.handleChange}
+            />
           </div>
         </label>
         <fieldset>
@@ -345,6 +448,7 @@ class StepThree extends React.Component {
               type="checkbox"
               name="spokenLanguages"
               value="french"
+              onChange={this.handleChange}
             />
             <label htmlFor="french">Français</label>
           </div>
@@ -354,6 +458,7 @@ class StepThree extends React.Component {
               type="checkbox"
               name="spokenLanguages"
               value="english"
+              onChange={this.handleChange}
             />
             <label htmlFor="english">Anglais</label>
           </div>
@@ -363,6 +468,7 @@ class StepThree extends React.Component {
               type="checkbox"
               name="spokenLanguages"
               value="spanish"
+              onChange={this.handleChange}
             />
             <label htmlFor="spanish">Espagnol</label>
           </div>
@@ -372,6 +478,7 @@ class StepThree extends React.Component {
               type="checkbox"
               name="spokenLanguages"
               value="german"
+              onChange={this.handleChange}
             />
             <label htmlFor="german">Allemand</label>
           </div>
@@ -382,9 +489,13 @@ class StepThree extends React.Component {
         </label>
         <label className="field">
           Nombre maximum de visiteurs *
-          <input type="text" name="maximumVisitors" />
+          <input
+            type="text"
+            name="maximumVisitors"
+            onChange={this.handleChange}
+          />
         </label>
-        <div class="signup_buttons">
+        <div className="signup_buttons">
           <button className="btn primary" onClick={this.goBack}>
             Précédent
           </button>
