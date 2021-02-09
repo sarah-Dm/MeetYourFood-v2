@@ -42,11 +42,6 @@ class CreateAccount extends React.Component {
   };
 
   render() {
-    console.log(
-      'this.state.spokenLanguages in main',
-      this.state.spokenLanguages
-    );
-
     return (
       // afficher le step de signup selon l'étape (state step) auquel on est
       <div className="mainSignup">

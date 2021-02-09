@@ -28,13 +28,14 @@ class StepThree extends React.Component {
     const stateValue = event.target.value;
     if (event.target.type === 'checkbox') {
       let stateArr = this.state[stateName];
-
-      //pb avec spoken languages, la stateArr arrive trop tard
       if (stateArr) {
         if (event.target.checked) {
+          console.log('event.target', event.target);
           stateArr.push(stateValue);
           this.setState({ [stateName]: stateArr });
         } else {
+          console.log('event.target', event.target);
+
           let indexToRemove = stateArr.indexOf(stateValue);
           stateArr.splice(indexToRemove, 1);
           this.setState({ [stateName]: stateArr });
@@ -86,7 +87,11 @@ class StepThree extends React.Component {
   precheckBox = (inputArr, formerInput) => {
     let formerInputArr = this.state[inputArr];
     if (formerInputArr) {
-      if (formerInputArr.includes(formerInput)) return 'checked';
+      if (formerInputArr.includes(formerInput)) {
+        return 'checked';
+      } else {
+        return ''; //pour que le check sente qu'il est controlé par React
+      }
     }
   };
 
