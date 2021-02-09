@@ -71,23 +71,43 @@ class StepFinal extends React.Component {
               </li>
               <li>
                 <p>Type d'exploitation</p>
-                <p>{this.props.farmType}</p>
+                <div>
+                  {this.props.farmType.map((el, i) => (
+                    <p key={i}>{el}</p>
+                  ))}
+                </div>
               </li>
               <li>
                 <p>Activités disponibles</p>
-                <p>{this.props.activitiesType}</p>
+                <div>
+                  {this.props.activitiesType.map((el, i) => (
+                    <p key={i}>{el}</p>
+                  ))}
+                </div>
               </li>
               <li>
                 <p>Certifications</p>
-                <p>{this.props.certifications}</p>
+                <div>
+                  {this.props.certifications.map((el, i) => (
+                    <p key={i}>{el}</p>
+                  ))}
+                </div>
               </li>
               <li>
                 <p>Public</p>
-                <p>{this.props.public}</p>
+                <div>
+                  {this.props.public.map((el, i) => (
+                    <p key={i}>{el}</p>
+                  ))}
+                </div>
               </li>
               <li>
                 <p>Jours d'ouverture</p>
-                <p>{this.props.openingDays}</p>
+                <div>
+                  {this.props.openingDays.map((el, i) => (
+                    <p key={i}>{el}</p>
+                  ))}
+                </div>
               </li>
               <li>
                 <p>Heures d'ouverture</p>
@@ -99,7 +119,11 @@ class StepFinal extends React.Component {
               </li>
               <li>
                 <p>Langues parlées</p>
-                <p>{this.props.spokenLanguages}</p>
+                <div>
+                  {this.props.spokenLanguages.map((el, i) => (
+                    <p key={i}>{el}</p>
+                  ))}
+                </div>
               </li>
               <li>
                 <p>Photos</p>

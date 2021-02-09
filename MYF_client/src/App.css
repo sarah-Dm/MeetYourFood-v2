@@ -721,6 +721,10 @@ input.upload {
   width: 50%;
 }
 
+#final_signup li p:nth-child(2),#final_signup li div p {
+  text-transform: capitalize;
+}
+
 .login {
   padding-top: 15%;
 }

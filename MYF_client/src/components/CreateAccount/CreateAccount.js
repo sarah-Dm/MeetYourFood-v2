@@ -11,8 +11,8 @@ class CreateAccount extends React.Component {
     email: '',
     password: '',
     firstname: '',
-    username: '',
     name: '',
+    username: '',
     profilePic: '',
     description: '',
     farmName: '',
@@ -20,14 +20,14 @@ class CreateAccount extends React.Component {
     address: '',
     zipCode: '',
     city: '',
-    farmType: '',
-    activitiesType: '',
-    certifications: '',
-    public: '',
-    openingDays: '',
+    farmType: [],
+    activitiesType: [],
+    certifications: [],
+    public: [],
+    openingDays: [],
     openingHoursStart: '',
     openingHoursEnd: '',
-    spokenLanguages: '',
+    spokenLanguages: [],
     // photos: [], //["url", "url"]
     maximumVisitors: 0,
     errorMessage: '',
@@ -42,6 +42,11 @@ class CreateAccount extends React.Component {
   };
 
   render() {
+    console.log(
+      'this.state.spokenLanguages in main',
+      this.state.spokenLanguages
+    );
+
     return (
       // afficher le step de signup selon l'étape (state step) auquel on est
       <div className="mainSignup">
@@ -61,10 +66,34 @@ class CreateAccount extends React.Component {
                 liftStates={this.sendToDb}
                 userProfile={this.state.userProfile}
                 goBack={this.goBack}
+                firstname={this.state.firstname}
+                name={this.state.name}
+                username={this.state.username}
+                profilePic={this.state.profilePic}
+                description={this.state.description}
               />
             )}
             {/* uniquement pour Host */}
-            {this.state.step === 3 && <StepThree liftStates={this.sendToDb} />}
+            {this.state.step === 3 && (
+              <StepThree
+                liftStates={this.sendToDb}
+                farmName={this.state.farmName}
+                description={this.state.description}
+                website={this.state.website}
+                address={this.state.address}
+                zipCode={this.state.zipCode}
+                city={this.state.city}
+                farmType={this.state.farmType}
+                activitiesType={this.state.activitiesType}
+                certifications={this.state.certifications}
+                public={this.state.public}
+                openingDays={this.state.openingDays}
+                spokenLanguages={this.state.spokenLanguages}
+                openingHoursStart={this.state.openingHoursStart}
+                openingHoursEnd={this.state.openingHoursEnd}
+                maximumVisitors={this.state.maximumVisitors}
+              />
+            )}
             {/* pour les 2 profils */}
             {this.state.step === 'last' && (
               <StepFinal

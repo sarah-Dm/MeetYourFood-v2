@@ -4,11 +4,11 @@ import service from '../route-service';
 class StepTwo extends React.Component {
   state = {
     step: 2,
-    firstname: '',
-    username: '',
-    name: '',
+    firstname: this.props.firstname,
+    username: this.props.username,
+    name: this.props.name,
     profilePic: '',
-    description: '',
+    description: this.props.description,
   };
 
   //récupérer les inputs et les mettre dans les states
@@ -70,6 +70,7 @@ class StepTwo extends React.Component {
               name="firstname"
               required
               onChange={this.handleChange}
+              value={this.state.firstname}
             />
           </label>
           <label className="field">
@@ -79,6 +80,7 @@ class StepTwo extends React.Component {
               name="name"
               required
               onChange={this.handleChange}
+              value={this.state.name}
             />
           </label>
           <label className="field">
@@ -88,6 +90,7 @@ class StepTwo extends React.Component {
               name="username"
               required
               onChange={this.handleChange}
+              value={this.state.username}
             />
           </label>
           <label className="field">
@@ -109,6 +112,7 @@ class StepTwo extends React.Component {
                   name="description"
                   required
                   onChange={this.handleChange}
+                  value={this.state.description}
                 />
               </label>
               <button className="btn primary" onClick={this.goBack}>

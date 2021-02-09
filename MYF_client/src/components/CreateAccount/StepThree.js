@@ -4,47 +4,42 @@ import service from '../route-service';
 class StepThree extends React.Component {
   state = {
     step: 3,
-    farmName: '',
-    description: '',
-    website: '',
-    address: '',
-    zipCode: '',
-    city: '',
-    farmType: [],
-    activitiesType: [],
-    certifications: [],
-    public: [],
-    openingDays: [],
-    openingHoursStart: '',
-    openingHoursEnd: '',
-    spokenLanguages: [],
+    farmName: this.props.farmName,
+    description: this.props.description,
+    website: this.props.website,
+    address: this.props.address,
+    zipCode: this.props.zipCode,
+    city: this.props.city,
+    farmType: this.props.farmType,
+    activitiesType: this.props.activitiesType,
+    certifications: this.props.certifications,
+    public: this.props.public,
+    openingDays: this.props.openingDays,
+    openingHoursStart: this.props.openingHoursStart,
+    openingHoursEnd: this.props.openingHoursEnd,
+    spokenLanguages: this.props.spokenLanguages,
     photos: [], //["url", "url"]
-    maximumVisitors: 0,
+    maximumVisitors: this.props.maximumVisitors,
   };
 
   //récupérer les inputs et les mettre dans les states
   handleChange = (event) => {
     const stateName = event.target.name;
     const stateValue = event.target.value;
-    console.log(
-      'event.target.type',
-      event.target.type,
-      'event.target.checked',
-      event.target.checked
-    );
     if (event.target.type === 'checkbox') {
       let stateArr = this.state[stateName];
-      console.log('stateArr', stateArr);
-      if (event.target.checked) {
-        stateArr.push(stateValue);
-        console.log('stateArr', stateArr);
-        this.setState({ [stateName]: stateArr });
-      } else {
-        let indexToRemove = stateArr.indexOf(stateValue);
-        stateArr.splice(indexToRemove, 1);
-        console.log('stateArr', stateArr);
-        this.setState({ [stateName]: stateArr });
-      }
+
+      //pb avec spoken languages, la stateArr arrive trop tard
+      if (stateArr) {
+        if (event.target.checked) {
+          stateArr.push(stateValue);
+          this.setState({ [stateName]: stateArr });
+        } else {
+          let indexToRemove = stateArr.indexOf(stateValue);
+          stateArr.splice(indexToRemove, 1);
+          this.setState({ [stateName]: stateArr });
+        }
+      } else console.log('stateArr missing');
     } else {
       this.setState({ [stateName]: stateValue });
     }
@@ -53,7 +48,6 @@ class StepThree extends React.Component {
   //récupérer l'image
   handleFileUpload = (e) => {
     const uploadData = new FormData();
-    console.log('e.target.files', e.target.files);
     uploadData.append('farmPic1', e.target.files[0]);
     uploadData.append('farmPic2', e.target.files[1]);
     uploadData.append('farmPic3', e.target.files[2]);
@@ -88,6 +82,14 @@ class StepThree extends React.Component {
     this.props.liftStates('step', this.state.step - 1);
   };
 
+  //pour les checkbox, précocher les cases si elles avaient été séléctionnées
+  precheckBox = (inputArr, formerInput) => {
+    let formerInputArr = this.state[inputArr];
+    if (formerInputArr) {
+      if (formerInputArr.includes(formerInput)) return 'checked';
+    }
+  };
+
   //envoyer les states de ce step dans le component signup principal et finaliser l'inscription (quand userPorfile est product'host)
   endForm = () => {
     this.props.liftStates('step', 'last');
@@ -96,15 +98,15 @@ class StepThree extends React.Component {
     this.props.liftStates('website', this.state.website);
     this.props.liftStates('address', this.state.address);
     this.props.liftStates('zipCode', this.state.zipCode);
-    this.props.liftStates('city', 'city');
+    this.props.liftStates('city', this.state.city);
     this.props.liftStates('farmType', this.state.farmType);
     this.props.liftStates('activitiesType', this.state.activitiesType);
     this.props.liftStates('certifications', this.state.certifications);
     this.props.liftStates('public', this.state.public);
     this.props.liftStates('openingDays', this.state.openingDays);
     this.props.liftStates('openingHoursStart', this.state.openingHoursStart);
-    this.props.liftStates('openingHoursEnd', this.state.openingDays);
-    this.props.liftStates('spokenLanguages', this.state.openingHoursStart);
+    this.props.liftStates('openingHoursEnd', this.state.openingHoursEnd);
+    this.props.liftStates('spokenLanguages', this.state.spokenLanguages);
     this.props.liftStates('photos', this.state.photos);
     this.props.liftStates('maximumVisitors', this.state.maximumVisitors);
   };
@@ -114,28 +116,55 @@ class StepThree extends React.Component {
       <div id="stepThree">
         <label className="field">
           Nom de la ferme *
-          <input type="text" name="farmName" onChange={this.handleChange} />
+          <input
+            type="text"
+            name="farmName"
+            onChange={this.handleChange}
+            value={this.state.farmName}
+          />
         </label>
         <label className="field">
           Description *
-          <textarea name="description" onChange={this.handleChange}></textarea>
+          <textarea
+            name="description"
+            onChange={this.handleChange}
+            value={this.state.description}
+          ></textarea>
         </label>
         <label className="field">
           Site internet
-          <input type="url" name="website" onChange={this.handleChange} />
+          <input
+            type="url"
+            name="website"
+            onChange={this.handleChange}
+            value={this.state.website}
+          />
         </label>
         <label className="field">
           Addresse *
-          <textarea name="address" onChange={this.handleChange}></textarea>
+          <textarea
+            name="address"
+            onChange={this.handleChange}
+            value={this.state.address}
+          ></textarea>
         </label>
         <label className="field">
           Code postal *
-          <input type="text" name="zipCode" onChange={this.handleChange} />
+          <input
+            type="text"
+            name="zipCode"
+            onChange={this.handleChange}
+            value={this.state.zipCode}
+          />
         </label>
         {/* TODO- faire une search avec recherche automatique de ville (GoogleMap) */}
         <label className="field">
           Ville *
-          <select name="city" onChange={this.handleChange}>
+          <select
+            name="city"
+            onChange={this.handleChange}
+            value={this.state.city}
+          >
             <option value="none">Séléctionner votre ville</option>
             <option value="bergerac">Bergerac</option>
             <option value="compiegne">Compiègne</option>
@@ -151,6 +180,7 @@ class StepThree extends React.Component {
               value="poultry-farming"
               id="poultry"
               onChange={this.handleChange}
+              checked={this.precheckBox('farmType', 'poultry-farming')}
             />
             <label htmlFor="poultry">Elevage de volailles</label>
           </div>
@@ -161,6 +191,7 @@ class StepThree extends React.Component {
               value="pig-farming"
               id="pig"
               onChange={this.handleChange}
+              checked={this.precheckBox('farmType', 'pig-farming')}
             />
             <label htmlFor="pig">Elevage porcin</label>
           </div>
@@ -171,6 +202,7 @@ class StepThree extends React.Component {
               value="cow-farming"
               id="cow"
               onChange={this.handleChange}
+              checked={this.precheckBox('farmType', 'cow-farming')}
             />
             <label htmlFor="cow">Elevage bovin</label>
           </div>
@@ -181,6 +213,7 @@ class StepThree extends React.Component {
               value="sheep-farming"
               id="sheep"
               onChange={this.handleChange}
+              checked={this.precheckBox('farmType', 'sheep-farming')}
             />
             <label htmlFor="sheep">Elevage de moutons</label>
           </div>
@@ -191,6 +224,7 @@ class StepThree extends React.Component {
               value="market-gardener"
               id="market"
               onChange={this.handleChange}
+              checked={this.precheckBox('farmType', 'market-gardener')}
             />
             <label htmlFor="market">Maraichage</label>
           </div>
@@ -201,6 +235,7 @@ class StepThree extends React.Component {
               value="viticulture"
               id="viticulture"
               onChange={this.handleChange}
+              checked={this.precheckBox('farmType', 'viticulture')}
             />
             <label htmlFor="viticulture">viticulture</label>
           </div>
@@ -211,6 +246,7 @@ class StepThree extends React.Component {
               value="beekeeping"
               id="beekeeping"
               onChange={this.handleChange}
+              checked={this.precheckBox('farmType', 'beekeeping')}
             />
             <label htmlFor="beekeeping">Apiculture</label>
           </div>
@@ -221,6 +257,7 @@ class StepThree extends React.Component {
               value="cheese-maker"
               id="cheese"
               onChange={this.handleChange}
+              checked={this.precheckBox('farmType', 'cheese-maker')}
             />
             <label htmlFor="cheese">Production de fromage</label>
           </div>
@@ -231,6 +268,7 @@ class StepThree extends React.Component {
               value="dairy-maker"
               id="dairy"
               onChange={this.handleChange}
+              checked={this.precheckBox('farmType', 'dairy-maker')}
             />
             <label htmlFor="dairy">Production de lait</label>
           </div>
@@ -244,6 +282,7 @@ class StepThree extends React.Component {
               value="tasting"
               id="tasting"
               onChange={this.handleChange}
+              checked={this.precheckBox('activitiesType', 'tasting')}
             />
             <label htmlFor="tasting">Dégustation</label>
           </div>
@@ -254,6 +293,7 @@ class StepThree extends React.Component {
               value="direct-selling"
               id="direct-selling"
               onChange={this.handleChange}
+              checked={this.precheckBox('activitiesType', 'direct-selling')}
             />
             <label htmlFor="direct-selling">Vente directe</label>
           </div>
@@ -264,6 +304,7 @@ class StepThree extends React.Component {
               value="workshops"
               id="workshops"
               onChange={this.handleChange}
+              checked={this.precheckBox('activitiesType', 'workshops')}
             />
             <label htmlFor="workshops">Ateliers</label>
           </div>
@@ -274,6 +315,7 @@ class StepThree extends React.Component {
               value="self-tour"
               id="self-tour"
               onChange={this.handleChange}
+              checked={this.precheckBox('activitiesType', 'self-tour')}
             />
             <label htmlFor="self-tour">Visite autonome</label>
           </div>
@@ -284,6 +326,7 @@ class StepThree extends React.Component {
               value="guided-tour"
               id="guided-tour"
               onChange={this.handleChange}
+              checked={this.precheckBox('activitiesType', 'guided-tour')}
             />
             <label htmlFor="guided-tour">Visite guidée</label>
           </div>
@@ -297,6 +340,7 @@ class StepThree extends React.Component {
               value="bio"
               id="bio"
               onChange={this.handleChange}
+              checked={this.precheckBox('certifications', 'bio')}
             />
             <label htmlFor="bio">Bio</label>
           </div>
@@ -307,6 +351,7 @@ class StepThree extends React.Component {
               value="AOP"
               id="aop"
               onChange={this.handleChange}
+              checked={this.precheckBox('certifications', 'AOP')}
             />
             <label htmlFor="aop">AOP</label>
           </div>
@@ -317,6 +362,7 @@ class StepThree extends React.Component {
               value="AOC"
               id="aoc"
               onChange={this.handleChange}
+              checked={this.precheckBox('certifications', 'AOC')}
             />
             <label htmlFor="aoc">AOC</label>
           </div>
@@ -327,6 +373,7 @@ class StepThree extends React.Component {
               value="HVE"
               id="hve"
               onChange={this.handleChange}
+              checked={this.precheckBox('certifications', 'HVE')}
             />
             <label htmlFor="hve">HVE</label>
           </div>
@@ -337,6 +384,7 @@ class StepThree extends React.Component {
               value="RSE"
               id="rse"
               onChange={this.handleChange}
+              checked={this.precheckBox('certifications', 'RSE')}
             />
             <label htmlFor="rse">RSE Agro</label>
           </div>
@@ -347,6 +395,7 @@ class StepThree extends React.Component {
               value="biodynamic"
               id="biodynamic"
               onChange={this.handleChange}
+              checked={this.precheckBox('certifications', 'biodynamic')}
             />
             <label htmlFor="biodynamic">Biodynamique</label>
           </div>
@@ -360,6 +409,7 @@ class StepThree extends React.Component {
               value="children"
               id="children"
               onChange={this.handleChange}
+              checked={this.precheckBox('public', 'children')}
             />
             <label htmlFor="children">Enfants</label>
           </div>
@@ -370,6 +420,7 @@ class StepThree extends React.Component {
               value="seniors"
               id="seniors"
               onChange={this.handleChange}
+              checked={this.precheckBox('public', 'seniors')}
             />
             <label htmlFor="seniors">Seniors</label>
           </div>
@@ -380,6 +431,7 @@ class StepThree extends React.Component {
               value="disabled"
               id="disabled"
               onChange={this.handleChange}
+              checked={this.precheckBox('public', 'disabled')}
             />
             <label htmlFor="disabled">Accès handicapés</label>
           </div>
@@ -393,6 +445,7 @@ class StepThree extends React.Component {
               value="monday"
               id="monday"
               onChange={this.handleChange}
+              checked={this.precheckBox('openingDays', 'monday')}
             />
             <label htmlFor="monday">Lundi</label>
           </div>
@@ -403,6 +456,7 @@ class StepThree extends React.Component {
               value="tuesday"
               id="tuesday"
               onChange={this.handleChange}
+              checked={this.precheckBox('openingDays', 'tuesday')}
             />
             <label htmlFor="tuesday">Mardi</label>
           </div>
@@ -413,6 +467,7 @@ class StepThree extends React.Component {
               value="wednesday"
               id="wednesday"
               onChange={this.handleChange}
+              checked={this.precheckBox('openingDays', 'wednesday')}
             />
             <label htmlFor="wednesday">Mercredi</label>
           </div>
@@ -423,6 +478,7 @@ class StepThree extends React.Component {
               value="thursday"
               id="thursday"
               onChange={this.handleChange}
+              checked={this.precheckBox('openingDays', 'thursday')}
             />
             <label htmlFor="thursday">Jeudi</label>
           </div>
@@ -433,6 +489,7 @@ class StepThree extends React.Component {
               value="friday"
               id="friday"
               onChange={this.handleChange}
+              checked={this.precheckBox('openingDays', 'friday')}
             />
             <label htmlFor="friday">Vendredi</label>
           </div>
@@ -443,6 +500,7 @@ class StepThree extends React.Component {
               value="saturday"
               id="saturday"
               onChange={this.handleChange}
+              checked={this.precheckBox('openingDays', 'saturday')}
             />
             <label htmlFor="saturday">Samedi</label>
           </div>
@@ -453,6 +511,7 @@ class StepThree extends React.Component {
               value="sunday"
               id="sunday"
               onChange={this.handleChange}
+              checked={this.precheckBox('openingDays', 'sunday')}
             />
             <label htmlFor="sunday">Dimanche</label>
           </div>
@@ -481,6 +540,7 @@ class StepThree extends React.Component {
               name="spokenLanguages"
               value="french"
               onChange={this.handleChange}
+              checked={this.precheckBox('spokenLanguages', 'french')}
             />
             <label htmlFor="french">Français</label>
           </div>
@@ -491,6 +551,7 @@ class StepThree extends React.Component {
               name="spokenLanguages"
               value="english"
               onChange={this.handleChange}
+              checked={this.precheckBox('spokenLanguages', 'english')}
             />
             <label htmlFor="english">Anglais</label>
           </div>
@@ -501,6 +562,7 @@ class StepThree extends React.Component {
               name="spokenLanguages"
               value="spanish"
               onChange={this.handleChange}
+              checked={this.precheckBox('spokenLanguages', 'spanish')}
             />
             <label htmlFor="spanish">Espagnol</label>
           </div>
@@ -511,6 +573,7 @@ class StepThree extends React.Component {
               name="spokenLanguages"
               value="german"
               onChange={this.handleChange}
+              checked={this.precheckBox('spokenLanguages', 'german')}
             />
             <label htmlFor="german">Allemand</label>
           </div>
@@ -531,6 +594,7 @@ class StepThree extends React.Component {
             type="text"
             name="maximumVisitors"
             onChange={this.handleChange}
+            value={this.state.maximumVisitors}
           />
         </label>
         <div className="signup_buttons">
