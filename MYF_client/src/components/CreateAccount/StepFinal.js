@@ -96,7 +96,7 @@ class StepFinal extends React.Component {
               <li>
                 <p>Public</p>
                 <div>
-                  {this.props.public.map((el, i) => (
+                  {this.props.visitorType.map((el, i) => (
                     <p key={i}>{el}</p>
                   ))}
                 </div>

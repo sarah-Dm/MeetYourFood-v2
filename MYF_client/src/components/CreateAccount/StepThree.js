@@ -13,7 +13,7 @@ class StepThree extends React.Component {
     farmType: this.props.farmType,
     activityTypes: this.props.activityTypes,
     certifications: this.props.certifications,
-    public: this.props.public,
+    visitorType: this.props.visitorType,
     openingDays: this.props.openingDays,
     openingHoursStart: this.props.openingHoursStart,
     openingHoursEnd: this.props.openingHoursEnd,
@@ -107,7 +107,7 @@ class StepThree extends React.Component {
     this.props.liftStates('farmType', this.state.farmType);
     this.props.liftStates('activityTypes', this.state.activityTypes);
     this.props.liftStates('certifications', this.state.certifications);
-    this.props.liftStates('public', this.state.public);
+    this.props.liftStates('visitorType', this.state.visitorType);
     this.props.liftStates('openingDays', this.state.openingDays);
     this.props.liftStates('openingHoursStart', this.state.openingHoursStart);
     this.props.liftStates('openingHoursEnd', this.state.openingHoursEnd);
@@ -410,33 +410,33 @@ class StepThree extends React.Component {
           <div className="checkbox">
             <input
               type="checkbox"
-              name="public"
+              name="visitorType"
               value="children"
               id="children"
               onChange={this.handleChange}
-              checked={this.precheckBox('public', 'children')}
+              checked={this.precheckBox('visitorType', 'children')}
             />
             <label htmlFor="children">Enfants</label>
           </div>
           <div className="checkbox">
             <input
               type="checkbox"
-              name="public"
+              name="visitorType"
               value="seniors"
               id="seniors"
               onChange={this.handleChange}
-              checked={this.precheckBox('public', 'seniors')}
+              checked={this.precheckBox('visitorType', 'seniors')}
             />
             <label htmlFor="seniors">Seniors</label>
           </div>
           <div className="checkbox">
             <input
               type="checkbox"
-              name="public"
+              name="visitorType"
               value="disabled"
               id="disabled"
               onChange={this.handleChange}
-              checked={this.precheckBox('public', 'disabled')}
+              checked={this.precheckBox('visitorType', 'disabled')}
             />
             <label htmlFor="disabled">Accès aux personnes handicapés</label>
           </div>

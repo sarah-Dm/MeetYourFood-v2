@@ -3,6 +3,7 @@ import StepOne from './StepOne';
 import StepTwo from './StepTwo';
 import StepThree from './StepThree';
 import StepFinal from './StepFinal';
+import { createAccount } from '../route-service';
 
 class CreateAccount extends React.Component {
   state = {
@@ -23,25 +24,84 @@ class CreateAccount extends React.Component {
     farmType: [],
     activityTypes: [],
     certifications: [],
-    public: [],
+    visitorType: [],
     openingDays: [],
     openingHoursStart: '',
     openingHoursEnd: '',
     spokenLanguages: [],
-    // photos: [], //["url", "url"]
+    photos: [], //["url", "url"]
     maximumVisitors: 0,
     errorMessage: '',
+    successMessage: '',
   };
 
   sendToDb = (stateName, value) => {
     this.setState({ [stateName]: value });
   };
 
-  handleSubmit = () => {
+  handleSubmit = (event) => {
+    event.preventDefault();
     console.log('submitted');
+    const {
+      userProfile,
+      email,
+      password,
+      firstname,
+      name,
+      username,
+      profilePic,
+      description,
+      farmName,
+      website,
+      address,
+      zipCode,
+      city,
+      farmType,
+      activityTypes,
+      certifications,
+      visitorType,
+      openingDays,
+      openingHoursStart,
+      openingHoursEnd,
+      spokenLanguages,
+      photos,
+      maximumVisitors,
+    } = this.state;
+
+    createAccount(
+      userProfile,
+      email,
+      password,
+      firstname,
+      username,
+      name,
+      profilePic,
+      description,
+      farmName,
+      website,
+      address,
+      zipCode,
+      city,
+      farmType,
+      activityTypes,
+      certifications,
+      visitorType,
+      openingDays,
+      openingHoursStart,
+      openingHoursEnd,
+      spokenLanguages,
+      photos,
+      maximumVisitors
+    )
+      .then((res) => {
+        console.log('is setStepFinal');
+        this.setState({ successMessage: 'Votre compte a été créé', step: '' });
+      })
+      .catch((err) => console.log(err));
   };
 
   render() {
+    //pour afficher le label dans le step final et non les values en BDD
     const valueToLabel = {
       'poultry-farming': 'Elevage de volailles',
       'pig-farming': 'Elevage porcin',
@@ -87,8 +147,8 @@ class CreateAccount extends React.Component {
     const certificationsLabelArr = this.state.certifications.map(
       (certification) => valueToLabel[certification]
     );
-    const publicLabelArr = this.state.public.map(
-      (aPublic) => valueToLabel[aPublic]
+    const visitorTypeLabelArr = this.state.visitorType.map(
+      (visitorType) => valueToLabel[visitorType]
     );
     const openingDaysLabelArr = this.state.openingDays.map(
       (openingDay) => valueToLabel[openingDay]
@@ -136,7 +196,7 @@ class CreateAccount extends React.Component {
                 farmType={this.state.farmType}
                 activityTypes={this.state.activityTypes}
                 certifications={this.state.certifications}
-                public={this.state.public}
+                visitorType={this.state.visitorType}
                 openingDays={this.state.openingDays}
                 spokenLanguages={this.state.spokenLanguages}
                 openingHoursStart={this.state.openingHoursStart}
@@ -165,7 +225,7 @@ class CreateAccount extends React.Component {
                 farmType={farmTypeLabelArr}
                 activityTypes={activityTypesLabelArr}
                 certifications={certificationsLabelArr}
-                public={publicLabelArr}
+                visitorType={visitorTypeLabelArr}
                 openingDays={openingDaysLabelArr}
                 openingHoursStart={this.state.openingHoursStart}
                 openingHoursEnd={this.state.openingHoursEnd}
@@ -173,6 +233,11 @@ class CreateAccount extends React.Component {
                 photos={this.state.photos}
                 maximumVisitors={this.state.maximumVisitors}
               />
+            )}
+            {this.state.successMessage && (
+              <div>
+                <h3>{this.state.successMessage}</h3>
+              </div>
             )}
           </div>
         </main>

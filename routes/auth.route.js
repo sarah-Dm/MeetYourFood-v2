@@ -9,131 +9,130 @@ const mongoose = require('mongoose');
 
 // Route de création de compte (Visitor + Host)
 router.post('/create-account', (req, res, next) => {
-  const { profileType } = req.body;
-  const { email } = req.body;
-  console.log('email', email);
+  console.log('req.body', req.body);
+
+  const { userProfile, password } = req.body;
+  const hashedPassword = bcryptjs.hashSync(password, salt);
+  console.log('userProfile', userProfile);
+  // const { email } = req.body;
   //vérifier que email n'existe pas déjà en base
-  User.findOne({ email })
-    .then((user) => {
-      if (user) {
-        res.status(400).json({ message: 'Email already exists in database' });
-        return;
-      } else {
-        //option 1) si user est un user simple = visitor
-        if (profileType === 'visitor') {
-          const { firstName, lastName, userName, password } = req.body;
-          console.log('req.body', req.body);
-          const hashedPassword = bcryptjs.hashSync(password, salt);
-          User.create({
-            host: false, //quand le user selectionne visiteur le booléan devient false
-            firstName,
-            lastName,
-            userName,
-            email,
-            hashedPassword,
-          })
-            .then((user) => {
-              console.log('user', user);
-              res.status(200).json(user);
-            })
-            .catch((err) => {
-              console.log('error visitor not created');
-              if (err instanceof mongoose.Error.ValidationError) {
-                res.status(400).json({ message: 'Erreur mongoose' });
-              } else {
-                res
-                  .status(400)
-                  .json({ message: 'Error with visitor creation' });
-              }
-            });
-          //option 2) si user est un user host
-        } else {
-          const {
-            firstName,
-            lastName,
-            userName,
-            email,
-            password,
-            farmName,
-            description,
-            address,
-            zipCode,
-            city,
-            farmType,
-            activitiesType,
-            certifications,
-            public,
-            openingDays,
-            openingHoursStart,
-            openingHoursEnd,
-            spokenLanguages,
-            maximumVisitors,
-          } = req.body;
-          console.log(req.body);
-          const hashedPassword = bcryptjs.hashSync(password, salt);
-          User.create({
-            host: true,
-            firstName,
-            lastName,
-            userName,
-            email,
-            hashedPassword,
-          })
-            .then((user) => {
-              console.log('user in host', user);
-              Host.create({
-                userId: user.id,
-                farmName,
-                description,
-                address,
-                zipCode,
-                city,
-                farmType,
-                activitiesType,
-                certifications,
-                public,
-                openingDays,
-                openingHoursStart,
-                openingHoursEnd,
-                spokenLanguages,
-                maximumVisitors,
-              })
-                .then((host) => {
-                  //meme si email pas unique, passe dans then()
-                  console.log('host', host);
-                  res.status(200).json(host);
-                })
-                .catch((err) => {
-                  console.log('error host not created');
-                  if (err instanceof mongoose.Error.ValidationError) {
-                    console.log('err', err);
-                    res
-                      .status(500)
-                      .json({ message: 'mongosse error in host creation' });
-                  } else {
-                    res.status(500).json({ message: 'error in host creation' });
-                  }
-                });
-            })
-            .catch((err) => {
-              console.log('error host not created');
-              if (err instanceof mongoose.Error.ValidationError) {
-                res.status(500).json({
-                  message: 'mongoose error in user part creation of host',
-                });
-              } else {
-                res
-                  .status(500)
-                  .json({ message: 'eror in user part creation of host' });
-              }
-            });
-        }
-      }
+  // User.findOne({ email })
+  //   .then((user) => {
+  // if (user) {
+  //   res.status(400).json({ message: 'Email already exists in database' });
+  //   return;
+  // } else {
+  //option 1) si user est un user simple = visitor
+  if (userProfile === 'visitor') {
+    const { firstname, name, username, profilePic } = req.body;
+    User.create({
+      host: false, //quand le user selectionne visiteur le booléan devient false
+      firstname,
+      name,
+      username,
+      email,
+      hashedPassword,
+      profilePic,
     })
-    .catch((err) => {
-      console.log('err', err);
-      res.status(500).json({ message: 'error in main create-account route' });
-    });
+      .then((user) => {
+        console.log('visitor user created', user);
+        res.status(200).json(user);
+      })
+      .catch((err) => {
+        console.log('error visitor not created');
+        if (err instanceof mongoose.Error.ValidationError) {
+          res.status(400).json({ message: 'Erreur mongoose' });
+        } else {
+          res.status(400).json({ message: 'Error with visitor creation' });
+        }
+      });
+    //option 2) si user est un user host
+  } else {
+    const {
+      email,
+      firstname,
+      username,
+      name,
+      profilePic,
+      description,
+      farmName,
+      website,
+      address,
+      zipCode,
+      city,
+      farmType,
+      activityTypes,
+      certifications,
+      visitorType,
+      openingDays,
+      openingHoursStart,
+      openingHoursEnd,
+      spokenLanguages,
+      photos,
+      maximumVisitors,
+    } = req.body;
+    User.create({
+      host: true,
+      firstname,
+      name,
+      username,
+      email,
+      hashedPassword,
+      profilePic,
+    })
+      .then((user) => {
+        Host.create({
+          userId: user.id,
+          description,
+          farmName,
+          website,
+          address,
+          zipCode,
+          city,
+          farmType,
+          activityTypes,
+          certifications,
+          visitorType,
+          openingDays,
+          openingHoursStart,
+          openingHoursEnd,
+          spokenLanguages,
+          photos,
+          maximumVisitors,
+        })
+          .then((host) => {
+            console.log('host created', host);
+            res.status(200).json(host);
+          })
+          .catch((err) => {
+            console.log('error host not created');
+            if (err instanceof mongoose.Error.ValidationError) {
+              console.log('err', err);
+              res
+                .status(500)
+                .json({ message: 'mongosse error in host creation' });
+            } else {
+              res.status(500).json({ message: 'error in host creation' });
+            }
+          });
+      })
+      .catch((err) => {
+        console.log('error host not created');
+        if (err instanceof mongoose.Error.ValidationError) {
+          res.status(500).json({
+            message: 'mongoose error in user part creation of host',
+          });
+        } else {
+          res.status(500).json({ message: err });
+        }
+      });
+  }
+  // }
+  //     })
+  //     .catch((err) => {
+  //       console.log('err', err);
+  //       res.status(500).json({ message: 'error in main create-account route' });
+  //     });
 });
 
 //Route de vérification de l'email: existe déjà en base ?
