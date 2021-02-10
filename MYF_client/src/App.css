@@ -582,7 +582,7 @@ select {
                                      
  */
 .form {
-  width: 35%;
+  width: 40%;
   display: flex;
   flex-direction: column;
   margin-left: auto;
@@ -717,11 +717,16 @@ input.upload {
   display: flex;
 }
 
-#final_signup li p:nth-child(1) {
+#final_signup li div p {
+  width: 100%;
+}
+
+#final_signup li > p:nth-child(1) {
   width: 50%;
 }
 
-#final_signup li p:nth-child(2),#final_signup li div p {
+#final_signup li p:nth-child(2),
+#final_signup li div p {
   text-transform: capitalize;
 }
 

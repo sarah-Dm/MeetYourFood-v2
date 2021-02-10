@@ -21,7 +21,7 @@ class CreateAccount extends React.Component {
     zipCode: '',
     city: '',
     farmType: [],
-    activitiesType: [],
+    activityTypes: [],
     certifications: [],
     public: [],
     openingDays: [],
@@ -42,6 +42,61 @@ class CreateAccount extends React.Component {
   };
 
   render() {
+    const valueToLabel = {
+      'poultry-farming': 'Elevage de volailles',
+      'pig-farming': 'Elevage porcin',
+      'cow-farming': 'Elevage bovin',
+      'sheep-farming': 'Elevage de moutons',
+      'market-gardener': 'Maraichage',
+      viticulture: 'Viticulture',
+      beekeeping: 'Apiculture',
+      'cheese-maker': 'Production de fromage',
+      'dairy-maker': 'Production de lait',
+      tasting: 'Dégustation',
+      'direct-selling': 'Vente directe',
+      workshops: 'Ateliers',
+      'self-tour': 'Visite autonome',
+      'guided-tour': 'Visite guidée',
+      bio: 'Bio',
+      AOP: 'AOP',
+      AOC: 'AOC',
+      HVE: 'HVE',
+      RSE: 'RSE',
+      biodynamic: 'Biodynamic',
+      children: 'Enfants',
+      seniors: 'Seniors',
+      disabled: 'Accès aux personnes handicapés',
+      monday: 'Lundi',
+      tuesday: 'Mardi',
+      wednesday: 'Mercredi',
+      thurday: 'Jeudi',
+      friday: 'Vendredi',
+      saturday: 'Samedi',
+      sunday: 'Dimanche',
+      french: 'français',
+      english: 'anglais',
+      spanish: 'espagnol',
+      german: 'allemand',
+    };
+    const farmTypeLabelArr = this.state.farmType.map(
+      (farmType) => valueToLabel[farmType]
+    );
+    const activityTypesLabelArr = this.state.activityTypes.map(
+      (activityType) => valueToLabel[activityType]
+    );
+    const certificationsLabelArr = this.state.certifications.map(
+      (certification) => valueToLabel[certification]
+    );
+    const publicLabelArr = this.state.public.map(
+      (aPublic) => valueToLabel[aPublic]
+    );
+    const openingDaysLabelArr = this.state.openingDays.map(
+      (openingDay) => valueToLabel[openingDay]
+    );
+    const spokenLanguagesLabelArr = this.state.spokenLanguages.map(
+      (spokenLanguage) => valueToLabel[spokenLanguage]
+    );
+
     return (
       // afficher le step de signup selon l'étape (state step) auquel on est
       <div className="mainSignup">
@@ -79,7 +134,7 @@ class CreateAccount extends React.Component {
                 zipCode={this.state.zipCode}
                 city={this.state.city}
                 farmType={this.state.farmType}
-                activitiesType={this.state.activitiesType}
+                activityTypes={this.state.activityTypes}
                 certifications={this.state.certifications}
                 public={this.state.public}
                 openingDays={this.state.openingDays}
@@ -107,14 +162,14 @@ class CreateAccount extends React.Component {
                 address={this.state.address}
                 zipCode={this.state.zipCode}
                 city={this.state.city}
-                farmType={this.state.farmType}
-                activitiesType={this.state.activitiesType}
-                certifications={this.state.certifications}
-                public={this.state.public}
-                openingDays={this.state.openingDays}
+                farmType={farmTypeLabelArr}
+                activityTypes={activityTypesLabelArr}
+                certifications={certificationsLabelArr}
+                public={publicLabelArr}
+                openingDays={openingDaysLabelArr}
                 openingHoursStart={this.state.openingHoursStart}
                 openingHoursEnd={this.state.openingHoursEnd}
-                spokenLanguages={this.state.spokenLanguages}
+                spokenLanguages={spokenLanguagesLabelArr}
                 photos={this.state.photos}
                 maximumVisitors={this.state.maximumVisitors}
               />

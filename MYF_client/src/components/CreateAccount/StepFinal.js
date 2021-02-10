@@ -80,7 +80,7 @@ class StepFinal extends React.Component {
               <li>
                 <p>Activités disponibles</p>
                 <div>
-                  {this.props.activitiesType.map((el, i) => (
+                  {this.props.activityTypes.map((el, i) => (
                     <p key={i}>{el}</p>
                   ))}
                 </div>

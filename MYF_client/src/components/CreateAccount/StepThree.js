@@ -11,7 +11,7 @@ class StepThree extends React.Component {
     zipCode: this.props.zipCode,
     city: this.props.city,
     farmType: this.props.farmType,
-    activitiesType: this.props.activitiesType,
+    activityTypes: this.props.activityTypes,
     certifications: this.props.certifications,
     public: this.props.public,
     openingDays: this.props.openingDays,
@@ -105,7 +105,7 @@ class StepThree extends React.Component {
     this.props.liftStates('zipCode', this.state.zipCode);
     this.props.liftStates('city', this.state.city);
     this.props.liftStates('farmType', this.state.farmType);
-    this.props.liftStates('activitiesType', this.state.activitiesType);
+    this.props.liftStates('activityTypes', this.state.activityTypes);
     this.props.liftStates('certifications', this.state.certifications);
     this.props.liftStates('public', this.state.public);
     this.props.liftStates('openingDays', this.state.openingDays);
@@ -242,7 +242,7 @@ class StepThree extends React.Component {
               onChange={this.handleChange}
               checked={this.precheckBox('farmType', 'viticulture')}
             />
-            <label htmlFor="viticulture">viticulture</label>
+            <label htmlFor="viticulture">Viticulture</label>
           </div>
           <div className="checkbox">
             <input
@@ -283,55 +283,55 @@ class StepThree extends React.Component {
           <div className="checkbox">
             <input
               type="checkbox"
-              name="activitiesType"
+              name="activityTypes"
               value="tasting"
               id="tasting"
               onChange={this.handleChange}
-              checked={this.precheckBox('activitiesType', 'tasting')}
+              checked={this.precheckBox('activityTypes', 'tasting')}
             />
             <label htmlFor="tasting">Dégustation</label>
           </div>
           <div className="checkbox">
             <input
               type="checkbox"
-              name="activitiesType"
+              name="activityTypes"
               value="direct-selling"
               id="direct-selling"
               onChange={this.handleChange}
-              checked={this.precheckBox('activitiesType', 'direct-selling')}
+              checked={this.precheckBox('activityTypes', 'direct-selling')}
             />
             <label htmlFor="direct-selling">Vente directe</label>
           </div>
           <div className="checkbox">
             <input
               type="checkbox"
-              name="activitiesType"
+              name="activityTypes"
               value="workshops"
               id="workshops"
               onChange={this.handleChange}
-              checked={this.precheckBox('activitiesType', 'workshops')}
+              checked={this.precheckBox('activityTypes', 'workshops')}
             />
             <label htmlFor="workshops">Ateliers</label>
           </div>
           <div className="checkbox">
             <input
               type="checkbox"
-              name="activitiesType"
+              name="activityTypes"
               value="self-tour"
               id="self-tour"
               onChange={this.handleChange}
-              checked={this.precheckBox('activitiesType', 'self-tour')}
+              checked={this.precheckBox('activityTypes', 'self-tour')}
             />
             <label htmlFor="self-tour">Visite autonome</label>
           </div>
           <div className="checkbox">
             <input
               type="checkbox"
-              name="activitiesType"
+              name="activityTypes"
               value="guided-tour"
               id="guided-tour"
               onChange={this.handleChange}
-              checked={this.precheckBox('activitiesType', 'guided-tour')}
+              checked={this.precheckBox('activityTypes', 'guided-tour')}
             />
             <label htmlFor="guided-tour">Visite guidée</label>
           </div>
@@ -438,7 +438,7 @@ class StepThree extends React.Component {
               onChange={this.handleChange}
               checked={this.precheckBox('public', 'disabled')}
             />
-            <label htmlFor="disabled">Accès handicapés</label>
+            <label htmlFor="disabled">Accès aux personnes handicapés</label>
           </div>
         </fieldset>
         <fieldset>
