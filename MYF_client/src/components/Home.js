@@ -50,9 +50,43 @@ const Home = () => {
         'https://images.unsplash.com/photo-1602578291182-3e7563f272b0?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1500&q=80',
     },
   ];
+
+  const fonctionnement = [
+    {
+      image:
+        'https://res.cloudinary.com/dbrdms1su/image/upload/v1613165952/meet-your-food-React-v2/farmers_eszekh.jpg',
+      number: '1. ',
+      titre: 'Recherchez un producteur proche de vous',
+    },
+    {
+      image:
+        'https://res.cloudinary.com/dbrdms1su/image/upload/v1613170195/meet-your-food-React-v2/contact_udn3nc.png',
+      number: '2. ',
+      titre: 'Contactez-le',
+    },
+    {
+      image:
+        'https://res.cloudinary.com/dbrdms1su/image/upload/v1613168854/meet-your-food-React-v2/visit_dv6dmz.png',
+      number: '3. ',
+      titre: 'Rencontrez-le sur son exploitation et découvrez son travail',
+    },
+    {
+      image:
+        'https://res.cloudinary.com/dbrdms1su/image/upload/v1613169047/meet-your-food-React-v2/activity_rks4j6.png',
+      number: '4. ',
+      titre: 'Visitez, goûtez, participez, rapportez un souvenir',
+    },
+    {
+      image:
+        'https://res.cloudinary.com/dbrdms1su/image/upload/v1613169117/meet-your-food-React-v2/like_tyholy.png',
+      number: '5. ',
+      titre: 'Remerciez-le',
+    },
+  ];
+
   return (
     <div className="homepage">
-      <section id="page_accueil">
+      <div id="page_accueil">
         <h2> Aventurez vous dans les coulisses de votre alimentation</h2>
         <form className="formulaire-recherche" action="/hosts" method="GET">
           {/* à supprimer quand view mobile avec le .js */}
@@ -108,7 +142,7 @@ const Home = () => {
           <h2>La saison des moissons</h2>
           <p></p>
         </div>
-      </section>
+      </div>
       <section id="nouveaux_hotes">
         <div>
           <h2>Les petits nouveaux</h2>
@@ -124,6 +158,23 @@ const Home = () => {
           </ul>
         </div>
         <button className="btn primary">Voir tous</button>
+      </section>
+      <section id="fonctionnement">
+        <h2>Comment ça marche ?</h2>
+        <ul>
+          {fonctionnement.map((étape, i) => (
+            <li key={i}>
+              <Link to="#">
+                <img src={étape.image} alt="farm"></img>
+                <div>
+                  <h4>{étape.number}</h4>
+                  <h4>{étape.titre}</h4>
+                  <p>{étape.detail}</p>
+                </div>
+              </Link>
+            </li>
+          ))}
+        </ul>
       </section>
       <section id="produits_moment">
         <h2>Les produits du moment</h2>
@@ -141,6 +192,7 @@ const Home = () => {
           ))}
         </ul>
       </section>
+
       {/* EXEMPLES */}
       {/* A L'AFFICHE */}
     </div>
