@@ -7,71 +7,80 @@ const Footer = () => {
     <footer id="footer-layout">
       <ul id="sommaire">
         <ul>
-          <li>ABOUT</li>
+          <li>A propos</li>
           <li>
-            <Link to="#">About us</Link>
+            <Link to="#">MeetYourFood</Link>
           </li>
           <li>
-            <Link to="#">Careers</Link>
-          </li>
-        </ul>
-        <ul>
-          <li>COMMUNITY</li>
-          <li>
-            <Link to="#">Partnerships</Link>
-          </li>
-          <li>
-            <Link to="#">Share with friends</Link>
+            <Link to="#">Carrière</Link>
           </li>
         </ul>
         <ul>
-          <li>HOST</li>
+          <li>COMMUNAUTE</li>
           <li>
-            <Link to="/create-account?host=1">Become a host</Link>
+            <Link to="#">Partenariat</Link>
           </li>
           <li>
-            <Link to="#">Share with friends</Link>
+            <Link to="#">Partager avec un ami</Link>
+          </li>
+        </ul>
+        <ul>
+          <li>PRODUCT'HOTE</li>
+          <li>
+            <Link to="/create-account?host=1">Devenir Product'hôte</Link>
+          </li>
+          <li>
+            <Link to="#">Accueillir des visiteurs</Link>
           </li>
         </ul>
         <ul>
           <li>ASSISTANCE</li>
           <li>
-            <Link to="#">Help center</Link>
+            <Link to="#">Support</Link>
           </li>
           <li>
-            <Link to="#">Cancel options</Link>
+            <Link to="#">Options d'annulation</Link>
           </li>
         </ul>
       </ul>
       <hr></hr>
       <section id="bottom_footer">
-        <p>©2020 MeetYourFood, Inc. All rights reserved</p>
-        <ul id="liens">
-          <li>Cookie policy and Personal data</li>
-          <li>Legal notice</li>
-          <li>Sitemap</li>
-        </ul>
-        <ul>
-          <li>langue de la page</li>
-          <li>devise de la page</li>
-        </ul>
-        <ul id="liens_reseaux">
-          <li>
-            <a href="wwww.facebook.com">
-              <FiFacebook size={25} />
-            </a>
-          </li>
-          <li>
-            <a href="wwww.twitter.com">
-              <FiTwitter size={25} />
-            </a>
-          </li>
-          <li>
-            <a href="wwww.instagram.com">
-              <FiInstagram size={25} />
-            </a>
-          </li>
-        </ul>
+        <p>MeetYourFood. Tous droits réservés - 2021 - Sarah Damag</p>
+        <div>
+          <ul id="liens">
+            <li>
+              <Link to="#">Conditions générales</Link>
+            </li>
+            <li>
+              <Link to="#">Politique de données personnelles</Link>
+            </li>
+            <li>
+              <Link to="#">Plan du site</Link>
+            </li>
+          </ul>
+          <ul>
+            <li>
+              <Link to="#">Mentions légales</Link>
+            </li>
+          </ul>
+          <ul id="liens_reseaux">
+            <li>
+              <a href="wwww.facebook.com">
+                <FiFacebook size={25} />
+              </a>
+            </li>
+            <li>
+              <a href="wwww.twitter.com">
+                <FiTwitter size={25} />
+              </a>
+            </li>
+            <li>
+              <a href="wwww.instagram.com">
+                <FiInstagram size={25} />
+              </a>
+            </li>
+          </ul>
+        </div>
       </section>
     </footer>
   );

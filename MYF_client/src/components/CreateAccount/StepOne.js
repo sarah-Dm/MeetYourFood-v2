@@ -145,10 +145,10 @@ class StepOne extends React.Component {
             </label>
             <em> {this.state.errorMessage && this.state.errorMessage}</em>
             <div className="signup_buttons">
+              <p className="mandatory">* CHAMPS REQUIS</p>
               <button className="btn primary" onClick={this.emailIsAvailable}>
                 Suivant
               </button>
-              <p className="mandatory">* CHAMPS REQUIS</p>
             </div>
           </form>
         </div>

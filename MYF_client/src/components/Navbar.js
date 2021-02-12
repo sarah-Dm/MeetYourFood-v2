@@ -10,7 +10,6 @@ class Navbar extends React.Component {
           <a href="/" alt="MeetYourFood">
             MeetYourFood 🥕
           </a>
-          <p> Aventurez vous dans les coulisses de votre alimentation</p>
         </h1>
         <nav>
           <ul id="links">
