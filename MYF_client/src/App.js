@@ -2,6 +2,8 @@ import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import './App.css';
 import Navbar from './components/Navbar';
+import Footer from './components/Footer';
+import Home from './components/Home';
 import CreateAccount from './components/CreateAccount/CreateAccount';
 
 class App extends React.Component {
@@ -25,7 +27,9 @@ class App extends React.Component {
             path="/create-account"
             component={CreateAccount}
           ></Route>
+          <Route exact={true} path="/" component={Home}></Route>
         </Switch>
+        <Footer />
       </div>
     );
   }

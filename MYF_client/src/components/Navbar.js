@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { VscAccount } from 'react-icons/vsc';
 
 class Navbar extends React.Component {
   render() {
@@ -9,6 +10,7 @@ class Navbar extends React.Component {
           <a href="/" alt="MeetYourFood">
             MeetYourFood 🥕
           </a>
+          <p> Aventurez vous dans les coulisses de votre alimentation</p>
         </h1>
         <nav>
           <ul id="links">
@@ -27,11 +29,11 @@ class Navbar extends React.Component {
             <ul id="mon_compte">
               {this.props.userLogged ? (
                 <Link to={`/profile/${this.props.userLogged}`}>
-                  <i className="far fa-user-circle"></i>
+                  <VscAccount className="far fa-user-circle" />
                 </Link>
               ) : (
                 <Link to={'/login'}>
-                  <i className={'far fa-user-circle'}></i>
+                  <VscAccount className={'far fa-user-circle'} />
                 </Link>
               )}
               <div id="account-links">

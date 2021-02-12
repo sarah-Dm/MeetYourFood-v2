@@ -1,8 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Barlow:wght@200;400;700&display=swap');
 :root {
   --orange: #f2994a;
-  --yellow: #f2c94c;
+  --yellow: #0a4e24;
   --grey: #f2f2f2;
+  --navbar_height: 90px;
 }
 
 * {
@@ -34,6 +35,10 @@ button:focus {
   font-family: inherit;
   text-decoration: none;
   color: black;
+}
+
+.btn:hover {
+  cursor: pointer;
 }
 
 .primary {
@@ -94,33 +99,30 @@ button:focus {
  #    # ###### #    # #####  ###### #    # 
                                            
 */
-.header-layout a,
-.header-home a {
+.header-layout a {
   text-decoration: none;
   color: black;
 }
 
-.header-layout h1,
-.header-home h1 {
+.header-layout h1 {
   font-weight: 400;
 }
 
-.header-layout,
-.header-home {
+.header-layout {
   font-family: 'Barlow', sans-serif;
   font-size: 18px;
   color: black;
   text-decoration: none;
-  height: 90px;
+  height: var(--navbar_height);
   display: flex;
   align-items: center;
   flex-direction: row;
   background: var(--grey);
   width: 100%;
   position: fixed;
+  top: 0;
 }
 
-.header-home #logo,
 .header-layout #logo {
   font-size: 25px;
   margin-right: auto;
@@ -128,24 +130,24 @@ button:focus {
   padding-left: 45px;
 }
 
-.header-home nav,
+.header-layout #logo p {
+  font-size: 12px;
+}
+
 .header-layout nav {
   font-weight: 700;
   display: flex;
 }
 
-.header-layout ul,
-.header-home ul {
+.header-layout ul {
   list-style-type: none;
 }
 
-.header-layout li,
-.header-home li {
+.header-layout li {
   margin-left: 25px;
 }
 
-.header-layout #links,
-.header-home #links {
+.header-layout #links {
   display: flex;
   align-items: center;
   justify-content: space-evenly;
@@ -159,6 +161,12 @@ button:focus {
   padding-right: 20px;
 }
 
+#account-block #login-btn a,
+#account-block #create-account a,
+#account-block #mon_compte a svg {
+  color: white;
+}
+
 .fa,
 .far,
 .fas,
@@ -167,19 +175,16 @@ button:focus {
   color: black;
 }
 
-.header-layout #account-links li,
-.header-home #account-links li {
+.header-layout #account-links li {
   padding-top: 10px;
   padding-bottom: 10px;
 }
 
-.header-layout #create-account,
-.header-home #create-account {
-  border-top: 1px solid black;
+.header-layout #create-account {
+  border-top: 1px solid white;
 }
 
-.header-layout #mon_compte,
-.header-home #mon_compte {
+.header-layout #mon_compte {
   display: flex;
   align-items: center;
   margin: 10px 20px;
@@ -187,9 +192,6 @@ button:focus {
 }
 
 @media (max-width: 768px) {
-  .header-home nav {
-    visibility: hidden;
-  }
   .header-layout nav {
     visibility: hidden;
   }
@@ -206,29 +208,26 @@ button:focus {
                               
 */
 .homepage {
-  background: url('https://res.cloudinary.com/nina3am/image/upload/v1601452001/meet-your-food/466658-PFX5MG-6_m3ynfh.jpg')
-    no-repeat center center fixed;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
+  background: url(https://res.cloudinary.com/dbrdms1su/image/upload/v1613049012/meet-your-food-React-v2/home_page_pmrzjj.jpg)
+    no-repeat;
   background-size: cover;
-  height: 80vh;
-}
-
-#page_accueil {
-  padding-top: 15%;
+  height: 100vh;
+  padding-top: 5%;
+  margin-top: var(--navbar_height);
 }
 
 #slogan {
   color: white;
-  margin-left: auto;
-  margin-right: auto;
-  text-align: center;
+  width: 90%;
+  text-shadow: black 1px 1px;
+  margin-top: 90px;
+  margin-left: 110px;
+  width: 35%;
 }
 
 #slogan h2 {
   font-size: 3em;
-  font-weight: 200;
+  font-weight: 500;
 }
 
 #slogan p {
@@ -520,7 +519,7 @@ button:focus {
 }
 
 #loupe_recherche {
-  width: 15%;
+  width: 17%;
   display: flex;
   align-items: center;
   background-color: var(--orange);
@@ -530,8 +529,8 @@ button:focus {
 }
 
 #loupe-icon {
-  height: 40%;
   margin: auto;
+  color: white;
 }
 
 .form-field {
@@ -562,7 +561,7 @@ select {
 #fields {
   display: flex;
   height: fit-content;
-  margin: auto auto 10px auto;
+  margin: auto;
   justify-content: space-evenly;
   width: 80%;
 }
@@ -860,13 +859,13 @@ input.upload {
   padding-right: 20px;
 }
 
-#footer-layout i {
-  font-size: 20px;
-}
-
 #footer-layout #liens_reseaux {
   display: flex;
   justify-content: flex-end;
+}
+
+#footer-layout #liens_reseaux a {
+  color: black;
 }
 
 #entete-recherche {
