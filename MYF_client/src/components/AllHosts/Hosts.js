@@ -1,5 +1,6 @@
 import React from 'react';
 import SearchBarWithFilters from './SearchBarWithFilters';
+import SearchResults from './SearchResults';
 
 const Hosts = (props) => {
   return (
@@ -11,6 +12,7 @@ const Hosts = (props) => {
         certificationsList={props.certificationsList}
         publicTypesList={props.publicTypesList}
       />
+      <SearchResults />
     </div>
   );
 };

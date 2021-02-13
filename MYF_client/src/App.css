@@ -59,13 +59,21 @@ button:focus {
   text-decoration: none;
   color: white;
   display: inline;
+  cursor: pointer;
 }
 
-.btn:hover {
+button {
   cursor: pointer;
-  color: black;
+  border: none;
+  background: transparent;
+}
+
+.btn:hover,
+button:hover {
+  cursor: pointer;
   transition-duration: 0.1s;
-  background-color: var(--grey);
+  background-color: white;
+  color: var(--orange);
 }
 
 .primary {
@@ -737,10 +745,10 @@ select {
   width: 75%;
   margin-right: auto;
   margin-left: auto;
+  margin-top: calc(var(--navbar_height) * 1.5);
 }
 
 #pageRecherche .formulaire-recherche {
-  margin-top: var(--navbar_height);
   width: 100%;
 }
 
@@ -818,11 +826,35 @@ select {
   color: inherit;
 }
 
+#pageRecherche button svg:hover {
+  background: white;
+  color: var(--orange);
+}
+
 .searchbar {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
+
+#searchResults {
+  margin-top: 20px;
+}
+
+#searchResults > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#searchResults svg {
+  margin: 0px 5px;
+  background: var(--orange);
+  padding: 15px;
+  border-radius: 100%;
+  box-shadow: 1px 1px rgb(59, 56, 56);
+}
+
 /***
 #######                             
 #        ####  #####  #    #  ####  
@@ -1142,20 +1174,6 @@ input.upload {
 
 #footer-layout #liens_reseaux a {
   color: black;
-}
-
-#entete-recherche {
-  width: 75%;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-#entete-recherche-basse {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: auto;
-  width: 90%;
 }
 
 .error-message {
