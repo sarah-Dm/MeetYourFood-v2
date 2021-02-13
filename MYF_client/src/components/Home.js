@@ -1,6 +1,6 @@
 import React from 'react';
-import { FiSearch } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
+import SearchBar from './SearchBar';
 
 const Home = () => {
   const nouveaux = [
@@ -36,18 +36,17 @@ const Home = () => {
     },
     {
       nom: 'Chou',
+      description:
+        "C'est dans l'Antiquité qu'il a conquis le bassin méditerranéen. Les Grecs le servaient en soupe aux jeunes mariés le matin de leur nuit de noces : voilà d'où vient la légende des enfants qui naissent dans les choux. De plus, il était réputé pour chasser les humeurs maussades. En conséquence, ils avaient coutume de le déguster avant leurs banquets orgiaques. Il y a 4 000 ans, on commença à le cultiver. Ce sont les Chinois qui mirent au point sa conservation en saumure, qui lui permit de conquérir l'Europe de l'Est, où son succès fut immédiat. Devenue très populaire auprès des populations paysannes de tout le continent européen, cette plante potagère n'en était pas moins très appréciée par les rois. Elle trônait en effet aux banquets de Louis XIV notamment. A cette époque d'ailleurs, on lui reconnaissait la vertu de protéger du scorbut. Elle faisait donc partie des 'bagages' des marins qui se sont rendus aux Amériques.",
       image:
         'https://images.unsplash.com/photo-1511117833895-4b473c0b85d6?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80',
     },
     {
       nom: 'Hauts Coteaux',
+      description:
+        "La transformation du raisin en vin est appelée la vinification. L'étude du vin est l'œnologie. La grande variété de vins existant au monde s'explique par les différences de terroirs, de cépages, de modes de vinification ou de types d'élevage. Ainsi ils peuvent donner des vins rouges, rosés ou blancs, mais aussi des vins avec un taux de sucre résiduel variant (secs ou doux), ou une effervescence variante (tranquilles ou effervescents). La viticulture a colonisé une vaste partie du monde et de très nombreux pays sont producteurs de vin.",
       image:
         'https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80',
-    },
-    {
-      nom: 'Les rûches',
-      image:
-        'https://images.unsplash.com/photo-1602578291182-3e7563f272b0?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1500&q=80',
     },
   ];
 
@@ -87,57 +86,8 @@ const Home = () => {
   return (
     <div className="homepage">
       <div id="page_accueil">
-        <h2> Aventurez vous dans les coulisses de votre alimentation</h2>
-        <form className="formulaire-recherche" action="/hosts" method="GET">
-          {/* à supprimer quand view mobile avec le .js */}
-          <div id="fields">
-            <section className="form-field" id="demande_lieu">
-              <label>
-                LOCATION
-                <input
-                  type="text"
-                  placeholder="Where are you ?"
-                  name="location"
-                  required
-                />
-              </label>
-            </section>
-            <section className="form-field" id="demande_date_arrivee">
-              <label>
-                DAY OF YOUR VISIT
-                <select name="day">
-                  <option value="">Any</option>
-                  <option value="monday">Monday</option>
-                  <option value="tuesday">Tuesday</option>
-                  <option value="wednesday">Wednesday</option>
-                  <option value="thursday">Thursday</option>
-                  <option value="friday">Friday</option>
-                  <option value="saturday">Saturday</option>
-                  <option value="sunday">Sunday</option>
-                </select>
-              </label>
-            </section>
-            <section className="form-field" id="demande_visiteurs">
-              <label>
-                NUMBER OF VISITORS
-                <input type="number" name="visitor" />
-              </label>
-            </section>
-          </div>
-          <button id="loupe_recherche" className="btn ">
-            <FiSearch id="loupe-icon" size={40} />
-          </button>
-        </form>
-        {/* mobile view */}
-        <form id="formulaire-recherche-mobile" action="">
-          {/* à supprimer quand view normale avec le .js */}
-          <img
-            id="loupe-icon-mobile"
-            src="../images/loupe-icon.png"
-            alt="loupe"
-          />
-          <input type="text" placeholder="Où allez-vous ?" />
-        </form>
+        <h2> Aventurez-vous dans les coulisses de votre alimentation</h2>
+        <SearchBar />
         <div id="season">
           <h2>La saison des moissons</h2>
           <p></p>
@@ -164,14 +114,12 @@ const Home = () => {
         <ul>
           {fonctionnement.map((étape, i) => (
             <li key={i}>
-              <Link to="#">
-                <img src={étape.image} alt="farm"></img>
-                <div>
-                  <h4>{étape.number}</h4>
-                  <h4>{étape.titre}</h4>
-                  <p>{étape.detail}</p>
-                </div>
-              </Link>
+              <img src={étape.image} alt="farm"></img>
+              <div>
+                <h4>{étape.number}</h4>
+                <h4>{étape.titre}</h4>
+                <p>{étape.detail}</p>
+              </div>
             </li>
           ))}
         </ul>

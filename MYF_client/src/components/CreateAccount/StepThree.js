@@ -30,12 +30,9 @@ class StepThree extends React.Component {
       let stateArr = this.state[stateName];
       if (stateArr) {
         if (event.target.checked) {
-          console.log('event.target', event.target);
           stateArr.push(stateValue);
           this.setState({ [stateName]: stateArr });
         } else {
-          console.log('event.target', event.target);
-
           let indexToRemove = stateArr.indexOf(stateValue);
           stateArr.splice(indexToRemove, 1);
           this.setState({ [stateName]: stateArr });
@@ -71,7 +68,6 @@ class StepThree extends React.Component {
         this.setState({
           photos: newPhotos,
         });
-        console.log('this.state.photos', this.state.photos);
       })
       .catch((err) => {
         console.log('Error while uploading the file: ', err);
@@ -178,348 +174,90 @@ class StepThree extends React.Component {
         </label>
         <fieldset>
           <legend>Type d'exploitation * </legend>
-          <div className="checkbox">
-            <input
-              type="checkbox"
-              name="farmType"
-              value="poultry-farming"
-              id="poultry"
-              onChange={this.handleChange}
-              checked={this.precheckBox('farmType', 'poultry-farming')}
-            />
-            <label htmlFor="poultry">Elevage de volailles</label>
-          </div>
-          <div className="checkbox">
-            <input
-              type="checkbox"
-              name="farmType"
-              value="pig-farming"
-              id="pig"
-              onChange={this.handleChange}
-              checked={this.precheckBox('farmType', 'pig-farming')}
-            />
-            <label htmlFor="pig">Elevage porcin</label>
-          </div>
-          <div className="checkbox">
-            <input
-              type="checkbox"
-              name="farmType"
-              value="cow-farming"
-              id="cow"
-              onChange={this.handleChange}
-              checked={this.precheckBox('farmType', 'cow-farming')}
-            />
-            <label htmlFor="cow">Elevage bovin</label>
-          </div>
-          <div className="checkbox">
-            <input
-              type="checkbox"
-              name="farmType"
-              value="sheep-farming"
-              id="sheep"
-              onChange={this.handleChange}
-              checked={this.precheckBox('farmType', 'sheep-farming')}
-            />
-            <label htmlFor="sheep">Elevage de moutons</label>
-          </div>
-          <div className="checkbox">
-            <input
-              type="checkbox"
-              name="farmType"
-              value="market-gardener"
-              id="market"
-              onChange={this.handleChange}
-              checked={this.precheckBox('farmType', 'market-gardener')}
-            />
-            <label htmlFor="market">Maraichage</label>
-          </div>
-          <div className="checkbox">
-            <input
-              type="checkbox"
-              name="farmType"
-              value="viticulture"
-              id="viticulture"
-              onChange={this.handleChange}
-              checked={this.precheckBox('farmType', 'viticulture')}
-            />
-            <label htmlFor="viticulture">Viticulture</label>
-          </div>
-          <div className="checkbox">
-            <input
-              type="checkbox"
-              name="farmType"
-              value="beekeeping"
-              id="beekeeping"
-              onChange={this.handleChange}
-              checked={this.precheckBox('farmType', 'beekeeping')}
-            />
-            <label htmlFor="beekeeping">Apiculture</label>
-          </div>
-          <div className="checkbox">
-            <input
-              type="checkbox"
-              name="farmType"
-              value="cheese-maker"
-              id="cheese"
-              onChange={this.handleChange}
-              checked={this.precheckBox('farmType', 'cheese-maker')}
-            />
-            <label htmlFor="cheese">Production de fromage</label>
-          </div>
-          <div className="checkbox">
-            <input
-              type="checkbox"
-              name="farmType"
-              value="dairy-maker"
-              id="dairy"
-              onChange={this.handleChange}
-              checked={this.precheckBox('farmType', 'dairy-maker')}
-            />
-            <label htmlFor="dairy">Production de lait</label>
-          </div>
+          {this.props.farmTypeList.map((aFarmType, i) => (
+            <div className="checkbox" key={i}>
+              <div key={i}>
+                <input
+                  type="checkbox"
+                  name="farmType"
+                  value={aFarmType.value}
+                  id={aFarmType.id}
+                  onChange={this.handleChange}
+                  checked={this.precheckBox('farmType', aFarmType.value)}
+                />
+                <label htmlFor={aFarmType.id}>{aFarmType.traduction}</label>
+              </div>
+            </div>
+          ))}
         </fieldset>
         <fieldset>
           <legend>Activités disponible sur l'exploitation * </legend>
-          <div className="checkbox">
-            <input
-              type="checkbox"
-              name="activityTypes"
-              value="tasting"
-              id="tasting"
-              onChange={this.handleChange}
-              checked={this.precheckBox('activityTypes', 'tasting')}
-            />
-            <label htmlFor="tasting">Dégustation</label>
-          </div>
-          <div className="checkbox">
-            <input
-              type="checkbox"
-              name="activityTypes"
-              value="direct-selling"
-              id="direct-selling"
-              onChange={this.handleChange}
-              checked={this.precheckBox('activityTypes', 'direct-selling')}
-            />
-            <label htmlFor="direct-selling">Vente directe</label>
-          </div>
-          <div className="checkbox">
-            <input
-              type="checkbox"
-              name="activityTypes"
-              value="workshops"
-              id="workshops"
-              onChange={this.handleChange}
-              checked={this.precheckBox('activityTypes', 'workshops')}
-            />
-            <label htmlFor="workshops">Ateliers</label>
-          </div>
-          <div className="checkbox">
-            <input
-              type="checkbox"
-              name="activityTypes"
-              value="self-tour"
-              id="self-tour"
-              onChange={this.handleChange}
-              checked={this.precheckBox('activityTypes', 'self-tour')}
-            />
-            <label htmlFor="self-tour">Visite autonome</label>
-          </div>
-          <div className="checkbox">
-            <input
-              type="checkbox"
-              name="activityTypes"
-              value="guided-tour"
-              id="guided-tour"
-              onChange={this.handleChange}
-              checked={this.precheckBox('activityTypes', 'guided-tour')}
-            />
-            <label htmlFor="guided-tour">Visite guidée</label>
-          </div>
+          {this.props.activityTypesList.map((anActivity, i) => (
+            <div className="checkbox" key={i}>
+              <input
+                type="checkbox"
+                name="activityTypes"
+                value={anActivity.value}
+                id={anActivity.id}
+                onChange={this.handleChange}
+                checked={this.precheckBox('activityTypes', anActivity.value)}
+              />
+              <label htmlFor={anActivity.id}>{anActivity.traduction}</label>
+            </div>
+          ))}
         </fieldset>
         <fieldset>
           <legend>Certifications</legend>
-          <div className="checkbox">
-            <input
-              type="checkbox"
-              name="certifications"
-              value="bio"
-              id="bio"
-              onChange={this.handleChange}
-              checked={this.precheckBox('certifications', 'bio')}
-            />
-            <label htmlFor="bio">Bio</label>
-          </div>
-          <div className="checkbox">
-            <input
-              type="checkbox"
-              name="certifications"
-              value="AOP"
-              id="aop"
-              onChange={this.handleChange}
-              checked={this.precheckBox('certifications', 'AOP')}
-            />
-            <label htmlFor="aop">AOP</label>
-          </div>
-          <div className="checkbox">
-            <input
-              type="checkbox"
-              name="certifications"
-              value="AOC"
-              id="aoc"
-              onChange={this.handleChange}
-              checked={this.precheckBox('certifications', 'AOC')}
-            />
-            <label htmlFor="aoc">AOC</label>
-          </div>
-          <div className="checkbox">
-            <input
-              type="checkbox"
-              name="certifications"
-              value="HVE"
-              id="hve"
-              onChange={this.handleChange}
-              checked={this.precheckBox('certifications', 'HVE')}
-            />
-            <label htmlFor="hve">HVE</label>
-          </div>
-          <div className="checkbox">
-            <input
-              type="checkbox"
-              name="certifications"
-              value="RSE"
-              id="rse"
-              onChange={this.handleChange}
-              checked={this.precheckBox('certifications', 'RSE')}
-            />
-            <label htmlFor="rse">RSE Agro</label>
-          </div>
-          <div className="checkbox">
-            <input
-              type="checkbox"
-              name="certifications"
-              value="biodynamic"
-              id="biodynamic"
-              onChange={this.handleChange}
-              checked={this.precheckBox('certifications', 'biodynamic')}
-            />
-            <label htmlFor="biodynamic">Biodynamique</label>
-          </div>
+          {this.props.certificationsList.map((aCertification, i) => (
+            <div className="checkbox" key={i}>
+              <input
+                type="checkbox"
+                name="certifications"
+                value={aCertification.value}
+                id={aCertification.id}
+                onChange={this.handleChange}
+                checked={this.precheckBox(
+                  'certifications',
+                  aCertification.value
+                )}
+              />
+              <label htmlFor={aCertification.id}>
+                {aCertification.traduction}
+              </label>
+            </div>
+          ))}
         </fieldset>
         <fieldset>
           <legend>Public</legend>
-          <div className="checkbox">
-            <input
-              type="checkbox"
-              name="visitorType"
-              value="children"
-              id="children"
-              onChange={this.handleChange}
-              checked={this.precheckBox('visitorType', 'children')}
-            />
-            <label htmlFor="children">Enfants</label>
-          </div>
-          <div className="checkbox">
-            <input
-              type="checkbox"
-              name="visitorType"
-              value="seniors"
-              id="seniors"
-              onChange={this.handleChange}
-              checked={this.precheckBox('visitorType', 'seniors')}
-            />
-            <label htmlFor="seniors">Seniors</label>
-          </div>
-          <div className="checkbox">
-            <input
-              type="checkbox"
-              name="visitorType"
-              value="disabled"
-              id="disabled"
-              onChange={this.handleChange}
-              checked={this.precheckBox('visitorType', 'disabled')}
-            />
-            <label htmlFor="disabled">Accès aux personnes handicapés</label>
-          </div>
+          {this.props.publicTypesList.map((aPublicType, i) => (
+            <div className="checkbox" key={i}>
+              <input
+                type="checkbox"
+                name="visitorType"
+                value={aPublicType.value}
+                id={aPublicType.id}
+                onChange={this.handleChange}
+                checked={this.precheckBox('visitorType', aPublicType.value)}
+              />
+              <label htmlFor={aPublicType.id}>{aPublicType.traduction}</label>
+            </div>
+          ))}
         </fieldset>
         <fieldset>
           <legend>Jours d'ouverture *</legend>
-          <div className="checkbox">
-            <input
-              type="checkbox"
-              name="openingDays"
-              value="monday"
-              id="monday"
-              onChange={this.handleChange}
-              checked={this.precheckBox('openingDays', 'monday')}
-            />
-            <label htmlFor="monday">Lundi</label>
-          </div>
-          <div className="checkbox">
-            <input
-              type="checkbox"
-              name="openingDays"
-              value="tuesday"
-              id="tuesday"
-              onChange={this.handleChange}
-              checked={this.precheckBox('openingDays', 'tuesday')}
-            />
-            <label htmlFor="tuesday">Mardi</label>
-          </div>
-          <div className="checkbox">
-            <input
-              type="checkbox"
-              name="openingDays"
-              value="wednesday"
-              id="wednesday"
-              onChange={this.handleChange}
-              checked={this.precheckBox('openingDays', 'wednesday')}
-            />
-            <label htmlFor="wednesday">Mercredi</label>
-          </div>
-          <div className="checkbox">
-            <input
-              type="checkbox"
-              name="openingDays"
-              value="thursday"
-              id="thursday"
-              onChange={this.handleChange}
-              checked={this.precheckBox('openingDays', 'thursday')}
-            />
-            <label htmlFor="thursday">Jeudi</label>
-          </div>
-          <div className="checkbox">
-            <input
-              type="checkbox"
-              name="openingDays"
-              value="friday"
-              id="friday"
-              onChange={this.handleChange}
-              checked={this.precheckBox('openingDays', 'friday')}
-            />
-            <label htmlFor="friday">Vendredi</label>
-          </div>
-          <div className="checkbox">
-            <input
-              type="checkbox"
-              name="openingDays"
-              value="saturday"
-              id="saturday"
-              onChange={this.handleChange}
-              checked={this.precheckBox('openingDays', 'saturday')}
-            />
-            <label htmlFor="saturday">Samedi</label>
-          </div>
-          <div className="checkbox">
-            <input
-              type="checkbox"
-              name="openingDays"
-              value="sunday"
-              id="sunday"
-              onChange={this.handleChange}
-              checked={this.precheckBox('openingDays', 'sunday')}
-            />
-            <label htmlFor="sunday">Dimanche</label>
-          </div>
+          {this.props.openingDaysList.map((aDay, i) => (
+            <div className="checkbox" key={i}>
+              <input
+                type="checkbox"
+                name="openingDays"
+                value={aDay.value}
+                id={aDay.id}
+                onChange={this.handleChange}
+                checked={this.precheckBox('openingDays', aDay.value)}
+              />
+              <label htmlFor={aDay.id}>{aDay.traduction}</label>
+            </div>
+          ))}
         </fieldset>
         <label className="field">
           Heures d'ouverture *
@@ -538,50 +276,24 @@ class StepThree extends React.Component {
         </label>
         <fieldset>
           <legend>Langues parlées *</legend>
-          <div className="checkbox">
-            <input
-              id="french"
-              type="checkbox"
-              name="spokenLanguages"
-              value="french"
-              onChange={this.handleChange}
-              checked={this.precheckBox('spokenLanguages', 'french')}
-            />
-            <label htmlFor="french">Français</label>
-          </div>
-          <div className="checkbox">
-            <input
-              id="english"
-              type="checkbox"
-              name="spokenLanguages"
-              value="english"
-              onChange={this.handleChange}
-              checked={this.precheckBox('spokenLanguages', 'english')}
-            />
-            <label htmlFor="english">Anglais</label>
-          </div>
-          <div className="checkbox">
-            <input
-              id="spanish"
-              type="checkbox"
-              name="spokenLanguages"
-              value="spanish"
-              onChange={this.handleChange}
-              checked={this.precheckBox('spokenLanguages', 'spanish')}
-            />
-            <label htmlFor="spanish">Espagnol</label>
-          </div>
-          <div className="checkbox">
-            <input
-              id="german"
-              type="checkbox"
-              name="spokenLanguages"
-              value="german"
-              onChange={this.handleChange}
-              checked={this.precheckBox('spokenLanguages', 'german')}
-            />
-            <label htmlFor="german">Allemand</label>
-          </div>
+          {this.props.spokenLanguagesList.map((aSpokenLanguages, i) => (
+            <div className="checkbox" key={i}>
+              <input
+                id={aSpokenLanguages.id}
+                type="checkbox"
+                name="spokenLanguages"
+                value={aSpokenLanguages.value}
+                onChange={this.handleChange}
+                checked={this.precheckBox(
+                  'spokenLanguages',
+                  aSpokenLanguages.id
+                )}
+              />
+              <label htmlFor={aSpokenLanguages.id}>
+                {aSpokenLanguages.traduction}
+              </label>
+            </div>
+          ))}
         </fieldset>
         <label className="field">
           Photos de l'exploitation *

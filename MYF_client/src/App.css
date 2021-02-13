@@ -1,7 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Barlow:wght@200;400;700&display=swap');
 :root {
   --orange: #f2994a;
-  --yellow: #0a4e24;
+  --green: #0a4e24;
+  --green-transparent: #0a4e247a;
   --grey: #f2f2f2;
   --navbar_height: 90px;
 }
@@ -68,7 +69,7 @@ button:focus {
 }
 
 .primary {
-  background-color: var(--yellow);
+  background-color: var(--green);
 }
 
 .secondary {
@@ -77,7 +78,7 @@ button:focus {
 
 .secondary:hover {
   transition-duration: 0.1s;
-  background-color: var(--yellow);
+  background-color: var(--green);
 }
 
 .main-container {
@@ -172,7 +173,7 @@ button:focus {
 }
 
 #account-block {
-  background: var(--yellow);
+  background: var(--green);
   height: 90px;
   display: flex;
   padding-right: 20px;
@@ -234,11 +235,15 @@ button:focus {
   margin-top: var(--navbar_height);
 }
 
+.homepage .formulaire-recherche {
+  margin-top: 50px;
+}
+
 #page_accueil > h2 {
   color: white;
   text-align: center;
   font-size: 2.5em;
-  text-shadow: 1px 1px black;
+  text-shadow: 2px 1px black;
   width: 70%;
   margin: 0 auto;
 }
@@ -246,7 +251,7 @@ button:focus {
 #season {
   color: white;
   width: 90%;
-  text-shadow: black 1px 1px;
+  text-shadow: black 2px 1px;
   margin-top: 90px;
   margin-left: 110px;
   width: 35%;
@@ -254,7 +259,7 @@ button:focus {
 
 #season h2 {
   font-size: 2em;
-  font-weight: 500;
+  font-weight: 700;
 }
 
 #season p {
@@ -318,12 +323,32 @@ button:focus {
   text-align: justify;
 }
 
+#produits_moment img {
+  align-self: center;
+}
+
+#fonctionnement {
+  background: repeating-linear-gradient(
+    26deg,
+    white 100%,
+    var(--green-transparent)
+  );
+  padding: 15px;
+}
+
 #fonctionnement ul {
   display: flex;
 }
 
 #fonctionnement ul li {
   margin: 0px 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+#fonctionnement ul li div {
+  display: flex;
+  justify-content: center;
 }
 
 #fonctionnement ul li a {
@@ -344,17 +369,20 @@ button:focus {
 
 #fonctionnement ul h4 {
   display: inline;
+  text-align: center;
 }
 
 #fonctionnement ul h4:nth-child(1) {
   color: var(--orange);
   font-weight: 800;
   margin-right: 3px;
+  text-shadow: 1px 1px grey;
 }
 
 #fonctionnement img {
   height: 150px;
   margin-bottom: 10px;
+  align-self: center;
 }
 /*                                    
  #####  #####   ####  ###### # #      ###### 
@@ -532,7 +560,7 @@ button:focus {
   width: 100%;
   margin: 2% auto;
   padding: 40px;
-  border: 5px solid var(--yellow);
+  border: 5px solid var(--green);
   border-radius: 50px;
 }
 
@@ -617,28 +645,25 @@ button:focus {
   height: 0px;
 }
 
-/*
-  ####  ######   ##   #####   ####  #    # 
- #      #       #  #  #    # #    # #    # 
-  ####  #####  #    # #    # #      ###### 
-      # #      ###### #####  #      #    # 
- #    # #      #    # #   #  #    # #    # 
-  ####  ###### #    # #    #  ####  #    # 
+/*                                                          
+  ####  ######   ##   #####   ####  #    # #####    ##   #####  
+ #      #       #  #  #    # #    # #    # #    #  #  #  #    # 
+  ####  #####  #    # #    # #      ###### #####  #    # #    # 
+      # #      ###### #####  #      #    # #    # ###### #####  
+ #    # #      #    # #   #  #    # #    # #    # #    # #   #  
+  ####  ###### #    # #    #  ####  #    # #####  #    # #    # 
 */
 .formulaire-recherche {
   background: var(--grey);
   align-content: center;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: auto;
-  margin-top: 65px;
-  width: 70%;
   border-radius: 100px;
   display: flex;
   height: 150px;
   justify-content: center;
   align-items: center;
   padding: 10px;
+  margin: 0px auto;
+  width: 75%;
 }
 
 #loupe_recherche {
@@ -700,6 +725,104 @@ select {
   width: 40%;
 }
 
+/*
+   ##   #      #         #####    ##    ####  ###### 
+  #  #  #      #         #    #  #  #  #    # #      
+ #    # #      #         #    # #    # #      #####  
+ ###### #      #         #####  ###### #  ### #      
+ #    # #      #         #      #    # #    # #      
+ #    # ###### ######    #      #    #  ####  ###### 
+*/
+#pageRecherche {
+  width: 75%;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+#pageRecherche .formulaire-recherche {
+  margin-top: var(--navbar_height);
+  width: 100%;
+}
+
+#pageRecherche #filtres {
+  margin-top: 20px;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 80%;
+}
+
+#pageRecherche #filtres select {
+  border: 1px solid black;
+  border-radius: 50px;
+  padding: 1%;
+  width: auto;
+  margin: 5px;
+}
+
+#pageRecherche ul {
+  display: flex;
+  list-style: none;
+  flex-wrap: wrap;
+  width: 75%;
+  margin-left: auto;
+  margin-right: auto;
+  justify-content: center;
+}
+
+#pageRecherche ul li {
+  width: 45%;
+  margin: 3% auto;
+}
+
+#pageRecherche h3 {
+  text-transform: capitalize;
+  font-weight: normal;
+  letter-spacing: 0.5px;
+}
+
+#pageRecherche .recherche-image {
+  background-size: cover;
+  height: 250px;
+  border-radius: 35px;
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 35px;
+  align-items: flex-end;
+  color: white;
+  text-shadow: 1px 1px black;
+  margin: 0px 0px 15px 0px;
+}
+
+#pageRecherche .rating {
+  display: flex;
+}
+
+#pageRecherche #search {
+  display: flex;
+  height: 100%;
+}
+
+#pageRecherche #filtres li {
+  margin: 0px;
+  width: auto;
+  display: flex;
+  border: 1px solid black;
+  border-radius: 40px;
+  padding: 10px;
+}
+
+#pageRecherche a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.searchbar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 /***
 #######                             
 #        ####  #####  #    #  ####  
@@ -830,7 +953,7 @@ input.upload {
 .signup_buttons {
   display: flex;
   justify-content: center;
-  flex-direction: column;
+  flex-direction: row;
 }
 
 .create-account .primary,
@@ -1033,90 +1156,6 @@ input.upload {
   align-items: center;
   margin: auto;
   width: 90%;
-}
-
-#pageRecherche ul {
-  display: flex;
-  list-style: none;
-  flex-wrap: wrap;
-  width: 75%;
-  margin-left: auto;
-  margin-right: auto;
-  justify-content: center;
-}
-
-#pageRecherche ul li {
-  width: 45%;
-  margin: 3% auto;
-}
-
-#pageRecherche h3 {
-  text-transform: capitalize;
-  font-weight: normal;
-  letter-spacing: 0.5px;
-}
-
-#pageRecherche .recherche-image {
-  background-size: cover;
-  height: 250px;
-  border-radius: 35px;
-  display: flex;
-  justify-content: space-between;
-  padding: 15px 35px;
-  align-items: flex-end;
-  color: white;
-  text-shadow: 1px 1px black;
-  margin: 0px 0px 15px 0px;
-}
-
-#pageRecherche .rating {
-  display: flex;
-}
-
-#pageRecherche .formulaire-recherche {
-  width: 75%;
-  margin-bottom: 8%;
-}
-
-#pageRecherche #filtres {
-  display: flex;
-  justify-content: space-evenly;
-  margin: 3% 1%;
-}
-
-#pageRecherche #filtres select {
-  border: 1px solid black;
-  border-radius: 50px;
-  padding: 1%;
-}
-
-#pageRecherche #search {
-  display: flex;
-  height: 100%;
-}
-
-#pageRecherche #filtres li {
-  margin: 0px;
-  width: auto;
-  display: flex;
-  border: 1px solid black;
-  border-radius: 40px;
-  padding: 10px;
-}
-
-#pageRecherche a {
-  text-decoration: none;
-  color: inherit;
-}
-
-#pageRecherche {
-  padding-top: 6%;
-  padding-bottom: 3%;
-}
-
-.resultats {
-  display: flex;
-  flex-direction: column;
 }
 
 .error-message {

@@ -187,6 +187,12 @@ class CreateAccount extends React.Component {
             {this.state.step === 3 && (
               <StepThree
                 liftStates={this.sendToDb}
+                farmTypeList={this.props.farmTypeList}
+                activityTypesList={this.props.activityTypesList}
+                spokenLanguagesList={this.props.spokenLanguagesList}
+                certificationsList={this.props.certificationsList}
+                publicTypesList={this.props.publicTypesList}
+                openingDaysList={this.props.openingDaysList}
                 farmName={this.state.farmName}
                 description={this.state.description}
                 website={this.state.website}

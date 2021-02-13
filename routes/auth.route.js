@@ -72,7 +72,7 @@ router.post('/create-account', (req, res, next) => {
       maximumVisitors,
     } = req.body;
     User.create({
-      host: true,
+      productHost: true,
       firstname,
       name,
       username,
