@@ -1,13 +1,14 @@
 import React from 'react';
 import { FiSearch } from 'react-icons/fi';
 
-const SearchBar = () => {
+const SearchBar = (props) => {
+  console.log('props.openingDaysList', props.openingDaysList);
   return (
     <form className="formulaire-recherche">
       <div id="fields">
         <section className="form-field" id="demande_lieu">
           <label>
-            LOCATION
+            LIEU
             <input
               type="text"
               placeholder="Where are you ?"
@@ -18,22 +19,22 @@ const SearchBar = () => {
         </section>
         <section className="form-field" id="demande_date_arrivee">
           <label>
-            DAY OF YOUR VISIT
+            JOUR DE LA VISITE
             <select name="day">
               <option value="">Any</option>
-              <option value="monday">Monday</option>
-              <option value="tuesday">Tuesday</option>
-              <option value="wednesday">Wednesday</option>
-              <option value="thursday">Thursday</option>
-              <option value="friday">Friday</option>
-              <option value="saturday">Saturday</option>
-              <option value="sunday">Sunday</option>
+              {props.openingDaysList.map((openingDay) => {
+                return (
+                  <option value={openingDay.value} key={openingDay.value}>
+                    {openingDay.traduction}
+                  </option>
+                );
+              })}
             </select>
           </label>
         </section>
         <section className="form-field" id="demande_visiteurs">
           <label>
-            NUMBER OF VISITORS
+            NOMBRE DE VISITEURS
             <input type="number" name="visitor" />
           </label>
         </section>

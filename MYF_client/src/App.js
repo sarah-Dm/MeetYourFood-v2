@@ -111,7 +111,11 @@ class App extends React.Component {
             )}
           />
 
-          <Route exact={true} path="/" component={Home}></Route>
+          <Route
+            exact={true}
+            path="/"
+            render={() => <Home openingDaysList={openingDaysList} />}
+          ></Route>
           <Route
             exact={true}
             path="/hosts"

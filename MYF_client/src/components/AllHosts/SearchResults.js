@@ -29,9 +29,9 @@ const SearchResults = () => {
   ];
   return (
     <div id="searchResults">
-      <div>
+      <div id="searchHeader">
         <p>
-          <b>{results.length} RESULTS FOR YOU SEARCH</b>
+          <b>{results.length} RESULTATS POUR VOTRE RECHERCHE</b>
         </p>
         <div>
           <button>

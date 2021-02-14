@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import SearchBar from './SearchBar';
 
-const Home = () => {
+const Home = (props) => {
   const nouveaux = [
     {
       nom: 'Le potager gourmand',
@@ -86,8 +86,9 @@ const Home = () => {
   return (
     <div className="homepage">
       <div id="page_accueil">
-        <h2> Aventurez-vous dans les coulisses de votre alimentation</h2>
-        <SearchBar />
+        <h2>RENCONTRE CE QUE TU MANGES</h2>
+        <p>Aventurez-vous dans les coulisses de votre alimentation</p>
+        <SearchBar openingDaysList={props.openingDaysList} />
         <div id="season">
           <h2>La saison des moissons</h2>
           <p></p>
