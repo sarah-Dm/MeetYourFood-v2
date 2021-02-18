@@ -14,6 +14,7 @@ const SearchResults = () => {
       name: 'La ferme',
       hostName: 'Mike',
       farmType: 'Apiculture',
+      _id: '9999',
     },
     {
       image:
@@ -25,6 +26,7 @@ const SearchResults = () => {
       name: "L'élevage",
       hostName: 'Jean Pierre',
       farmType: 'Eleveur',
+      _id: '9909',
     },
   ];
   return (
@@ -44,7 +46,7 @@ const SearchResults = () => {
       </div>
       <ul id="listeResultats">
         {results.map((result) => (
-          <li>
+          <li key={result._id}>
             <a>
               <div
                 className="recherche-image"

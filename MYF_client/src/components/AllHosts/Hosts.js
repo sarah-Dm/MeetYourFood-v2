@@ -11,6 +11,7 @@ const Hosts = (props) => {
         spokenLanguagesList={props.spokenLanguagesList}
         certificationsList={props.certificationsList}
         publicTypesList={props.publicTypesList}
+        openingDaysList={props.openingDaysList}
       />
       <SearchResults />
     </div>

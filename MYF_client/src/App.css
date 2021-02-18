@@ -874,6 +874,10 @@ select {
   box-shadow: 1px 1px rgb(59, 56, 56);
 }
 
+.hideCheckboxes {
+  display: none;
+}
+
 /***
 #######                             
 #        ####  #####  #    #  ####  

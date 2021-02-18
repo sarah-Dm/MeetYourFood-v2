@@ -2,7 +2,6 @@ import React from 'react';
 import { FiSearch } from 'react-icons/fi';
 
 const SearchBar = (props) => {
-  console.log('props.openingDaysList', props.openingDaysList);
   return (
     <form className="formulaire-recherche">
       <div id="fields">
