@@ -878,6 +878,10 @@ select {
   display: none;
 }
 
+.showCheckboxes {
+  display: block;
+}
+
 /***
 #######                             
 #        ####  #####  #    #  ####  

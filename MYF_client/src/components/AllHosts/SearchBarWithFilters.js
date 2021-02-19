@@ -10,10 +10,6 @@ class SearchBarWithFilters extends React.Component {
     spokenLanguagesFilters: [],
   };
 
-  componentDidMount = () => {
-    this.manipulateDom();
-  };
-
   handleChange = (event) => {
     const stateName = event.target.name;
     const stateValue = event.target.value;
@@ -46,20 +42,45 @@ class SearchBarWithFilters extends React.Component {
     }
   };
 
-  //ouvrir les filtres par catégorie quand on clique dessus
-  manipulateDom = () => {
-    const $checkboxes = document.querySelectorAll('.checkboxes');
+  showFilters = () => {
+    const $certificationsList = document.querySelector('.certificationsList');
     const $titles = document.querySelectorAll('#filtres legend');
-    //quand je clique sur un titre,
-    for (let i = 0; i < $titles.length; i++) {
-      $titles[i].onclick = () => {
-        //les checkbox ouvertes se ferment
-        $checkboxes.forEach((checkboxGroup) =>
-          checkboxGroup.classList.add('hideCheckboxes')
-        );
-        //les checkboxes de ce filtre s'affichent
-        $checkboxes[i].classList.toggle('hideCheckboxes');
-      };
+    if ($certificationsList.classList.contains('hideCheckboxes')) {
+      $certificationsList.classList.remove('hideCheckboxes');
+      $certificationsList.classList.add('showCheckboxes');
+    } else {
+      $certificationsList.classList.add('hideCheckboxes');
+      $certificationsList.classList.remove('showCheckboxes');
+    }
+  };
+
+  closeAllFilters = () => {
+    const $checkboxes = document.querySelectorAll('.checkboxes');
+    $checkboxes.forEach((checkboxGroup) => {
+      checkboxGroup.classList.remove('showCheckboxes');
+      checkboxGroup.classList.add('hideCheckboxes');
+      console.log('added hideCheckboxes to all');
+    });
+  };
+
+  //fermer les checkbox quand elles ne sont pas en cours de séléction
+  handleClick = (index) => {
+    const $titles = document.querySelectorAll('#filtres legend');
+    const $checkboxes = document.querySelectorAll('.checkboxes');
+    //je clique sur un libellé
+    //s'il est fermé, ts les el deviennt hiden et mon element prend la class show
+    if ($checkboxes[index].classList.contains('hideCheckboxes')) {
+      $checkboxes.forEach((checkbox) => {
+        checkbox.classList.add('hideCheckboxes');
+        checkbox.classList.remove('showCheckboxes');
+      });
+      $checkboxes[index].classList.remove('hideCheckboxes');
+      $checkboxes[index].classList.add('showCheckboxes');
+    }
+    //S'il est ouvert, il perd la class show et gagne la class hide
+    else {
+      $checkboxes[index].classList.add('hideCheckboxes');
+      $checkboxes[index].classList.remove('showCheckboxes');
     }
   };
 
@@ -69,8 +90,8 @@ class SearchBarWithFilters extends React.Component {
         <SearchBar openingDaysList={this.props.openingDaysList} />
         <section id="filtres">
           <fieldset>
-            <legend>Certifications</legend>
-            <div className="checkboxes hideCheckboxes">
+            <legend onClick={() => this.handleClick(0)}>Certifications</legend>
+            <div className="checkboxes hideCheckboxes certificationsList">
               {this.props.certificationsList.map((aCertification) => (
                 <div key={aCertification.value}>
                   <input
@@ -93,7 +114,7 @@ class SearchBarWithFilters extends React.Component {
             </div>
           </fieldset>
           <fieldset>
-            <legend>Activity type</legend>
+            <legend onClick={() => this.handleClick(1)}>Activity type</legend>
             <div className="checkboxes hideCheckboxes">
               {this.props.activityTypesList.map((anActivity) => (
                 <div key={anActivity.value}>
@@ -115,7 +136,7 @@ class SearchBarWithFilters extends React.Component {
             </div>
           </fieldset>
           <fieldset>
-            <legend>Farm type</legend>
+            <legend onClick={() => this.handleClick(2)}>Farm type</legend>
             <div className="checkboxes hideCheckboxes">
               {this.props.farmTypeList.map((aFarmType) => (
                 <div key={aFarmType.value}>
@@ -137,7 +158,7 @@ class SearchBarWithFilters extends React.Component {
             </div>
           </fieldset>
           <fieldset>
-            <legend>Public</legend>
+            <legend onClick={() => this.handleClick(3)}>Public</legend>
             <div className="checkboxes hideCheckboxes">
               {this.props.publicTypesList.map((aPublicType) => (
                 <div key={aPublicType.value}>
@@ -161,7 +182,7 @@ class SearchBarWithFilters extends React.Component {
             </div>
           </fieldset>
           <fieldset>
-            <legend>Language</legend>
+            <legend onClick={() => this.handleClick(4)}>Language</legend>
             <div className="checkboxes hideCheckboxes">
               {this.props.spokenLanguagesList.map((aLanguage) => (
                 <div key={aLanguage.value}>
