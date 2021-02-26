@@ -72,13 +72,6 @@ app.use(
   })
 );
 
-// Helpers HBS
-// require('handlebars-helpers')({
-//   handlebars: hbs,
-// });
-
-// hbs.registerPartials(__dirname + '/views/partials');
-
 // default value for title local
 app.locals.title = 'Express - Generated with IronGenerator';
 
