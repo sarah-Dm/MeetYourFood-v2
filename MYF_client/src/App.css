@@ -782,6 +782,16 @@ select {
   margin: 5px;
 }
 
+#filtres fieldset {
+  border: none;
+  border-bottom: 1px solid grey;
+  margin: 0px 10px;
+}
+
+#filtres fieldset:hover {
+  cursor: pointer;
+}
+
 #pageRecherche ul {
   display: flex;
   list-style: none;
@@ -880,6 +890,15 @@ select {
 
 .showCheckboxes {
   display: block;
+  display: block;
+  position: absolute;
+  background: grey;
+  margin: 10px 0px;
+  padding: 6px;
+  border-radius: 12px;
+  max-height: 200px;
+  overflow: scroll;
+  border: 3px solid transparent;
 }
 
 /***

@@ -18,16 +18,17 @@ class SearchBarWithFilters extends React.Component {
       if (stateArr) {
         if (event.target.checked) {
           stateArr.push(stateValue);
-          this.setState({ [stateName]: stateArr });
         } else {
           let indexToRemove = stateArr.indexOf(stateValue);
           stateArr.splice(indexToRemove, 1);
-          this.setState({ [stateName]: stateArr });
         }
+        this.setState({ [stateName]: stateArr });
       } else console.log('stateArr missing');
     } else {
       this.setState({ [stateName]: stateValue });
     }
+    //envoyer le state au parent sans que l'on clique sur un bouton (directement avec onChange)
+    this.props.liftStates(stateName, this.state[stateName]);
   };
 
   //pour les checkbox, en faire des controlled component (controler la prop "checked")
@@ -42,30 +43,8 @@ class SearchBarWithFilters extends React.Component {
     }
   };
 
-  showFilters = () => {
-    const $certificationsList = document.querySelector('.certificationsList');
-    const $titles = document.querySelectorAll('#filtres legend');
-    if ($certificationsList.classList.contains('hideCheckboxes')) {
-      $certificationsList.classList.remove('hideCheckboxes');
-      $certificationsList.classList.add('showCheckboxes');
-    } else {
-      $certificationsList.classList.add('hideCheckboxes');
-      $certificationsList.classList.remove('showCheckboxes');
-    }
-  };
-
-  closeAllFilters = () => {
-    const $checkboxes = document.querySelectorAll('.checkboxes');
-    $checkboxes.forEach((checkboxGroup) => {
-      checkboxGroup.classList.remove('showCheckboxes');
-      checkboxGroup.classList.add('hideCheckboxes');
-      console.log('added hideCheckboxes to all');
-    });
-  };
-
   //fermer les checkbox quand elles ne sont pas en cours de séléction
   handleClick = (index) => {
-    const $titles = document.querySelectorAll('#filtres legend');
     const $checkboxes = document.querySelectorAll('.checkboxes');
     //je clique sur un libellé
     //s'il est fermé, ts les el deviennt hiden et mon element prend la class show
@@ -87,7 +66,10 @@ class SearchBarWithFilters extends React.Component {
   render() {
     return (
       <div className="searchbar">
-        <SearchBar openingDaysList={this.props.openingDaysList} />
+        <SearchBar
+          openingDaysList={this.props.openingDaysList}
+          liftStates={this.props.liftStates}
+        />
         <section id="filtres">
           <fieldset>
             <legend onClick={() => this.handleClick(0)}>Certifications</legend>
