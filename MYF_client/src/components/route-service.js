@@ -63,7 +63,16 @@ function createAccount(
       maximumVisitors,
     })
     .then((res) => res.data)
-    .catch((err) => err);
+    .catch((err) => errorHandler(err));
 }
 
 export { createAccount };
+
+function search(url) {
+  return service
+    .get(url)
+    .then((res) => res.data)
+    .catch((err) => errorHandler(err));
+}
+
+export { search };

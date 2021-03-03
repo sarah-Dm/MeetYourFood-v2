@@ -18,19 +18,21 @@ router.get('/search', (req, res, next) => {
     public, //["x", "y"]
     spokenLanguages, //["x", "y"]
   } = req.query;
+  console.log('maximumVisitors', maximumVisitors);
+
   //constitution de l'objet queryToDb
   if (searchfield) {
-    queryToDb.farmName = { $regex: req.query.searchfield, $options: 'i' };
-    queryToDb.description = { $regex: req.query.searchfield, $options: 'i' };
+    queryToDb.farmName = { $regex: searchfield, $options: 'i' };
+    queryToDb.description = { $regex: searchfield, $options: 'i' };
   }
   if (location) {
-    queryToDb.location = { $regex: req.query.location, $options: 'i' };
+    queryToDb.location = { $regex: location, $options: 'i' };
   }
   if (openingDays) {
     queryToDb.openingDays = openingDays;
   }
   if (maximumVisitors) {
-    queryToDb.maximumVisitors = { $gte: query.maximumVisitors };
+    queryToDb.maximumVisitors = { $gte: maximumVisitors };
   }
   if (certifications) {
     queryToDb.certifications = certifications;
@@ -47,6 +49,7 @@ router.get('/search', (req, res, next) => {
   if (spokenLanguages) {
     queryToDb.spokenLanguages = spokenLanguages;
   }
+  console.log('queryToDb', queryToDb);
   //chercher sur cet objet en base
   Host.find(queryToDb)
     .populate('userId')

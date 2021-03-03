@@ -2,70 +2,56 @@ import React from 'react';
 import { AiOutlineUnorderedList } from 'react-icons/ai';
 import { BiMap } from 'react-icons/bi';
 
-const SearchResults = () => {
-  const results = [
-    {
-      image:
-        'https://images.unsplash.com/photo-1560493676-04071c5f467b?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1336&q=80',
-      panierAv: 0,
-      rating: 0,
-      reviewsNum: 0,
-      city: 'Bordeaux',
-      name: 'La ferme',
-      hostName: 'Mike',
-      farmType: 'Apiculture',
-      _id: '9999',
-    },
-    {
-      image:
-        'https://images.unsplash.com/9/fields.jpg?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1280&q=80',
-      panierAv: 0,
-      rating: 0,
-      reviewsNum: 0,
-      city: 'Grenoble',
-      name: "L'élevage",
-      hostName: 'Jean Pierre',
-      farmType: 'Eleveur',
-      _id: '9909',
-    },
-  ];
-  return (
-    <div id="searchResults">
-      <div id="searchHeader">
-        <p>
-          <b>{results.length} RESULTATS POUR VOTRE RECHERCHE</b>
-        </p>
-        <div>
-          <button>
-            <AiOutlineUnorderedList size={55} />
-          </button>
-          <button>
-            <BiMap size={55} />
-          </button>
-        </div>
+const SearchResults = (props) => {
+  const resultats = props.hostsList.resultats;
+  if (!resultats)
+    return (
+      <div>
+        <h2>En chargement</h2>
       </div>
-      <ul id="listeResultats">
-        {results.map((result) => (
-          <li key={result._id}>
-            <a>
-              <div
-                className="recherche-image"
-                style={{ backgroundImage: `url(${result.image})` }}
-              >
-                <p> {result.rating} </p>
-                <p> {result.reviewsNum} reviews </p>
-              </div>
-              <p>
-                <b>{result.name} </b> - Product'hôte : {result.hostName}
-              </p>
-              <p> {result.farmType} </p>
-              <p> {result.city} </p>
-            </a>
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
+    );
+  if (resultats.length > 0) {
+    console.log('resultats', resultats);
+
+    return (
+      <div id="searchResults">
+        <div id="searchHeader">
+          <p>
+            <b>{resultats.length} RESULTATS POUR VOTRE RECHERCHE</b>
+          </p>
+          <div>
+            <button>
+              <AiOutlineUnorderedList size={55} />
+            </button>
+            <button>
+              <BiMap size={55} />
+            </button>
+          </div>
+        </div>
+        <ul id="listeResultats">
+          {resultats.map((aHost) => (
+            <li key={aHost._id}>
+              <a>
+                <div
+                  className="recherche-image"
+                  style={{ backgroundImage: `url(${aHost.photos[0]})` }}
+                >
+                  <p> {aHost.rating} </p>
+                  <p> {aHost.reviewsNum} reviews </p>
+                </div>
+                <p>
+                  <b>{aHost.name} </b> - Product'hôte : {aHost.hostName}
+                </p>
+                <p> {aHost.farmType} </p>
+                <p> {aHost.city} </p>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    );
+  }
+  return <div>ICI</div>;
 };
 
 export default SearchResults;

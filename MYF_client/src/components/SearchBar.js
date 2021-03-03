@@ -60,7 +60,11 @@ class SearchBar extends React.Component {
             </label>
           </section>
         </div>
-        <button id="loupe_recherche" className="btn" onClick={this.liftStates}>
+        <button
+          id="loupe_recherche"
+          className="btn"
+          onClick={(this.liftStates, (event) => this.props.searchInDb())}
+        >
           <FiSearch id="loupe-icon" size={40} />
         </button>
       </form>
