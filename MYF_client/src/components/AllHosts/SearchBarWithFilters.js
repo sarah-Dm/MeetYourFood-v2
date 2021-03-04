@@ -3,6 +3,9 @@ import SearchBar from '../SearchBar';
 
 class SearchBarWithFilters extends React.Component {
   state = {
+    location: '',
+    day: '',
+    visitor: 1,
     certificationsFilters: [],
     activityTypeFilters: [],
     farmTypeFilters: [],
@@ -69,7 +72,6 @@ class SearchBarWithFilters extends React.Component {
         <SearchBar
           openingDaysList={this.props.openingDaysList}
           liftStates={this.props.liftStates}
-          searchInDb={this.props.searchInDb}
         />
         <section id="filtres">
           <fieldset>

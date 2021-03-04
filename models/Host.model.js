@@ -28,7 +28,7 @@ const productHostSchema = new Schema(
       required: true,
       default: 'market-gardener',
     },
-    city: {
+    location: {
       type: String,
       enum: ['bergerac', 'compiegne', 'clermont-ferrand'],
       required: true,

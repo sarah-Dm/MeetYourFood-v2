@@ -4,15 +4,20 @@ import { BiMap } from 'react-icons/bi';
 
 const SearchResults = (props) => {
   const resultats = props.hostsList.resultats;
+
   if (!resultats)
     return (
       <div>
         <h2>En chargement</h2>
       </div>
     );
+  if (resultats.length < 1)
+    return (
+      <div>
+        <h2>Pas de résultat</h2>
+      </div>
+    );
   if (resultats.length > 0) {
-    console.log('resultats', resultats);
-
     return (
       <div id="searchResults">
         <div id="searchHeader">
@@ -51,7 +56,6 @@ const SearchResults = (props) => {
       </div>
     );
   }
-  return <div>ICI</div>;
 };
 
 export default SearchResults;

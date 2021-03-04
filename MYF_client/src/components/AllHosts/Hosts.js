@@ -22,10 +22,12 @@ class Hosts extends React.Component {
   }
 
   sendToParent = (stateName, value) => {
+    console.log(stateName, value);
     this.setState({ [stateName]: value });
   };
 
   searchInDb = (event) => {
+    console.log('event', event);
     // event.preventDefault();
     //créer la query en front dans l'url
     const query = queryString.stringify({

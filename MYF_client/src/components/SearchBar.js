@@ -1,5 +1,7 @@
 import React from 'react';
 import { FiSearch } from 'react-icons/fi';
+import search from './route-service';
+import queryString from 'query-string';
 
 class SearchBar extends React.Component {
   state = { location: '', day: '', visitor: 1 };
@@ -12,9 +14,26 @@ class SearchBar extends React.Component {
 
   liftStates = (event) => {
     event.preventDefault();
+    //d'abord envoyer les states dans le parent
     this.props.liftStates('location', this.state.location);
     this.props.liftStates('day', this.state.day);
     this.props.liftStates('visitor', this.state.visitor);
+    //puis lancer la recherche en base
+    console.log('event', event);
+    //créer la query en front dans l'url
+    const query = queryString.stringify({
+      location: this.state.location,
+      openingDays: this.state.day,
+      maximumVisitors: this.state.visitor,
+    });
+    //envoyer l'url dans la route
+    console.log('query', query);
+    search(`/api/search?${query}`)
+      .then((res) => {
+        console.log('hostsList', res.data);
+        this.props.liftStates('hostsList', res.data);
+      })
+      .catch((err) => console.log('err', err));
   };
 
   render() {
@@ -60,11 +79,7 @@ class SearchBar extends React.Component {
             </label>
           </section>
         </div>
-        <button
-          id="loupe_recherche"
-          className="btn"
-          onClick={(this.liftStates, (event) => this.props.searchInDb())}
-        >
+        <button id="loupe_recherche" className="btn" onClick={this.liftStates}>
           <FiSearch id="loupe-icon" size={40} />
         </button>
       </form>
