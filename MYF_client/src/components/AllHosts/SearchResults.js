@@ -45,10 +45,10 @@ const SearchResults = (props) => {
                   <p> {aHost.reviewsNum} reviews </p>
                 </div>
                 <p>
-                  <b>{aHost.name} </b> - Product'hôte : {aHost.hostName}
+                  <b>{aHost.farmName} </b>
                 </p>
                 <p> {aHost.farmType} </p>
-                <p> {aHost.city} </p>
+                <p> {aHost.location} </p>
               </a>
             </li>
           ))}

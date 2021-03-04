@@ -24,7 +24,7 @@ mongoose
 
 const data = [
   {
-    userId: {
+    user: {
       firstName: 'Jean-Claude',
       lastName: 'Dupont',
       email: 'host1@gmail.com',
@@ -51,7 +51,7 @@ const data = [
     ],
   },
   {
-    userId: {
+    user: {
       firstName: 'Jean-Claude',
       lastName: 'Dupont',
       email: 'host2@gmail.com',
@@ -78,7 +78,7 @@ const data = [
     ],
   },
   {
-    userId: {
+    user: {
       firstName: 'Jean-Claude',
       lastName: 'Dupont',
       email: 'host3@gmail.com',
@@ -105,7 +105,7 @@ const data = [
     ],
   },
   {
-    userId: {
+    user: {
       firstName: 'Jean-Claude',
       lastName: 'Dupont',
       email: 'host4@gmail.com',
@@ -132,7 +132,7 @@ const data = [
     ],
   },
   {
-    userId: {
+    user: {
       firstName: 'Jean-Claude',
       lastName: 'Dupont',
       email: 'host5@gmail.com',
@@ -159,7 +159,7 @@ const data = [
     ],
   },
   {
-    userId: {
+    user: {
       firstName: 'Jean-Claude',
       lastName: 'Dupont',
       email: 'host6@gmail.com',
@@ -186,7 +186,7 @@ const data = [
     ],
   },
   {
-    userId: {
+    user: {
       firstName: 'Marie',
       lastName: 'Bernard',
       email: 'mbernard@gmail.com',
@@ -214,7 +214,7 @@ const data = [
     ],
   },
   {
-    userId: {
+    user: {
       firstName: 'Sarah',
       lastName: 'Damag',
       email: 'sdamag@gmail.com',
@@ -243,7 +243,7 @@ const data = [
     ],
   },
   {
-    userId: {
+    user: {
       firstName: 'Nina',
       lastName: 'Quaresma',
       email: 'nquaresma@gmail.com',
@@ -270,7 +270,7 @@ const data = [
     ],
   },
   {
-    userId: {
+    user: {
       firstName: 'Laura',
       lastName: 'Bonavent',
       email: 'lbonavent@gmail.com',
@@ -296,7 +296,7 @@ const data = [
     ],
   },
   {
-    userId: {
+    user: {
       firstName: 'Antoine',
       lastName: 'Bernier',
       email: 'abernier@gmail.com',
@@ -323,7 +323,7 @@ const data = [
     ],
   },
   {
-    userId: {
+    user: {
       firstName: 'Cassandre',
       lastName: 'Vanzetta',
       email: 'cvanzetta@gmail.com',
@@ -350,7 +350,7 @@ const data = [
     ],
   },
   {
-    userId: {
+    user: {
       firstName: 'Claire',
       lastName: 'Lacanal',
       email: 'clacanal@gmail.com',
@@ -377,7 +377,7 @@ const data = [
     ],
   },
   {
-    userId: {
+    user: {
       firstName: 'Elodie',
       lastName: 'Cassignol',
       email: 'ecassignol@gmail.com',
@@ -404,7 +404,7 @@ const data = [
     ],
   },
   {
-    userId: {
+    user: {
       firstName: 'Clémentine',
       lastName: 'Incognito',
       email: 'cincognito@gmail.com',
@@ -431,7 +431,7 @@ const data = [
     ],
   },
   {
-    userId: {
+    user: {
       firstName: 'Enine',
       lastName: 'Incognito',
       email: 'eincognito@gmail.com',
@@ -458,14 +458,14 @@ const data = [
   },
 ];
 
-const users = data.map((host) => host.userId);
+const users = data.map((host) => host.user);
 
 User.create(users)
   .then((users) => {
     console.log(`${users.length} users created.`);
-    const userIds = users.map((user) => user.id);
+    const users = users.map((user) => user.id);
     const hosts = data.map((host, i) => {
-      host.userId = userIds[i];
+      host.user = users[i];
       return host;
     });
     Host.create(hosts)

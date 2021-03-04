@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const productHostSchema = new Schema(
   {
-    userId: {
+    user: {
       type: Schema.Types.ObjectId,
       ref: 'User',
     }, //aller chercher les infos du User
