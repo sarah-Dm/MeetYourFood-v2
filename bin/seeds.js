@@ -27,7 +27,7 @@ const data = [
     userId: {
       firstName: 'Jean-Claude',
       lastName: 'Dupont',
-      email: 'jdupont@gmail.com',
+      email: 'host1@gmail.com',
       userName: 'jdupont',
       host: true,
     },
@@ -54,7 +54,7 @@ const data = [
     userId: {
       firstName: 'Jean-Claude',
       lastName: 'Dupont',
-      email: 'jdupont@gmail.com',
+      email: 'host2@gmail.com',
       userName: 'jdupont',
       host: true,
     },
@@ -81,7 +81,7 @@ const data = [
     userId: {
       firstName: 'Jean-Claude',
       lastName: 'Dupont',
-      email: 'jdupont@gmail.com',
+      email: 'host3@gmail.com',
       userName: 'jdupont',
       host: true,
     },
@@ -108,7 +108,7 @@ const data = [
     userId: {
       firstName: 'Jean-Claude',
       lastName: 'Dupont',
-      email: 'jdupont@gmail.com',
+      email: 'host4@gmail.com',
       userName: 'jdupont',
       host: true,
     },
@@ -135,7 +135,7 @@ const data = [
     userId: {
       firstName: 'Jean-Claude',
       lastName: 'Dupont',
-      email: 'jdupont@gmail.com',
+      email: 'host5@gmail.com',
       userName: 'jdupont',
       host: true,
     },
@@ -162,7 +162,7 @@ const data = [
     userId: {
       firstName: 'Jean-Claude',
       lastName: 'Dupont',
-      email: 'jdupont@gmail.com',
+      email: 'host6@gmail.com',
       userName: 'jdupont',
       host: true,
     },
