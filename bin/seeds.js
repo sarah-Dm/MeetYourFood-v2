@@ -6,7 +6,7 @@ const mongoose = require('mongoose');
 
 const User = require('../models/User.model.js');
 const Host = require('../models/Host.model.js');
-const Comment = require('../models/Comment.model.js');
+const Review = require('../models/Review.model.js');
 
 const DB_NAME = 'MeetYourFood_React';
 
@@ -24,7 +24,7 @@ mongoose
 
 const data = [
   {
-    user: {
+    userDetails: {
       firstName: 'Jean-Claude',
       lastName: 'Dupont',
       email: 'host1@gmail.com',
@@ -51,7 +51,7 @@ const data = [
     ],
   },
   {
-    user: {
+    userDetails: {
       firstName: 'Jean-Claude',
       lastName: 'Dupont',
       email: 'host2@gmail.com',
@@ -78,7 +78,7 @@ const data = [
     ],
   },
   {
-    user: {
+    userDetails: {
       firstName: 'Jean-Claude',
       lastName: 'Dupont',
       email: 'host3@gmail.com',
@@ -105,7 +105,7 @@ const data = [
     ],
   },
   {
-    user: {
+    userDetails: {
       firstName: 'Jean-Claude',
       lastName: 'Dupont',
       email: 'host4@gmail.com',
@@ -132,7 +132,7 @@ const data = [
     ],
   },
   {
-    user: {
+    userDetails: {
       firstName: 'Jean-Claude',
       lastName: 'Dupont',
       email: 'host5@gmail.com',
@@ -159,7 +159,7 @@ const data = [
     ],
   },
   {
-    user: {
+    userDetails: {
       firstName: 'Jean-Claude',
       lastName: 'Dupont',
       email: 'host6@gmail.com',
@@ -186,7 +186,7 @@ const data = [
     ],
   },
   {
-    user: {
+    userDetails: {
       firstName: 'Marie',
       lastName: 'Bernard',
       email: 'mbernard@gmail.com',
@@ -214,7 +214,7 @@ const data = [
     ],
   },
   {
-    user: {
+    userDetails: {
       firstName: 'Sarah',
       lastName: 'Damag',
       email: 'sdamag@gmail.com',
@@ -243,7 +243,7 @@ const data = [
     ],
   },
   {
-    user: {
+    userDetails: {
       firstName: 'Nina',
       lastName: 'Quaresma',
       email: 'nquaresma@gmail.com',
@@ -270,7 +270,7 @@ const data = [
     ],
   },
   {
-    user: {
+    userDetails: {
       firstName: 'Laura',
       lastName: 'Bonavent',
       email: 'lbonavent@gmail.com',
@@ -296,7 +296,7 @@ const data = [
     ],
   },
   {
-    user: {
+    userDetails: {
       firstName: 'Antoine',
       lastName: 'Bernier',
       email: 'abernier@gmail.com',
@@ -323,7 +323,7 @@ const data = [
     ],
   },
   {
-    user: {
+    userDetails: {
       firstName: 'Cassandre',
       lastName: 'Vanzetta',
       email: 'cvanzetta@gmail.com',
@@ -350,7 +350,7 @@ const data = [
     ],
   },
   {
-    user: {
+    userDetails: {
       firstName: 'Claire',
       lastName: 'Lacanal',
       email: 'clacanal@gmail.com',
@@ -377,7 +377,7 @@ const data = [
     ],
   },
   {
-    user: {
+    userDetails: {
       firstName: 'Elodie',
       lastName: 'Cassignol',
       email: 'ecassignol@gmail.com',
@@ -404,7 +404,7 @@ const data = [
     ],
   },
   {
-    user: {
+    userDetails: {
       firstName: 'Clémentine',
       lastName: 'Incognito',
       email: 'cincognito@gmail.com',
@@ -431,7 +431,7 @@ const data = [
     ],
   },
   {
-    user: {
+    userDetails: {
       firstName: 'Enine',
       lastName: 'Incognito',
       email: 'eincognito@gmail.com',
@@ -458,60 +458,44 @@ const data = [
   },
 ];
 
-const users = data.map((host) => host.user);
-
-User.create(users)
-  .then((users) => {
-    console.log(`${users.length} users created.`);
-    const users = users.map((user) => user.id);
-    const hosts = data.map((host, i) => {
-      host.user = users[i];
-      return host;
-    });
-    Host.create(hosts)
-      .then((hosts) => {
-        console.log(`${hosts.length} hosts created.`);
-        mongoose.connection.close();
-      })
-      .catch((err) => console.error(err));
-  })
-  .catch((err) => console.error(err));
+// const users = data.map((host) => host.userDetails);
+// User.create(users)
+//   .then((users) => {
+//     console.log(`${users.length} users created.`);
+//     const userIds = users.map((user) => user.id);
+//     const hosts = data.map((host, i) => {
+//       host.userDetails = userIds[i];
+//       return host;
+//     });
+//     Host.create(hosts)
+//       .then((hosts) => mongoose.connection.close())
+//       .catch((err) => console.error(err));
+//   })
+//   .catch((err) => console.error(err));
 
 //Commentaires/reviews
-// const comments = [
-//   {
-//     author_id:5f7d7fa610fb25d367ab039c ,
-//     dest_id: 5f7d7fa610fb25d367ab0399 ,
-//     text: 'great experience :) ',
-//     rate: 4,
-//     averageCart: 10,
-//   },
-//   {
-//     author_id: 5f7d7fa610fb25d367ab039b,
-//     dest_id: 5f7d7fa610fb25d367ab0399 ,
-//     text: 'nothing to see :( ',
-//     rate: 1,
-//     averageCart: 3,
-//   },{
-//     author_id:5f7d7fa610fb25d367ab039a ,
-//     dest_id: 5f7d7fa610fb25d367ab039b ,
-//     text: 'Pas d'interet, pas d'accueil',
-//     rate: 1,
-//     averageCart: 20,
-//   },{
-//     author_id: 5f7d7fa610fb25d367ab0399,
-//     dest_id: 5f7d7fa610fb25d367ab039b ,
-//     text: 'Très bon accueil, jolie ferme pédagogique.',
-//     rate: 5,
-//     averageCart: 80,
-//   },
-// ];
+const reviews = [
+  {
+    visitedHost: '6040fc76252239e2dcc089c1',
+    visitor: '6040fc76252239e2dcc089c5',
+    date: '2021-03-03',
+    content: 'Super mega cool',
+    rating: 3,
+  },
+  {
+    visitedHost: '6040fc76252239e2dcc089c5',
+    visitor: '6040fc76252239e2dcc089c1',
+    date: '2021-03-03',
+    content: 'Nice',
+    rating: 3,
+  },
+];
 
-// Comment.create(comments)
-//   .then((comments) => {
-//     console.log(`${comments.length} comments created.`);
-//     mongoose.connection.close();
-//   })
-//   .catch((err) => {
-//     next(err);
-//   });
+Review.create(reviews)
+  .then((reviews) => {
+    console.log(`${reviews.length} reviews created.`);
+    mongoose.connection.close();
+  })
+  .catch((err) => {
+    next(err);
+  });

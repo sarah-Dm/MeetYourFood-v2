@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const productHostSchema = new Schema(
   {
-    user: {
+    userDetails: {
       type: Schema.Types.ObjectId,
       ref: 'User',
     }, //aller chercher les infos du User
@@ -118,6 +118,12 @@ const productHostSchema = new Schema(
       required: true,
       default: 10,
     },
+    reviews: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'Review',
+      },
+    ],
   },
   {
     timestamps: true,

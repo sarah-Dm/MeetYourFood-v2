@@ -35,7 +35,7 @@ const userSchema = new Schema(
       default:
         'https://res.cloudinary.com/nina3am/image/upload/v1601573838/meet-your-food/PngItem_307416%20%281%29.png.png',
     },
-    productHost: {
+    host: {
       type: Boolean,
       required: true,
       default: false,

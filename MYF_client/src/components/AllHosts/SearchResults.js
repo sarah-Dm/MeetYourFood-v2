@@ -41,8 +41,9 @@ const SearchResults = (props) => {
                   className="recherche-image"
                   style={{ backgroundImage: `url(${aHost.photos[0]})` }}
                 >
-                  <p> {aHost.rating} </p>
-                  <p> {aHost.reviewsNum} reviews </p>
+                  {/* TODO: fonction pour calculer moyenne des ratings */}
+                  <p>{aHost.reviews && aHost.calculateAvRating}</p>
+                  <p> {aHost.reviews && aHost.reviews.length} reviews </p>
                 </div>
                 <p>
                   <b>{aHost.farmName} </b>
