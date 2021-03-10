@@ -31,9 +31,9 @@ class Hosts extends React.Component {
       'test',
       prevState !== this.state
     );
-    // if (prevState !== this.state) {
-    //   this.searchInDb();
-    // }
+    if (prevState !== this.state) {
+      this.searchInDb();
+    }
   }
 
   sendToParent = (stateName, value) => {
