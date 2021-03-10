@@ -21,33 +21,37 @@ class Hosts extends React.Component {
     this.searchInDb();
   }
 
+  //dès qu'un state, change recherche en db
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState !== this.state) {
+      this.searchInDb();
+    }
+  }
+
   sendToParent = (stateName, value) => {
     console.log(stateName, value);
     this.setState({ [stateName]: value });
   };
 
   searchInDb = (event) => {
-    console.log('event', event);
-    // event.preventDefault();
+    if (event) event.preventDefault();
     //créer la query en front dans l'url
     const query = queryString.stringify({
       location: this.state.location,
       openingDays: this.state.day,
       maximumVisitors: this.state.visitor,
-      // certifications: this.state.certificationsFilters,
-      // farmType: this.state.farmTypeFilters,
-      // activitiesType: this.state.activityTypeFilters,
-      // public: this.state.publicTypesFilters,
-      // spokenLanguages: this.state.spokenLanguagesFilters,
+      certifications: this.state.certificationsFilters,
+      farmType: this.state.farmTypeFilters,
+      activitiesType: this.state.activityTypeFilters,
+      public: this.state.publicTypesFilters,
+      spokenLanguages: this.state.spokenLanguagesFilters,
     });
     //envoyer l'url dans la route
-    console.log('query', query);
     search(`/api/search?${query}`)
       .then((res) => {
         this.setState({ hostsList: res.data });
       })
       .catch((err) => console.log('err', err));
-    //récupérer les documents qui répondent à la query
   };
 
   render() {

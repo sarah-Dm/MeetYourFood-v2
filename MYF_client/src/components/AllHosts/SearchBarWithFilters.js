@@ -72,6 +72,7 @@ class SearchBarWithFilters extends React.Component {
         <SearchBar
           openingDaysList={this.props.openingDaysList}
           liftStates={this.props.liftStates}
+          searchInDb={this.props.searchInDb}
         />
         <section id="filtres">
           <fieldset>
