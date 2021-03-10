@@ -18,7 +18,6 @@ router.get('/search', (req, res, next) => {
     public, //["x", "y"]
     spokenLanguages, //["x", "y"]
   } = req.query;
-  console.log('maximumVisitors', maximumVisitors);
 
   //constitution de l'objet queryToDb
   if (searchfield) {
@@ -49,7 +48,6 @@ router.get('/search', (req, res, next) => {
   if (spokenLanguages) {
     queryToDb.spokenLanguages = spokenLanguages;
   }
-  console.log('queryToDb', queryToDb);
   //chercher sur cet objet en base
   Host.find(queryToDb)
     .populate('userId')

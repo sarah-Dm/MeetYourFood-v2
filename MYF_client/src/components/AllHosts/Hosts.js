@@ -22,10 +22,18 @@ class Hosts extends React.Component {
   }
 
   //dès qu'un state, change recherche en db
-  componentDidUpdate(prevProps, prevState) {
-    if (prevState !== this.state) {
-      this.searchInDb();
-    }
+  componentDidUpdate(prevState) {
+    console.log(
+      'prevState',
+      prevState,
+      'this.state',
+      this.state,
+      'test',
+      prevState !== this.state
+    );
+    // if (prevState !== this.state) {
+    //   this.searchInDb();
+    // }
   }
 
   sendToParent = (stateName, value) => {
@@ -49,7 +57,9 @@ class Hosts extends React.Component {
     //envoyer l'url dans la route
     search(`/api/search?${query}`)
       .then((res) => {
-        this.setState({ hostsList: res.data });
+        this.setState({
+          hostsList: res.data,
+        });
       })
       .catch((err) => console.log('err', err));
   };

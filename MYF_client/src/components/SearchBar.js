@@ -1,7 +1,5 @@
 import React from 'react';
 import { FiSearch } from 'react-icons/fi';
-import search from './route-service';
-import queryString from 'query-string';
 
 class SearchBar extends React.Component {
   state = { location: '', day: '', visitor: 1 };
