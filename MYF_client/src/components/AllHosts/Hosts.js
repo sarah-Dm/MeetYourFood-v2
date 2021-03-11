@@ -21,25 +21,32 @@ class Hosts extends React.Component {
     this.searchInDb();
   }
 
-  //dès qu'un state, change recherche en db
+  //dès qu'un state change, recherche en db
   componentDidUpdate(prevProps, prevState) {
     console.log(
-      'prevState',
-      prevState,
-      'prevProps',
-      prevProps,
-      'this.state',
-      this.state,
-      'test',
-      prevState !== this.state
+      'prevState.farmTypeFilters',
+      prevState.farmTypeFilters,
+      'prevState.hostsList',
+      prevState.hostsList
+    );
+    console.log(
+      'this.state.farmTypeFilters',
+      this.state.farmTypeFilters,
+      'this.state.hostsList',
+      this.state.hostsList
+    );
+    console.log(
+      'prevState different from this.state',
+      JSON.stringify(prevState) !== JSON.stringify(this.state)
     );
     if (JSON.stringify(prevState) !== JSON.stringify(this.state)) {
       this.searchInDb();
+    } else {
+      console.log('prevState and state are the same');
     }
   }
 
   sendToParent = (stateName, value) => {
-    console.log(stateName, value);
     this.setState({ [stateName]: value });
   };
 

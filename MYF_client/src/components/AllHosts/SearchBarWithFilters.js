@@ -25,7 +25,7 @@ class SearchBarWithFilters extends React.Component {
           let indexToRemove = stateArr.indexOf(stateValue);
           stateArr.splice(indexToRemove, 1);
         }
-        this.setState({ [stateName]: stateArr });
+        this.setState({ [stateName]: [...stateArr] }); //faire une copie de l'array sinon ne fonctionne pas quand on décoche (le prevState semble écrasé par le this.state devient tout de suite)
       } else console.log('stateArr missing');
     } else {
       this.setState({ [stateName]: stateValue });
