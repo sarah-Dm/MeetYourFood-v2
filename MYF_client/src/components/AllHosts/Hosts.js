@@ -22,16 +22,18 @@ class Hosts extends React.Component {
   }
 
   //dès qu'un state, change recherche en db
-  componentDidUpdate(prevState) {
+  componentDidUpdate(prevProps, prevState) {
     console.log(
       'prevState',
       prevState,
+      'prevProps',
+      prevProps,
       'this.state',
       this.state,
       'test',
       prevState !== this.state
     );
-    if (prevState !== this.state) {
+    if (JSON.stringify(prevState) !== JSON.stringify(this.state)) {
       this.searchInDb();
     }
   }
