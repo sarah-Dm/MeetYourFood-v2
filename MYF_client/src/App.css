@@ -695,6 +695,7 @@ button:hover {
   height: 100px;
   border-radius: 100px;
   border: none;
+  justify-content: center;
 }
 
 #loupe_recherche:hover {

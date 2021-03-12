@@ -8,11 +8,19 @@ import CreateAccount from './components/CreateAccount/CreateAccount';
 import Hosts from './components/AllHosts/Hosts';
 
 class App extends React.Component {
-  state = { userLogged: null };
+  state = { userLogged: null, location: '', day: '', visitor: 1 };
 
   //à appeler dans le questionnaire login
   handleUpdateUser = (newUserId) => {
     this.setState({ userLogged: newUserId });
+  };
+
+  sendToApp = (stateName, value) => {
+    this.setState({ [stateName]: value });
+  };
+
+  updateDay = (dayValue) => {
+    this.setState({ day: dayValue });
   };
 
   render() {
@@ -80,6 +88,7 @@ class App extends React.Component {
     ];
 
     const openingDaysList = [
+      { value: '', id: 'any', traduction: 'Tous' },
       { value: 'monday', id: 'monday', traduction: 'Lundi' },
       { value: 'tuesday', id: 'tuesday', traduction: 'Mardi' },
       { value: 'wednesday', id: 'wednesday', traduction: 'Mercredi' },
@@ -114,7 +123,12 @@ class App extends React.Component {
           <Route
             exact={true}
             path="/"
-            render={() => <Home openingDaysList={openingDaysList} />}
+            render={() => (
+              <Home
+                openingDaysList={openingDaysList}
+                liftStatesToApp={this.sendToApp}
+              />
+            )}
           ></Route>
           <Route
             exact={true}
@@ -127,6 +141,10 @@ class App extends React.Component {
                 certificationsList={certificationsList}
                 publicTypesList={publicTypesList}
                 openingDaysList={openingDaysList}
+                day={this.state.day}
+                location={this.state.location}
+                visitor={this.state.visitor}
+                updateDay={this.updateDay}
               />
             )}
           ></Route>

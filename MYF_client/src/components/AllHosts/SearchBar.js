@@ -2,7 +2,11 @@ import React from 'react';
 import { FiSearch } from 'react-icons/fi';
 
 class SearchBar extends React.Component {
-  state = { location: '', day: '', visitor: 1 };
+  state = {
+    location: this.props.location,
+    day: this.props.day,
+    visitor: this.props.visitor,
+  };
 
   handleChange = (event) => {
     const value = event.target.value;
@@ -17,7 +21,24 @@ class SearchBar extends React.Component {
     this.props.liftStates('visitor', this.state.visitor);
   };
 
+  showDayLabel = () => {
+    let dayIndex;
+    let dayShowed = 'Tous';
+    //entrer dans this.props.openingDaysList et chercher l'index donc el.id est la valeur this.props.day
+    this.props.openingDaysList.map((el) => {
+      console.log(el.id, this.props.day, el.id === this.props.day);
+      if (el.id === this.props.day) {
+        dayIndex = this.props.openingDaysList.indexOf(el);
+        //afficher la .traduction de l'el qui porte cet index
+        dayShowed = this.props.openingDaysList[dayIndex].traduction;
+      }
+    });
+    console.log('dayShowed', dayShowed);
+    return dayShowed;
+  };
+
   render() {
+    console.log(this.state.day);
     return (
       <form className="formulaire-recherche">
         <div id="fields">
@@ -26,7 +47,7 @@ class SearchBar extends React.Component {
               LIEU
               <input
                 type="text"
-                placeholder="Where are you ?"
+                placeholder="Où vous trouvez-vous ?"
                 name="location"
                 required
                 value={this.state.location}
@@ -38,11 +59,11 @@ class SearchBar extends React.Component {
             <label>
               JOUR DE LA VISITE
               <select name="day" onChange={this.handleChange}>
-                <option value="">Any</option>
+                <option value={this.state.day}>{this.showDayLabel()}</option>
                 {this.props.openingDaysList.map((openingDay) => {
                   return (
                     <option value={openingDay.value} key={openingDay.value}>
-                      {openingDay.traduction}
+                      🗓 {openingDay.traduction}
                     </option>
                   );
                 })}
@@ -56,6 +77,7 @@ class SearchBar extends React.Component {
                 type="number"
                 name="visitor"
                 onChange={this.handleChange}
+                value={this.state.visitor}
               />
             </label>
           </section>

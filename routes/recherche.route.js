@@ -34,20 +34,21 @@ router.get('/search', (req, res, next) => {
     queryToDb.maximumVisitors = { $gte: maximumVisitors };
   }
   if (certifications) {
-    queryToDb.certifications = certifications;
+    queryToDb.certifications = { $in: certifications }; //pour que s'affiche les hotes qui ont au moins un des types
   }
   if (farmType) {
-    queryToDb.farmType = farmType;
+    queryToDb.farmType = { $in: farmType };
   }
   if (activitiesType) {
-    queryToDb.activitiesType = activitiesType;
+    queryToDb.activitiesType = { $in: activitiesType };
   }
   if (public) {
-    queryToDb.public = public;
+    queryToDb.public = { $in: public };
   }
   if (spokenLanguages) {
-    queryToDb.spokenLanguages = spokenLanguages;
+    queryToDb.spokenLanguages = { $in: spokenLanguages };
   }
+  console.log('queryToDb', queryToDb);
   //chercher sur cet objet en base
   Host.find(queryToDb)
     .populate('userId')

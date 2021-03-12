@@ -1,5 +1,5 @@
 import React from 'react';
-import SearchBar from '../SearchBar';
+import SearchBar from './SearchBar';
 
 class SearchBarWithFilters extends React.Component {
   state = {
@@ -73,6 +73,9 @@ class SearchBarWithFilters extends React.Component {
           openingDaysList={this.props.openingDaysList}
           liftStates={this.props.liftStates}
           searchInDb={this.props.searchInDb}
+          day={this.props.day}
+          location={this.props.location}
+          visitor={this.props.visitor}
         />
         <section id="filtres">
           <fieldset>

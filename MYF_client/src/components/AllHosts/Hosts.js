@@ -7,9 +7,9 @@ import queryString from 'query-string';
 class Hosts extends React.Component {
   state = {
     hostsList: [],
-    location: '',
-    day: '',
-    visitor: 1,
+    location: this.props.location,
+    day: this.props.day,
+    visitor: this.props.visitor,
     certificationsFilters: [],
     activityTypeFilters: [],
     farmTypeFilters: [],
@@ -23,24 +23,11 @@ class Hosts extends React.Component {
 
   //dès qu'un state change, recherche en db
   componentDidUpdate(prevProps, prevState) {
-    console.log(
-      'prevState.farmTypeFilters',
-      prevState.farmTypeFilters,
-      'prevState.hostsList',
-      prevState.hostsList
-    );
-    console.log(
-      'this.state.farmTypeFilters',
-      this.state.farmTypeFilters,
-      'this.state.hostsList',
-      this.state.hostsList
-    );
-    console.log(
-      'prevState different from this.state',
-      JSON.stringify(prevState) !== JSON.stringify(this.state)
-    );
     if (JSON.stringify(prevState) !== JSON.stringify(this.state)) {
       this.searchInDb();
+      if (prevState.day !== this.state.day) {
+        this.props.updateDay(this.state.day);
+      }
     } else {
       console.log('prevState and state are the same');
     }
@@ -85,6 +72,10 @@ class Hosts extends React.Component {
           openingDaysList={this.props.openingDaysList}
           liftStates={this.sendToParent}
           searchInDb={this.searchInDb}
+          //pour affichage des filtres passés en Home
+          day={this.props.day}
+          location={this.props.location}
+          visitor={this.props.visitor}
         />
         <SearchResults hostsList={this.state.hostsList} />
       </div>
