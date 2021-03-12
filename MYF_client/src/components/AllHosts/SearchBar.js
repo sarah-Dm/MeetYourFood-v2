@@ -26,14 +26,12 @@ class SearchBar extends React.Component {
     let dayShowed = 'Tous';
     //entrer dans this.props.openingDaysList et chercher l'index donc el.id est la valeur this.props.day
     this.props.openingDaysList.map((el) => {
-      console.log(el.id, this.props.day, el.id === this.props.day);
       if (el.id === this.props.day) {
         dayIndex = this.props.openingDaysList.indexOf(el);
         //afficher la .traduction de l'el qui porte cet index
         dayShowed = this.props.openingDaysList[dayIndex].traduction;
       }
     });
-    console.log('dayShowed', dayShowed);
     return dayShowed;
   };
 

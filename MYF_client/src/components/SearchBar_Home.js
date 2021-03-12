@@ -43,7 +43,7 @@ class SearchBarHome extends React.Component {
                 {this.props.openingDaysList.map((openingDay) => {
                   return (
                     <option value={openingDay.value} key={openingDay.value}>
-                      {openingDay.traduction}
+                      🗓 {openingDay.traduction}
                     </option>
                   );
                 })}
