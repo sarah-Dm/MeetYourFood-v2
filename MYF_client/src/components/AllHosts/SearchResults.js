@@ -1,16 +1,27 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { AiOutlineUnorderedList } from 'react-icons/ai';
 import { BiMap } from 'react-icons/bi';
+import EnChargement from '../EnChargement';
 
 const SearchResults = (props) => {
   const resultats = props.hostsList.resultats;
 
-  if (!resultats)
-    return (
-      <div>
-        <h2>En chargement</h2>
-      </div>
-    );
+  const showFarmTypeLabel = (farmType) => {
+    let farmTypeIndex;
+    let farmTypeShowed;
+    //entrer dans this.props.openingDaysList et chercher l'index donc el.id est la valeur this.props.day
+    props.farmTypeList.map((el) => {
+      if (el.value === farmType) {
+        farmTypeIndex = props.farmTypeList.indexOf(el);
+        //afficher la .traduction de l'el qui porte cet index
+        farmTypeShowed = props.farmTypeList[farmTypeIndex].traduction;
+      }
+    });
+    return farmTypeShowed;
+  };
+
+  if (!resultats) return <EnChargement />;
   if (resultats.length < 1)
     return (
       <div>
@@ -36,7 +47,7 @@ const SearchResults = (props) => {
         <ul id="listeResultats">
           {resultats.map((aHost) => (
             <li key={aHost._id}>
-              <a>
+              <Link to="/">
                 <div
                   className="recherche-image"
                   style={{ backgroundImage: `url(${aHost.photos[0]})` }}
@@ -46,11 +57,19 @@ const SearchResults = (props) => {
                   <p> {aHost.reviews && aHost.reviews.length} reviews </p>
                 </div>
                 <p>
-                  <b>{aHost.farmName} </b>
+                  <b style={{ textTransform: 'uppercase' }}>{aHost.farmName}</b>
                 </p>
-                <p> {aHost.farmType} </p>
-                <p> {aHost.location} </p>
-              </a>
+                <ul id="hostsList">
+                  {aHost.farmType.map((aFarmType) => {
+                    return (
+                      <li key={aFarmType}>{showFarmTypeLabel(aFarmType)},</li>
+                    );
+                  })}
+                </ul>
+                <p style={{ fontStyle: 'italic', textTransform: 'capitalize' }}>
+                  {aHost.location}
+                </p>
+              </Link>
             </li>
           ))}
         </ul>

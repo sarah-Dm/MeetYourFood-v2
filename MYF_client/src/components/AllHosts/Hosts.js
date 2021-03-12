@@ -77,7 +77,10 @@ class Hosts extends React.Component {
           location={this.props.location}
           visitor={this.props.visitor}
         />
-        <SearchResults hostsList={this.state.hostsList} />
+        <SearchResults
+          hostsList={this.state.hostsList}
+          farmTypeList={this.props.farmTypeList}
+        />
       </div>
     );
   }

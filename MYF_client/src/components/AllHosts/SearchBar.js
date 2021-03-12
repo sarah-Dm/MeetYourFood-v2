@@ -36,7 +36,6 @@ class SearchBar extends React.Component {
   };
 
   render() {
-    console.log(this.state.day);
     return (
       <form className="formulaire-recherche">
         <div id="fields">

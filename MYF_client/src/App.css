@@ -885,6 +885,19 @@ select {
   box-shadow: 1px 1px rgb(59, 56, 56);
 }
 
+#searchResults #hostsList {
+  max-height: 75px;
+  overflow: hidden;
+  display: flex;
+  justify-content: flex-start;
+}
+
+#searchResults #hostsList li {
+  margin-bottom: 0px;
+  margin-right: 5px;
+  width: auto;
+}
+
 .hideCheckboxes {
   display: none;
 }
@@ -893,7 +906,7 @@ select {
   display: block;
   display: block;
   position: absolute;
-  background: grey;
+  background: #eceaeaeb;
   margin: 10px 0px;
   padding: 6px;
   border-radius: 12px;
