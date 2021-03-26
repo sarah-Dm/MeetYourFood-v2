@@ -17,6 +17,7 @@ const SearchResults = (props) => {
         //afficher la .traduction de l'el qui porte cet index
         farmTypeShowed = props.farmTypeList[farmTypeIndex].traduction;
       }
+      return '';
     });
     return farmTypeShowed;
   };
@@ -47,7 +48,7 @@ const SearchResults = (props) => {
         <ul id="listeResultats">
           {resultats.map((aHost) => (
             <li key={aHost._id}>
-              <Link to="/">
+              <Link to={`/profile/${aHost.userDetails}/public`}>
                 <div
                   className="recherche-image"
                   style={{ backgroundImage: `url(${aHost.photos[0]})` }}

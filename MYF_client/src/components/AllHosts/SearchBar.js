@@ -31,6 +31,7 @@ class SearchBar extends React.Component {
         //afficher la .traduction de l'el qui porte cet index
         dayShowed = this.props.openingDaysList[dayIndex].traduction;
       }
+      return '';
     });
     return dayShowed;
   };

@@ -290,7 +290,7 @@ router.post('/login', (req, res, next) => {
         return;
       } else if (bcryptjs.compareSync(password, user.hashedPassword)) {
         req.session.currentUser = user; //required pour ts les fichiers dans app.js
-        res.status(200).json(user);
+        res.status(200).json({ user });
       } else {
         res.status(400).json({
           message: 'Incorrect password.',

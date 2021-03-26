@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import SearchBarHome from './SearchBar_Home';
 
+
 class Home extends React.Component {
   state = { location: '', day: '', visitor: 1 };
 

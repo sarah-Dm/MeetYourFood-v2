@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const productHostSchema = new Schema(
+const HostSchema = new Schema(
   {
     userDetails: {
       type: Schema.Types.ObjectId,
@@ -130,5 +130,5 @@ const productHostSchema = new Schema(
   }
 );
 
-const ProductHost = mongoose.model('Host', productHostSchema);
-module.exports = ProductHost;
+const Host = mongoose.model('Host', HostSchema);
+module.exports = Host;

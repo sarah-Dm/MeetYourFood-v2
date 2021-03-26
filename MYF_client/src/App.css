@@ -2,6 +2,7 @@
 :root {
   --orange: #f2994a;
   --green: #0a4e24;
+  --orange-transparent: rgba(242, 152, 74, 0.568);
   --green-transparent: #0a4e247a;
   --grey: #f2f2f2;
   --navbar_height: 90px;
@@ -147,6 +148,7 @@ button:hover {
   position: fixed;
   top: 0;
   border-bottom: 3px solid transparent;
+  z-index: 1;
 }
 
 .header-layout #logo {
@@ -533,15 +535,6 @@ button:hover {
 
 #host-main-info {
   display: flex;
-}
-
-#host-orange-block {
-  display: flex;
-  width: 74%;
-  background-color: var(--orange);
-  border-radius: 50px;
-  padding: 35px;
-  align-content: space-evenly;
 }
 
 #host-orange-block #info,
@@ -931,12 +924,11 @@ select {
   flex-direction: column;
   margin-left: auto;
   margin-right: auto;
-  padding-top: 12%;
   padding-bottom: 3%;
 }
 
 .create-account {
-  padding-top: 12%;
+  margin-top: calc(var(--navbar_height) * 1.5);
   padding-bottom: 5%;
 }
 
@@ -1253,3 +1245,175 @@ input.upload {
 }
 
 /*# sourceMappingURL=style.css.map */
+
+/*
+##     ##  #######   ######  ########    ########     ###     ######   ######## 
+##     ## ##     ## ##    ##    ##       ##     ##   ## ##   ##    ##  ##       
+##     ## ##     ## ##          ##       ##     ##  ##   ##  ##        ##       
+######### ##     ##  ######     ##       ########  ##     ## ##   #### ######   
+##     ## ##     ##       ##    ##       ##        ######### ##    ##  ##       
+##     ## ##     ## ##    ##    ##       ##        ##     ## ##    ##  ##       
+##     ##  #######   ######     ##       ##        ##     ##  ######   ######## 
+*/
+#host_page {
+  margin-top: calc(var(--navbar_height) * 1.5);
+  width: 75%;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+#host_photos {
+  display: flex;
+  justify-content: space-between;
+  height: 400px;
+  margin-bottom: 40px;
+}
+
+#host_photos button {
+  right: 0;
+  bottom: 10px;
+  position: absolute;
+  background-color: var(--orange);
+  padding: 10px 30px;
+  border-radius: 35px;
+  color: white;
+  font-weight: 800;
+}
+
+#host_photos > img {
+  height: 100%;
+}
+
+#host_photos img {
+  align-self: center;
+  border-radius: 10px;
+}
+
+#host_photos div {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  justify-content: space-between;
+}
+
+#host_photos div img {
+  height: 48%;
+}
+
+#back_to_list {
+  margin-bottom: 10px;
+  background: #e4e0e0;
+  padding: 10px 20px;
+  border-radius: 30px;
+  font-weight: 800;
+}
+
+#farm_info {
+  display: flex;
+  margin: 0 auto;
+}
+
+#farm_info > div:nth-child(1) {
+  width: 70%;
+}
+
+#farm_info > div:nth-child(2) {
+  width: 30%;
+  border-left: 1px solid var(--orange);
+  padding-left: 20px;
+}
+
+#farm_info div:nth-child(1) h2 {
+  margin-bottom: 15px;
+}
+
+#farm_info div:nth-child(1) h2,
+#farm_info div:nth-child(1) p {
+  text-align: center;
+}
+
+#host_detail {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  margin: 40px auto 0px auto;
+}
+
+#host_detail li {
+  display: flex;
+  align-items: baseline;
+}
+
+#host_detail > li {
+  margin: 5px 0px;
+}
+
+#host_detail label {
+  width: 50%;
+  display: flex;
+  align-items: baseline;
+}
+
+#host_detail label svg {
+  margin-right: 10px;
+}
+
+#host_detail ul {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 50%;
+}
+
+#host_detail ul li {
+  margin-right: 5px;
+}
+
+#farm_info > div:nth-child(2) div {
+  display: flex;
+  align-items: center;
+}
+
+#farm_info #host_name p {
+  margin-left: 10px;
+}
+
+#farm_info > div:nth-child(2) img {
+  width: 40%;
+  border-radius: 100px;
+}
+
+#farm_info > div:nth-child(2) > div button p {
+  margin-left: 10px;
+}
+
+#farm_info > div:nth-child(2) button {
+  display: block;
+  background-color: var(--orange);
+  padding: 10px 30px;
+  border-radius: 35px;
+  color: white;
+  font-weight: 800;
+  margin: 13px auto;
+}
+
+#farm_info > div:nth-child(2) button svg {
+  margin-right: 5px;
+}
+
+#farm_info #opening_hours,
+#farm_info #opening_days {
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
+  margin: 10px auto;
+}
+
+#farm_info #opening_days ul {
+  flex-wrap: wrap;
+  display: flex;
+  flex-direction: column;
+  height: 113px;
+  width: 100%;
+}

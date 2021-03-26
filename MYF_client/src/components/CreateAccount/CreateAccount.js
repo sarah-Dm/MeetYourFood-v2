@@ -102,59 +102,59 @@ class CreateAccount extends React.Component {
 
   render() {
     //pour afficher le label dans le step final et non les values en BDD
-    const valueToLabel = {
-      'poultry-farming': 'Elevage de volailles',
-      'pig-farming': 'Elevage porcin',
-      'cow-farming': 'Elevage bovin',
-      'sheep-farming': 'Elevage de moutons',
-      'market-gardener': 'Maraichage',
-      viticulture: 'Viticulture',
-      beekeeping: 'Apiculture',
-      'cheese-maker': 'Production de fromage',
-      'dairy-maker': 'Production de lait',
-      tasting: 'Dégustation',
-      'direct-selling': 'Vente directe',
-      workshops: 'Ateliers',
-      'self-tour': 'Visite autonome',
-      'guided-tour': 'Visite guidée',
-      bio: 'Bio',
-      AOP: 'AOP',
-      AOC: 'AOC',
-      HVE: 'HVE',
-      RSE: 'RSE',
-      biodynamic: 'Biodynamic',
-      children: 'Enfants',
-      seniors: 'Seniors',
-      disabled: 'Accès aux personnes handicapés',
-      monday: 'Lundi',
-      tuesday: 'Mardi',
-      wednesday: 'Mercredi',
-      thurday: 'Jeudi',
-      friday: 'Vendredi',
-      saturday: 'Samedi',
-      sunday: 'Dimanche',
-      french: 'français',
-      english: 'anglais',
-      spanish: 'espagnol',
-      german: 'allemand',
-    };
+    // const valueToLabel = {
+    //   'poultry-farming': 'Elevage de volailles',
+    //   'pig-farming': 'Elevage porcin',
+    //   'cow-farming': 'Elevage bovin',
+    //   'sheep-farming': 'Elevage de moutons',
+    //   'market-gardener': 'Maraichage',
+    //   viticulture: 'Viticulture',
+    //   beekeeping: 'Apiculture',
+    //   'cheese-maker': 'Production de fromage',
+    //   'dairy-maker': 'Production de lait',
+    //   tasting: 'Dégustation',
+    //   'direct-selling': 'Vente directe',
+    //   workshops: 'Ateliers',
+    //   'self-tour': 'Visite autonome',
+    //   'guided-tour': 'Visite guidée',
+    //   bio: 'Bio',
+    //   AOP: 'AOP',
+    //   AOC: 'AOC',
+    //   HVE: 'HVE',
+    //   RSE: 'RSE',
+    //   biodynamic: 'Biodynamic',
+    //   children: 'Enfants',
+    //   seniors: 'Seniors',
+    //   disabled: 'Accès aux personnes handicapés',
+    //   monday: 'Lundi',
+    //   tuesday: 'Mardi',
+    //   wednesday: 'Mercredi',
+    //   thurday: 'Jeudi',
+    //   friday: 'Vendredi',
+    //   saturday: 'Samedi',
+    //   sunday: 'Dimanche',
+    //   french: 'français',
+    //   english: 'anglais',
+    //   spanish: 'espagnol',
+    //   german: 'allemand',
+    // };
     const farmTypeLabelArr = this.state.farmType.map(
-      (farmType) => valueToLabel[farmType]
+      (farmType) => this.props.valueToLabel[farmType]
     );
     const activityTypesLabelArr = this.state.activityTypes.map(
-      (activityType) => valueToLabel[activityType]
+      (activityType) => this.props.valueToLabel[activityType]
     );
     const certificationsLabelArr = this.state.certifications.map(
-      (certification) => valueToLabel[certification]
+      (certification) => this.props.valueToLabel[certification]
     );
     const visitorTypeLabelArr = this.state.visitorType.map(
-      (visitorType) => valueToLabel[visitorType]
+      (visitorType) => this.props.valueToLabel[visitorType]
     );
     const openingDaysLabelArr = this.state.openingDays.map(
-      (openingDay) => valueToLabel[openingDay]
+      (openingDay) => this.props.valueToLabel[openingDay]
     );
     const spokenLanguagesLabelArr = this.state.spokenLanguages.map(
-      (spokenLanguage) => valueToLabel[spokenLanguage]
+      (spokenLanguage) => this.props.valueToLabel[spokenLanguage]
     );
 
     return (

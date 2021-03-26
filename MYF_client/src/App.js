@@ -6,6 +6,7 @@ import Footer from './components/Footer';
 import Home from './components/Home';
 import CreateAccount from './components/CreateAccount/CreateAccount';
 import Hosts from './components/AllHosts/Hosts';
+import AHost from './components/HostPage/AHost';
 
 class App extends React.Component {
   state = { userLogged: null, location: '', day: '', visitor: 1 };
@@ -98,6 +99,45 @@ class App extends React.Component {
       { value: 'sunday', id: 'sunday', traduction: 'Dimanche' },
     ];
 
+    //pour afficher les intitulés en front et non les valeurs
+    const valueToLabel = {
+      'poultry-farming': 'Elevage de volailles',
+      'pig-farming': 'Elevage porcin',
+      'cow-farming': 'Elevage bovin',
+      'sheep-farming': 'Elevage de moutons',
+      'market-gardener': 'Maraichage',
+      viticulture: 'Viticulture',
+      beekeeping: 'Apiculture',
+      'cheese-maker': 'Production de fromage',
+      'dairy-maker': 'Production de lait',
+      tasting: 'Dégustation',
+      'direct-selling': 'Vente directe',
+      workshops: 'Ateliers',
+      'self-tour': 'Visite autonome',
+      'guided-tour': 'Visite guidée',
+      bio: 'Bio',
+      AOP: 'AOP',
+      AOC: 'AOC',
+      IGP: 'IGP',
+      STG: 'STG',
+      biodynamic: 'Biodynamique',
+      label_rouge: 'Label rouge',
+      children: 'Enfants',
+      seniors: 'Seniors',
+      disabled: 'Accès aux personnes handicapés',
+      monday: 'Lundi',
+      tuesday: 'Mardi',
+      wednesday: 'Mercredi',
+      thurday: 'Jeudi',
+      friday: 'Vendredi',
+      saturday: 'Samedi',
+      sunday: 'Dimanche',
+      french: 'français',
+      english: 'anglais',
+      spanish: 'espagnol',
+      german: 'allemand',
+    };
+
     return (
       <div className="App">
         <Navbar
@@ -116,10 +156,10 @@ class App extends React.Component {
                 certificationsList={certificationsList}
                 publicTypesList={publicTypesList}
                 openingDaysList={openingDaysList}
+                valueToLabel={valueToLabel}
               />
             )}
           />
-
           <Route
             exact={true}
             path="/"
@@ -148,6 +188,17 @@ class App extends React.Component {
               />
             )}
           ></Route>
+          <Route
+            exact={true}
+            path="/profile/:userId/public"
+            render={(props) => (
+              <AHost
+                {...props}
+                openingDaysList={openingDaysList}
+                valueToLabel={valueToLabel}
+              />
+            )}
+          />
         </Switch>
         <Footer />
       </div>

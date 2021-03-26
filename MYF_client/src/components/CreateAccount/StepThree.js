@@ -245,19 +245,22 @@ class StepThree extends React.Component {
         </fieldset>
         <fieldset>
           <legend>Jours d'ouverture *</legend>
-          {this.props.openingDaysList.map((aDay, i) => (
-            <div className="checkbox" key={i}>
-              <input
-                type="checkbox"
-                name="openingDays"
-                value={aDay.value}
-                id={aDay.id}
-                onChange={this.handleChange}
-                checked={this.precheckBox('openingDays', aDay.value)}
-              />
-              <label htmlFor={aDay.id}>{aDay.traduction}</label>
-            </div>
-          ))}
+          {this.props.openingDaysList.map(
+            (aDay, i) =>
+              i > 0 && (
+                <div className="checkbox" key={i}>
+                  <input
+                    type="checkbox"
+                    name="openingDays"
+                    value={aDay.value}
+                    id={aDay.id}
+                    onChange={this.handleChange}
+                    checked={this.precheckBox('openingDays', aDay.value)}
+                  />
+                  <label htmlFor={aDay.id}>{aDay.traduction}</label>
+                </div>
+              )
+          )}
         </fieldset>
         <label className="field">
           Heures d'ouverture *

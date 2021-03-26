@@ -10,44 +10,42 @@ const mongoose = require('mongoose');
 
 //afficher le profil d'un autre user
 router.get('/profile/:userId/public', (req, res, next) => {
+  console.log(req.params.userId);
   //Accès à la fiche user que si le user est logué
-  if (!req.session.currentUser) {
-    res.status(400).json({ message: 'Please login' });
-    return;
-  }
+  // if (!req.session.currentUser) {
+  //   res.status(400).json({ message: 'Please login' });
+  //   return;
+  // }
   User.findById(req.params.userId)
     .then((user) => {
+      console.log(user);
       //si le user est un visiteur, afficher la fiche
-      if (!user.host) {
-        res
-          .status(200)
-          .json({ message: `View profile of visitor ${user.lastName}` });
-      }
-      //si le user est un host, aller chercher les commmentaires en base puis afficher la fiche
-      else {
+      if (user.host) {
         Host.findOne({
-          userId: req.params.userId,
+          userDetails: req.params.userId,
         })
-          .populate('User')
+          .populate('userDetails')
           .then((host) => {
-            Comment.find({ dest_id: req.params.userId })
-              .populate('author_id')
-              .then((comments) => {
-                res.status(200).json({ message: 'comments fetched from db' });
-              })
-              .catch((err) =>
-                res.status(400).json({ message: 'no comments found in db' })
-              );
+            res.status(200).json({ host });
+            // Review.findOne({ visitedHost: host._id })
+            //   .populate('visitor')
+            //   .then((reviews) => {
+            //     res.status(200).json({ reviews });
+            //   })
+            //   // TODO - ne pas faire entrer dans le catch s'il n'y a pas de comments
+            //   .catch((err) =>
+            //     res.status(400).json({ message: 'no comments found in db' })
+            //   );
           })
-          .catch((err) =>
-            res
-              .status(400)
-              .json({ message: 'host with no comments found in db' })
-          );
+          .catch((err) => res.status(400).json({ message: 'no host found' }));
+      }
+      //si le user est un host, aller chercher l'host qui porte le userDetails: userId, les commmentaires en base puis afficher la fiche
+      else {
+        res.status(200).json({ user });
       }
     })
     .catch((err) => {
-      res.status(500).json({ message: 'error in /profile/:userId/public' });
+      res.status(400).json({ message: 'this user id was not found in db' });
     });
 });
 
