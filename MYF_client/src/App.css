@@ -14,7 +14,7 @@
   box-sizing: border-box;
 }
 
-body {
+body > * {
   margin: 0px;
   padding: 0px;
   font-size: 16px;
@@ -1278,6 +1278,14 @@ input.upload {
   border-radius: 35px;
   color: white;
   font-weight: 800;
+  margin: 10px;
+}
+
+#host_photos button:hover {
+  cursor: pointer;
+  transition-duration: 0.1s;
+  background-color: white;
+  color: var(--orange);
 }
 
 #host_photos > img {
@@ -1312,6 +1320,13 @@ input.upload {
 #farm_info {
   display: flex;
   margin: 0 auto;
+}
+
+#farm_info .btn:hover {
+  cursor: pointer;
+  transition-duration: 0.1s;
+  background-color: white;
+  color: var(--orange);
 }
 
 #farm_info > div:nth-child(1) {
@@ -1416,4 +1431,49 @@ input.upload {
   flex-direction: column;
   height: 113px;
   width: 100%;
+}
+
+/*
+########  ######## ##     ## #### ######## ##      ## 
+##     ## ##       ##     ##  ##  ##       ##  ##  ## 
+##     ## ##       ##     ##  ##  ##       ##  ##  ## 
+########  ######   ##     ##  ##  ######   ##  ##  ## 
+##   ##   ##        ##   ##   ##  ##       ##  ##  ## 
+##    ##  ##         ## ##    ##  ##       ##  ##  ## 
+##     ## ########    ###    #### ########  ###  ###  
+*/
+
+#reviews {
+  margin: 40px 0px;
+}
+
+#review_header {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 0px;
+  text-transform: uppercase;
+  width: 60%;
+}
+
+#review {
+  margin: 35px 0px;
+}
+
+#review_detail {
+  display: flex;
+  align-items: center;
+}
+
+#review_detail div:nth-child(1) {
+  width: 4%;
+}
+
+#review_detail img {
+  width: 100%;
+}
+
+#review_content {
+  background: rgba(98, 151, 66, 0.5);
+  padding: 10px;
+  border-radius: 15px;
 }
