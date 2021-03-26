@@ -76,3 +76,12 @@ function search(url) {
 }
 
 export { search };
+
+function login(email, password) {
+  return service
+    .post('/api/login', { email, password })
+    .then((res) => res.data)
+    .catch((err) => errorHandler(err));
+}
+
+export { login };

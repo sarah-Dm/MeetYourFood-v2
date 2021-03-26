@@ -96,7 +96,8 @@ button:hover {
   min-height: 100vh;
 }
 
-.content {
+.content,
+#login {
   flex: 1;
   min-height: 80vh;
 }
@@ -583,82 +584,6 @@ button:hover {
   width: 20%;
 }
 
-/*
-                                      
- #####  ###### #    # # ###### #    # 
- #    # #      #    # # #      #    # 
- #    # #####  #    # # #####  #    # 
- #####  #      #    # # #      # ## # 
- #   #  #       #  #  # #      ##  ## 
- #    # ######   ##   # ###### #    # 
-                                      
-*/
-#review-creation {
-  margin-left: 0px;
-  width: 100%;
-  padding-top: 4%;
-}
-
-#review-creation .primary {
-  width: 20%;
-}
-
-#review-creation p {
-  margin-bottom: 5px;
-}
-
-#review-creation input {
-  display: inline;
-  width: 20%;
-  text-align: right;
-}
-
-#reviews {
-  margin-top: 20px;
-  list-style: none;
-}
-
-#reviews li {
-  width: 100%;
-  margin: 3% auto;
-  display: flex;
-  padding: 30px;
-  background: var(--grey);
-  border-radius: 50px;
-}
-
-.author-comment {
-  margin: 2%;
-  display: flex;
-  flex-direction: column;
-}
-
-.review-info {
-  margin: 3% 10%;
-}
-
-#new-reviews .label,
-#reviews .label {
-  font-size: 20px;
-}
-
-.author-comment .profile-pic {
-  margin-bottom: 15%;
-}
-
-.author-comment p {
-  text-align: center;
-}
-
-.author-comment p span {
-  font-weight: 700;
-}
-
-#formulaire-recherche-mobile {
-  display: none;
-  height: 0px;
-}
-
 /*                                                          
   ####  ######   ##   #####   ####  #    # #####    ##   #####  
  #      #       #  #  #    # #    # #    # #    #  #  #  #    # 
@@ -945,7 +870,7 @@ select {
   height: 100px;
 }
 
-.form h1 {
+.form h2 {
   font-weight: 400;
   text-align: center;
   margin-bottom: 10%;
@@ -1037,7 +962,7 @@ input.upload {
 .signup_buttons {
   display: flex;
   justify-content: center;
-  flex-direction: row;
+  flex-direction: column;
 }
 
 .create-account .primary,
@@ -1068,10 +993,6 @@ input.upload {
 #final_signup li p:nth-child(2),
 #final_signup li div p {
   text-transform: capitalize;
-}
-
-.login {
-  padding-top: 15%;
 }
 
 #opening-hours {
@@ -1476,4 +1397,17 @@ input.upload {
   background: rgba(98, 151, 66, 0.5);
   padding: 10px;
   border-radius: 15px;
+}
+
+/*
+##        #######   ######   #### ##    ## 
+##       ##     ## ##    ##   ##  ###   ## 
+##       ##     ## ##         ##  ####  ## 
+##       ##     ## ##   ####  ##  ## ## ## 
+##       ##     ## ##    ##   ##  ##  #### 
+##       ##     ## ##    ##   ##  ##   ### 
+########  #######   ######   #### ##    ## 
+*/
+#login {
+  padding-top: var(--navbar_height);
 }

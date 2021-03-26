@@ -273,7 +273,8 @@ router.delete('profiles/:userId', (req, res, next) => {
 // Connexion
 router.post('/login', (req, res, next) => {
   const { email, password } = req.body;
-  if (email === '' || password === '') {
+  if (!email || !password) {
+    console.log('vide', email, password);
     res
       .status(400)
       .json({ message: 'Please enter both, email and password to login.' });

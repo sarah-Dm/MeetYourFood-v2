@@ -67,7 +67,7 @@ class StepOne extends React.Component {
     }
     return (
       <div>
-        <h1>CREER UN COMPTE</h1>
+        <h2>CREER UN COMPTE</h2>
         <div>
           <form id="createAccountForm">
             <label className="field">

@@ -7,6 +7,7 @@ import Home from './components/Home';
 import CreateAccount from './components/CreateAccount/CreateAccount';
 import Hosts from './components/AllHosts/Hosts';
 import AHost from './components/HostPage/AHost';
+import Login from './components/Login';
 
 class App extends React.Component {
   state = { userLogged: null, location: '', day: '', visitor: 1 };
@@ -197,6 +198,13 @@ class App extends React.Component {
                 openingDaysList={openingDaysList}
                 valueToLabel={valueToLabel}
               />
+            )}
+          />
+          <Route
+            exact={true}
+            path="/login"
+            render={(props) => (
+              <Login handleUpdateUser={this.handleUpdateUser} />
             )}
           />
         </Switch>

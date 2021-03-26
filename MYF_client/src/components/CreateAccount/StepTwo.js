@@ -60,7 +60,7 @@ class StepTwo extends React.Component {
   render() {
     return (
       <div>
-        <h1>CREER UN COMPTE</h1>
+        <h2>CREER UN COMPTE</h2>
         {/* error message */}
         <form id="createAccountForm">
           <label className="field">
