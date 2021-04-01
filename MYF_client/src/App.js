@@ -8,13 +8,28 @@ import CreateAccount from './components/CreateAccount/CreateAccount';
 import Hosts from './components/AllHosts/Hosts';
 import AHost from './components/HostPage/AHost';
 import Login from './components/Login';
+import service from './components/route-service';
 
 class App extends React.Component {
   state = { userLogged: null, location: '', day: '', visitor: 1 };
 
+  componentDidMount() {
+    service
+      .get('/api/loggedin')
+      .then((res) => this.setState({ userLogged: res.data.user }))
+      .catch((err) => console.log(err));
+  }
+
   //à appeler dans le questionnaire login
   handleUpdateUser = (newUserId) => {
     this.setState({ userLogged: newUserId });
+  };
+
+  handleLogout = () => {
+    service
+      .get('/api/logout')
+      .then((res) => this.setState({ userLogged: null }))
+      .catch((err) => console.log(err));
   };
 
   sendToApp = (stateName, value) => {
@@ -141,10 +156,7 @@ class App extends React.Component {
 
     return (
       <div className="App">
-        <Navbar
-          userLogged={this.state.userLoggged}
-          updateUser={this.handleUpdateUser}
-        />
+        <Navbar userLogged={this.state.userLoggged} />
         <Switch>
           <Route
             exact={true}

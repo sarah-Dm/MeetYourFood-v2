@@ -9,8 +9,8 @@ class Login extends React.Component {
     const { email, password } = this.state;
     console.log(email, password);
     service
-      .post('/api/login', (email, password))
-      .then((res) => console.log(res))
+      .post('/api/login', { email, password })
+      .then((res) => this.props.handleUpdateUser(res.data.user))
       .catch((err) => console.log(err));
   };
 

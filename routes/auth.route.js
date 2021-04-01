@@ -273,8 +273,9 @@ router.delete('profiles/:userId', (req, res, next) => {
 // Connexion
 router.post('/login', (req, res, next) => {
   const { email, password } = req.body;
+  console.log('vide', email, password);
+
   if (!email || !password) {
-    console.log('vide', email, password);
     res
       .status(400)
       .json({ message: 'Please enter both, email and password to login.' });
@@ -302,9 +303,9 @@ router.post('/login', (req, res, next) => {
 });
 
 // vérification que user est loggedin
-router.post('/loggedin', (req, res, next) => {
+router.get('/loggedin', (req, res, next) => {
   if (req.session.currentUser) {
-    res.status(200).json({ message: 'user logged' });
+    res.status(200).json({ user: req.session.currentUser });
   } else {
     res.status(500).json({ message: 'no user logged' });
   }

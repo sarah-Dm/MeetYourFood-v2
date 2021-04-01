@@ -3,7 +3,14 @@ import { Link } from 'react-router-dom';
 import { VscAccount } from 'react-icons/vsc';
 
 class Navbar extends React.Component {
+  // componentDidUpdate(prevState, prevProps) {
+  //   if (prevProps !== this.props) {
+  //     console.log('prevProps', prevProps, 'this.props', this.props);
+  //   }
+  // }
   render() {
+    console.log('this.props.userLogged', this.props.userLogged);
+
     return (
       <header className="header-layout">
         <h1 id="logo">
