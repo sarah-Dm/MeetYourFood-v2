@@ -14,15 +14,24 @@ class App extends React.Component {
   state = { userLogged: null, location: '', day: '', visitor: 1 };
 
   componentDidMount() {
-    service
-      .get('/api/loggedin')
-      .then((res) => this.setState({ userLogged: res.data.user }))
-      .catch((err) => console.log(err));
+    this.fetchUser();
   }
 
+  fetchUser = () => {
+    if (!this.state.userLogged) {
+      service
+        .get('/api/loggedin')
+        .then((res) => this.setState({ userLogged: res.data.user }))
+        .catch((err) => this.setState({ userLogged: null }));
+    }
+  };
+
   //à appeler dans le questionnaire login
-  handleUpdateUser = (newUserId) => {
-    this.setState({ userLogged: newUserId });
+  handleUpdateUser = (newUser) => {
+    console.log('in handleUpdateUser');
+    this.setState({ userLogged: newUser }, () => {
+      console.log('this.state.userLogged here', this.state.userLogged); //TODO - userLogged qui ne re-render pas App.js et ses enfants
+    });
   };
 
   handleLogout = () => {
@@ -154,9 +163,13 @@ class App extends React.Component {
       german: 'allemand',
     };
 
+    console.log('this.state.userLoggged in App', this.state.userLoggged);
     return (
       <div className="App">
-        <Navbar userLogged={this.state.userLoggged} />
+        <Navbar
+          userLogged={this.state.userLoggged}
+          logoutButton={this.handleLogout}
+        />
         <Switch>
           <Route
             exact={true}
@@ -180,6 +193,7 @@ class App extends React.Component {
               <Home
                 openingDaysList={openingDaysList}
                 liftStatesToApp={this.sendToApp}
+                userLogged={this.state.userLoggged}
               />
             )}
           ></Route>
@@ -216,7 +230,7 @@ class App extends React.Component {
             exact={true}
             path="/login"
             render={(props) => (
-              <Login handleUpdateUser={this.handleUpdateUser} />
+              <Login {...props} handleUpdateUser={this.handleUpdateUser} />
             )}
           />
         </Switch>

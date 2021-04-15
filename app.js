@@ -7,6 +7,8 @@ const favicon = require('serve-favicon');
 const hbs = require('hbs');
 const mongoose = require('mongoose');
 const logger = require('morgan');
+const session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
 const path = require('path');
 const cors = require('cors');
 
@@ -75,10 +77,22 @@ app.use(
 // default value for title local
 app.locals.title = 'Express - Generated with IronGenerator';
 
-app.use((req, res, next) => {
-  if (req.session.currentUser) res.locals.currentUser = req.session.currentUser;
-  next();
-});
+// app.use((req, res, next) => {
+//   if (req.session.currentUser) res.locals.currentUser = req.session.currentUser;
+//   next();
+// });
+
+app.use(
+  session({
+    secret: 'some secret',
+    resave: true,
+    saveUninitialized: true,
+    store: new MongoStore({
+      mongooseConnection: mongoose.connection,
+      ttl: 60 * 60 * 24,
+    }),
+  })
+);
 
 const auth = require('./routes/auth.route');
 app.use('/api', auth);

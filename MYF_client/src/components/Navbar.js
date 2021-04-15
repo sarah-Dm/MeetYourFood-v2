@@ -13,6 +13,7 @@ class Navbar extends React.Component {
 
     return (
       <header className="header-layout">
+        <button onClick={this.props.logoutButton}>Logout</button>
         <h1 id="logo">
           <a href="/" alt="MeetYourFood">
             MeetYourFood 🥕

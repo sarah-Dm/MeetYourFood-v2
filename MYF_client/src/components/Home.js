@@ -87,6 +87,7 @@ class Home extends React.Component {
       },
     ];
 
+    console.log('this.props.userLogged in home', this.props.userLogged);
     return (
       <div className="homepage">
         <div id="page_accueil">

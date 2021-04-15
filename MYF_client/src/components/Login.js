@@ -7,10 +7,12 @@ class Login extends React.Component {
   login = (event) => {
     event.preventDefault();
     const { email, password } = this.state;
-    console.log(email, password);
     service
       .post('/api/login', { email, password })
-      .then((res) => this.props.handleUpdateUser(res.data.user))
+      .then((res) => {
+        this.props.handleUpdateUser(res.data.user);
+        this.props.history.push(`profile/${res.data.user._id}`);
+      })
       .catch((err) => console.log(err));
   };
 
